@@ -1,6 +1,5 @@
 <h1 align="center">Hayacom</h1>
 
-
 ### Installation
 
 ```bash
@@ -20,4 +19,5 @@ $ npm run build:frontend
 $ npm start
 $ npm start:backend
 $ npm start:frontend
+
 ```
