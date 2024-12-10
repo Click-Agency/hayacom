@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { PackagesController } from './packages.controller';
 import { PackagesService } from './packages.service';
+import { PackageModel } from '../db/models/package.model';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
-  imports: [],
+  imports: [PackageModel],
   controllers: [PackagesController],
-  providers: [PackagesService],
+  providers: [PackagesService, JwtService],
 })
 export class PackagesModule {}

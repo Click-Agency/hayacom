@@ -13,9 +13,8 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-
-import { ParseObjectIdPipe } from '../shared/pipes/parse-objectId.pipe';
 import { CardsService } from './cards.service';
+import { ParseObjectIdPipe } from '../shared/pipes/parse-objectId.pipe';
 import { Card } from '../db/schemas/Card.schema';
 import { PaginatedDto } from '../shared/dtos/paginated.dto';
 import { AuthGuard } from '../shared/guard/auth.guard';
