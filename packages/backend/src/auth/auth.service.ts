@@ -1,14 +1,13 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../db/schemas/user.schema';
 import { hash, compare } from 'bcrypt';
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
-import { Request, Response } from 'express';
-import { HeaderDto } from './dto/header.dto';
-import { RolesEnum } from 'src/shared/decorators/roles.decorator';
+import { RegisterDto } from './dtos/register.dto';
+import { LoginDto } from './dtos/login.dto';
+import { Response } from 'express';
+import { RolesEnum } from '../shared/decorators/roles.decorator';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +22,7 @@ export class AuthService {
 
       await this.userModel.create(userData);
 
-      return { message: 'user created successfully' };
+      return HttpStatus.CREATED;
     } catch (err) {
       if (err instanceof Error && 'code' in err && err.code === 11000)
         throw new HttpException({ message: 'user is already exists' }, 409);
@@ -80,12 +79,11 @@ export class AuthService {
         .end();
     } catch (err) {
       if (err instanceof HttpException) throw err;
-
       throw new HttpException({ message: 'invalid credentials' }, 403);
     }
   }
 
-  public async refresh(res: Response, header: HeaderDto, refreshToken: string) {
+  public async refresh(res: Response, token: string, refreshToken: string) {
     try {
       const ok = this.jwtService.verify(refreshToken, {
         secret: process.env.JWT_SECRET_REFRESH_TOKEN,
@@ -99,9 +97,7 @@ export class AuthService {
         role?: RolesEnum;
       };
 
-      const accessTokenPayload = this.jwtService.decode(
-        header.authorization,
-      ) as {
+      const accessTokenPayload = this.jwtService.decode(token) as {
         _id?: string;
         email?: string;
         role?: RolesEnum;
@@ -129,7 +125,7 @@ export class AuthService {
         )}`,
       );
 
-      res.send({ message: 'success' }).end();
+      res.sendStatus(200).end();
     } catch (err) {
       if (err instanceof HttpException) throw err;
       console.log(err);

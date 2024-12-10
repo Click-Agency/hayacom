@@ -1,20 +1,10 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Header,
-  Post,
-  Req,
-  Res,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
-import { Request, Response } from 'express';
+import { LoginDto } from './dtos/login.dto';
+import { RegisterDto } from './dtos/register.dto';
+import { Response } from 'express';
 import { Cookies } from '../shared/decorators/cookies.decorator';
-import { RequestHeader } from './pipes/request-header';
-import { HeaderDto } from './dto/header.dto';
+import { RequestToken } from '../shared/pipes/request-token.pipe';
 
 @Controller('auth')
 export class AuthController {
@@ -33,12 +23,9 @@ export class AuthController {
   @Get('refresh')
   public async refresh(
     @Cookies('x-refresh-token') refreshToken: string,
-    @RequestHeader(
-      new ValidationPipe({ whitelist: true, validateCustomDecorators: true }),
-    )
-    header: HeaderDto,
+    @RequestToken() token: string,
     @Res() res: Response,
   ) {
-    return this.authService.refresh(res, header, refreshToken);
+    return this.authService.refresh(res, token, refreshToken);
   }
 }
