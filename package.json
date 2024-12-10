@@ -3,6 +3,17 @@
   "private": true,
   "version": "1.0.0",
   "description": "Hayacom App",
+  "author": "Ahmed Ehab",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ],
+  "homepage": "https://github.com/Click-Agency/hayacom#readme",
+  "keywords": [
+    "hayacom",
+    "backend",
+    "frontend"
+  ],
   "scripts": {
     "test:backend": "npm run test:cov -w packages/backend",
     "test:frontend": "npm run test -w packages/frontend",
@@ -10,31 +21,20 @@
     "dev:backend": "npm run start:dev -w packages/backend",
     "dev:frontend": "npm run dev -w packages/frontend",
     "dev": "concurrently --kill-others \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "build": "npm run build -ws",
     "build:backend": "npm run build -w packages/backend",
     "build:frontend": "npm run build -w packages/frontend",
+    "build": "npm run build -ws",
     "start:backend": "npm run start -w packages/backend",
     "start:frontend": "npm run preview -w packages/frontend",
     "start": "concurrently --kill-others \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "bugs": {
+    "url": "https://github.com/Click-Agency/hayacom/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Click-Agency/hayacom.git"
   },
-  "keywords": [
-    "hayacom",
-    "backend",
-    "frontend"
-  ],
-  "author": "Ahmed Ehab",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Click-Agency/hayacom/issues"
-  },
-  "homepage": "https://github.com/Click-Agency/hayacom#readme",
-  "workspaces": [
-    "packages/*"
-  ],
   "dependencies": {
     "concurrently": "^9.0.1"
   }
