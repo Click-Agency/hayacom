@@ -1,0 +1,10 @@
+{
+  "title": "header",
+
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "contact": "Contact Us",
+    "lang": "العربية"
+  }
+}

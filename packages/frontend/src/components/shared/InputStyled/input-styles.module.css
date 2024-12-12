@@ -1,0 +1,316 @@
+:root {
+  --roseColor: #f43f5e;
+  --redColor: #be123c;
+}
+
+/* contianers */
+
+.contianerClassName {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputContainerClassName {
+  position: relative;
+  border-radius: 0.375rem /* 6px */;
+  width: 100%;
+}
+
+/* contianers */
+
+/* label */
+
+.label {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+/* label */
+
+/* tag */
+
+.tag {
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.375rem; /* 6px */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  width: 100%;
+  max-height: 300px;
+}
+
+.tag:disabled {
+  cursor: not-allowed;
+}
+
+.errorTag {
+  border-color: var(--roseColor);
+}
+
+.errorTag:focus {
+  border-color: var(--roseColor);
+}
+
+/* tag */
+
+/* error */
+
+.error {
+  color: var(--roseColor);
+  font-weight: 600;
+}
+
+/* error */
+
+/* General styles */
+
+.text-sm {
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
+
+.text-md {
+  font-size: 1rem /* 16px */;
+  line-height: 1.5rem /* 24px */;
+}
+
+.text-lg {
+  font-size: 1.125rem /* 18px */;
+  line-height: 1.75rem /* 28px */;
+}
+
+.text-xl {
+  font-size: 1.25rem /* 20px */;
+  line-height: 1.75rem /* 28px */;
+}
+
+.text-2xl {
+  font-size: 1.5rem /* 24px */;
+  line-height: 2rem /* 32px */;
+}
+
+.text-3xl {
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+}
+
+.text-4xl {
+  font-size: 2.25rem /* 36px */;
+  line-height: 2.75rem /* 44px */;
+}
+
+.color-rose {
+  color: var(--roseColor);
+}
+
+.color-red {
+  color: var(--redColor);
+}
+
+.background-transparent {
+  background-color: transparent;
+}
+
+.p-1 {
+  padding: 0.25rem /* 4px */;
+}
+
+.p-1\.5 {
+  padding: 0.375rem /* 6px */;
+}
+
+.p-2 {
+  padding: 0.5rem /* 8px */;
+}
+
+.p-3 {
+  padding: 0.75rem /* 12px */;
+}
+
+.p-4 {
+  padding: 1rem /* 16px */;
+}
+
+.p-5 {
+  padding: 1.25rem /* 20px */;
+}
+
+.p-6 {
+  padding: 1.5rem /* 24px */;
+}
+
+.p-7 {
+  padding: 1.75rem /* 28px */;
+}
+
+.pt-1 {
+  padding-top: 0.25rem /* 4px */;
+}
+
+.pt-1\.5 {
+  padding-top: 0.375rem /* 6px */;
+}
+
+.pt-2 {
+  padding-top: 0.5rem /* 8px */;
+}
+
+.pt-3 {
+  padding-top: 0.75rem /* 12px */;
+}
+
+.pt-4 {
+  padding-top: 1rem /* 16px */;
+}
+
+.pt-5 {
+  padding-top: 1.25rem /* 20px */;
+}
+
+.pt-6 {
+  padding-top: 1.5rem /* 24px */;
+}
+
+.pt-7 {
+  padding-top: 1.75rem /* 28px */;
+}
+
+.pl-8 {
+  padding-left: 2rem /* 32px */;
+}
+
+.pl-9 {
+  padding-left: 2.25rem /* 36px */;
+}
+
+.pl-10 {
+  padding-left: 2.5rem /* 40px */;
+}
+
+.pl-11 {
+  padding-left: 2.75rem /* 44px */;
+}
+
+.pl-12 {
+  padding-left: 3rem /* 48px */;
+}
+
+.pl-13 {
+  padding-left: 3.25rem /* 52px */;
+}
+
+.pl-14 {
+  padding-left: 3.5rem /* 56px */;
+}
+
+.pl-15 {
+  padding-left: 3.75rem /* 60px */;
+}
+
+.pr-8 {
+  padding-right: 2rem /* 32px */;
+}
+
+.pr-9 {
+  padding-right: 2.25rem /* 36px */;
+}
+
+.pr-10 {
+  padding-right: 2.5rem /* 40px */;
+}
+
+.pr-11 {
+  padding-right: 2.75rem /* 44px */;
+}
+
+.pr-12 {
+  padding-right: 3rem /* 48px */;
+}
+
+.pr-13 {
+  padding-right: 3.25rem /* 52px */;
+}
+
+.pr-14 {
+  padding-right: 3.5rem /* 56px */;
+}
+
+.h-20 {
+  height: 5rem /* 80px */;
+}
+
+.h-28 {
+  height: 7rem /* 112px */;
+}
+
+.h-36 {
+  height: 9rem /* 144px */;
+}
+
+.h-44 {
+  height: 11rem /* 176px */;
+}
+
+.h-52 {
+  height: 13rem /* 208px */;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.right-1 {
+  right: 0.25rem /* 4px */;
+}
+
+.right-2 {
+  right: 0.5rem /* 8px */;
+}
+
+.right-3 {
+  right: 0.75rem /* 12px */;
+}
+
+.right-4 {
+  right: 1rem /* 16px */;
+}
+
+.right-5 {
+  right: 1.25rem /* 20px */;
+}
+
+.left-1 {
+  left: 0.25rem /* 4px */;
+}
+
+.left-2 {
+  left: 0.5rem /* 8px */;
+}
+
+.left-3 {
+  left: 0.75rem /* 12px */;
+}
+
+.left-4 {
+  left: 1rem /* 16px */;
+}
+
+.left-5 {
+  left: 1.25rem /* 20px */;
+}
+
+/* General styles*/

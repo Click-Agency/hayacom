@@ -64,7 +64,7 @@ export class AuthService {
       );
 
       res.header(
-        'access_token',
+        'authorization',
         `bearer ${this.jwtService.sign(payload, {
           expiresIn: process.env.JWT_SECRET_ACCESS_TOKEN_EXPIRES_IN,
           secret: process.env.JWT_SECRET_ACCESS_TOKEN,
