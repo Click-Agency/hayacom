@@ -21,7 +21,7 @@ import { AuthGuard } from '../shared/guard/auth.guard';
 import { CreatePackageDto } from './dtos/create-package.dto';
 import { UpdatePackageDto } from './dtos/update-package.dto';
 
-@Controller('packeges')
+@Controller('packages')
 export class PackagesController {
   public constructor(private packagesService: PackagesService) {}
 

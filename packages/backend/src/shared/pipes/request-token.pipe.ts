@@ -1,6 +1,7 @@
 import {
   createParamDecorator,
   ExecutionContext,
+  HttpException,
   UnauthorizedException,
 } from '@nestjs/common';
 
@@ -10,13 +11,13 @@ export const RequestToken = createParamDecorator(
     const authorization = request.headers.authorization;
 
     if (!authorization) {
-      throw new UnauthorizedException('Unauthorized access');
+      throw new HttpException('old access token not provided', 404);
     }
 
     const bearer = authorization.split(' ');
 
     if (bearer.length !== 2 || bearer[0]?.toLowerCase() !== 'bearer') {
-      throw new UnauthorizedException('Unauthorized access');
+      throw new HttpException('old access token not provided', 404);
     }
 
     const token = bearer[1];

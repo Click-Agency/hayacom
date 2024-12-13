@@ -44,8 +44,7 @@ export class CardsService {
     try {
       const cardDoc = await this.cardModel.findOne({ _id }).exec();
 
-      if (!cardDoc)
-        throw new HttpException({ message: 'card not found' }, 404);
+      if (!cardDoc) throw new HttpException({ message: 'card not found' }, 404);
 
       return cardDoc.toObject({ versionKey: false });
     } catch (err) {
@@ -62,16 +61,14 @@ export class CardsService {
       // status 201 is created
       return HttpStatus.CREATED;
     } catch (err) {
+      if (err instanceof Error && 'code' in err && err.code === 11000)
+        throw new HttpException({ message: 'package is already exists' }, 409);
       if (err instanceof HttpException) throw err;
       throw new HttpException({ message: 'something went wrong' }, 400);
     }
   }
 
-  public async update(
-    _id: string,
-    cardData: UpdateCardDto,
-    userId: string,
-  ) {
+  public async update(_id: string, cardData: UpdateCardDto, userId: string) {
     try {
       const cardDoc = await this.cardModel.findOneAndUpdate(
         { _id, userId },
@@ -79,8 +76,7 @@ export class CardsService {
         { new: true },
       );
 
-      if (!cardDoc)
-        throw new HttpException({ message: 'card not found' }, 404);
+      if (!cardDoc) throw new HttpException({ message: 'card not found' }, 404);
 
       return HttpStatus.ACCEPTED;
     } catch (err) {
@@ -96,8 +92,7 @@ export class CardsService {
         userId,
       });
 
-      if (!cardDoc)
-        throw new HttpException({ message: 'card not found' }, 404);
+      if (!cardDoc) throw new HttpException({ message: 'card not found' }, 404);
 
       return HttpStatus.ACCEPTED;
     } catch (err) {

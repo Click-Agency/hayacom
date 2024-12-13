@@ -75,7 +75,7 @@ const useStorage = <T>(
         storageType ??
         (localStorage.getItem(key) || sessionStorage.getItem(key));
 
-      if (item) setStoredValue(item);
+      if (item) setStoredValue(JSON.parse(item));
     } catch (error) {
       console.error(error);
     }

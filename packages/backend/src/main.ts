@@ -10,7 +10,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
     origin: [process.env.WEB_BASE_URL!],
-    exposedHeaders: ["Authorization"],
+    exposedHeaders: ["authorization"],
   });
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),

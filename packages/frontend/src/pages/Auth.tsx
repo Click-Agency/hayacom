@@ -16,7 +16,8 @@ export default function Auth() {
   const ref = query.get("ref");
 
   useEffect(() => {
-    if (session) push(appRoutes.home);
+    if (session && ref !== AuthQuery.REGISTER) push(appRoutes.home);
+    if (!session && ref === AuthQuery.REGISTER) push(appRoutes.auth.login);
   }, [session, push]);
 
   if (

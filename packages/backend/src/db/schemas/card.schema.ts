@@ -18,7 +18,14 @@ export class Card {
     minlength: [2, 'Title is too short.'],
     maxlength: [64, 'Title is too long.'],
   })
-  title: string;
+  titleEn: string;
+
+  @Prop({
+    required: true,
+    minlength: [2, 'Title is too short.'],
+    maxlength: [64, 'Title is too long.'],
+  })
+  titleAr: string;
 
   @Prop({
     required: true,

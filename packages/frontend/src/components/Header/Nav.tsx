@@ -11,12 +11,15 @@ import DrawerContext from "../../context/drawer.context";
 import Logo from "../shared/Logo";
 import useActivation from "../../hooks/useActivation";
 import { FaPhone } from "react-icons/fa";
+import Profile from "./Profile";
+import useSession from "../../hooks/useSession";
 
 const Nav = () => {
   const { t, i18n } = useTranslation("header");
   const { pathname } = useLocation();
   const { setOpenDrawer } = useContext(DrawerContext);
   const push = useNavigate();
+  const session = useSession();
 
   const navArr = [
     { name: t("nav.home"), link: appRoutes.home },
@@ -104,6 +107,10 @@ const Nav = () => {
             changeLanguage(i18n.dir() === "ltr" ? "ar" : "en");
           }}
         />
+
+        <div className={`${session?._id ? "inline-flex" : "hidden"}`}>
+          <Profile session={session} />
+        </div>
       </div>
 
       <ButtonStyled

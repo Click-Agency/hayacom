@@ -1,8 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { appRoutes } from "../../../config";
 import { trim } from "../../../utils/functions/general";
 import SectionContainer from "../../shared/containers/SectionContainer";
-import Switcher from "../../shared/Switcher";
 import Form from "./Form";
 
 const Login = () => {
@@ -23,11 +21,9 @@ const Login = () => {
           rounded-lg
           shadow-lg`)}
       >
-        <Switcher
-          title={t("login.register")}
-          className="border-y-0 border-b pt-0"
-          btn={{ title: t("register.title"), link: appRoutes.auth.register }}
-        />
+        <h1 className="text-center text-2xl font-bold text-primary">
+          {t("login.title")}
+        </h1>
         <Form />
       </div>
     </SectionContainer>

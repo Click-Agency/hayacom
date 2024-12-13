@@ -31,7 +31,6 @@ const Form = () => {
   const onSubmitHandler: SubmitHandler<Login> = async (data) => {
     try {
       setIsLoading(() => false);
-      setInvalidCredentials(() => true);
 
       const res = await login(data);
 
@@ -56,6 +55,7 @@ const Form = () => {
 
       setIsLoading(() => false);
       reset();
+      window.location.reload();
       push(appRoutes.admin);
       toast.success(t("login.success"));
     } catch (err) {

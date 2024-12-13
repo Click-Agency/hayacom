@@ -57,11 +57,12 @@ export class PackagesService {
   public async create(packageData: CreatePackageDto, userId: string) {
     try {
       // check if the user exists
-
       await this.packageModel.create({ ...packageData, userId });
       // status 201 is created
       return HttpStatus.CREATED;
     } catch (err) {
+      if (err instanceof Error && 'code' in err && err.code === 11000)
+        throw new HttpException({ message: 'package is already exists' }, 409);
       if (err instanceof HttpException) throw err;
       throw new HttpException({ message: 'something went wrong' }, 400);
     }

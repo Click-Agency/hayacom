@@ -111,7 +111,7 @@ export class AuthService {
         throw new HttpException({ message: 'invalid token' }, 403);
 
       res.header(
-        'access_token',
+        'authorization',
         `bearer ${this.jwtService.sign(
           {
             _id: refreshTokenPayload._id,
@@ -129,6 +129,17 @@ export class AuthService {
     } catch (err) {
       if (err instanceof HttpException) throw err;
       console.log(err);
+      throw new HttpException({ message: 'bad request' }, 400);
+    }
+  }
+
+  public async revokeRefresh(res: Response) {
+    try {
+      res.clearCookie('x-refresh-token');
+
+      res.sendStatus(200).end();
+    } catch (err) {
+      if (err instanceof HttpException) throw err;
       throw new HttpException({ message: 'bad request' }, 400);
     }
   }

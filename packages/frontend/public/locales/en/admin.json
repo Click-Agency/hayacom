@@ -1,0 +1,45 @@
+{
+  "title": "Control Panel",
+
+  "packages": {
+    "name": {
+      "label": {
+        "en": "Name English",
+        "ar": "Name Arabic"
+      },
+      "placeholder": "Enter package name",
+      "errors": {
+        "required": "Name is required",
+        "min": "Name must be at least 3 characters",
+        "max": "Name must be at most 255 characters"
+      }
+    },
+    "items": {
+      "label": {
+        "en": "Items English",
+        "ar": "Items Arabic"
+      },
+      "placeholder": "Enter package item",
+      "errors": {
+        "required": "Item is required",
+        "min": "Item must be at least 3 characters",
+        "max": "Item must be at most 500 characters"
+      }
+    },
+
+    "create": {
+      "title": "Create Package",
+      "submit": "Create",
+      "update": "Update",
+      "success": "Package created successfully",
+      "error": "Failed to create package"
+    },
+
+    "update": {
+      "title": "Update Package",
+      "submit": "Update",
+      "success": "Package updated successfully",
+      "error": "Failed to update package"
+    }
+  }
+}

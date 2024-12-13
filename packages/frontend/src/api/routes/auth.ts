@@ -10,6 +10,6 @@ const register = (userData: Register) =>
 
 const getAccessToken = () => axiosInstance.get(apiRoutes.refresh);
 
-// const revokeRefreshToken = () => axiosInstance.delete(apiRoutes.revokeRefresh);
+const revokeRefreshToken = () => axiosInstance.delete(apiRoutes.refresh);
 
-export { login, register, getAccessToken };
+export { login, register, getAccessToken, revokeRefreshToken };

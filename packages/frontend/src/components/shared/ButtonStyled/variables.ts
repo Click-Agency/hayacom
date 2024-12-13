@@ -1,10 +1,10 @@
 const varablesTwClasses = {
   font: "",
-  text: "text-white",
-  hover: "md:hover:scale-110 hover:shadow-2xl",
-  bg: "bg-primary text-body-secondary",
+  text: "text-primary",
+  hover: "hover:text-primary hover:bg-secondary",
+  bg: "bg-primary text-body-secondary text-white",
   underlineColor: "text-secondary",
-  border: "border border-secondary",
+  border: "border border-primary",
   rippleBg: "bg-primary",
   rippleDuration: undefined,
 };

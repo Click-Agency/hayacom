@@ -17,7 +17,13 @@ export class CreateCardDto {
   @IsString()
   @MinLength(2)
   @MaxLength(64)
-  title: string;
+  titleEn: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(2)
+  @MaxLength(64)
+  titleAr: string;
 
   @IsNotEmpty()
   @IsString()
