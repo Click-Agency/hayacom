@@ -7,6 +7,7 @@
         "en": "Name English",
         "ar": "Name Arabic"
       },
+
       "placeholder": "Enter package name",
       "errors": {
         "required": "Name is required",
@@ -14,6 +15,20 @@
         "max": "Name must be at most 255 characters"
       }
     },
+
+    "title": {
+      "label": {
+        "en": "Title English",
+        "ar": "Title Arabic"
+      },
+      "placeholder": "Enter package title",
+      "errors": {
+        "required": "Title is required",
+        "min": "Title must be at least 3 characters",
+        "max": "Title must be at most 25 characters"
+      }
+    },
+
     "items": {
       "label": {
         "en": "Items English",

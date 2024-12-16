@@ -62,21 +62,22 @@ const AddItems = ({
               rules={{
                 required: {
                   value: true,
-                  message: t("packages.create.items.errors.required"),
+                  message: t("packages.items.errors.required"),
                 },
 
                 minLength: {
                   value: 3,
-                  message: t("packages.create.items.errors.min"),
+                  message: t("packages.items.errors.min"),
                 },
 
                 maxLength: {
                   value: 500,
-                  message: t("packages.create.items.errors.max"),
+                  message: t("packages.items.errors.max"),
                 },
               }}
               render={({ field }) => (
                 <InputStyled
+                  placeholder={t("packages.items.placeholder")}
                   disabled={disabled}
                   tagSize="custom"
                   transparent

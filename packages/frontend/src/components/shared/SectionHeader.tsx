@@ -12,10 +12,11 @@ const SectionHeader = ({
   return (
     <h1
       className={trim(`
-        text-responsive-2xl
+        text-responsive-lg
         text-primary
         font-semibold
         text-center
+        pb-4
         ${className}`)}
       {...attributes}
     >

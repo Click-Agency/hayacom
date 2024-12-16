@@ -76,7 +76,7 @@ const Nav = () => {
         ))}
       </ul>
 
-      <div className="flex items-center gap-7">
+      <div className="flex items-center gap-3 md:gap-7">
         <ButtonStyled
           className={trim(`
             rounded-full 
@@ -111,14 +111,14 @@ const Nav = () => {
         <div className={`${session?._id ? "inline-flex" : "hidden"}`}>
           <Profile session={session} />
         </div>
-      </div>
 
-      <ButtonStyled
-        className={`${i18n.dir() === "rtl" ? "-scale-x-100" : ""} md:!hidden !inline-flex`}
-        size="custom"
-        onClick={() => setOpenDrawer((prev) => !prev)}
-        SvgIcon={<MdMenuOpen color="#730F20" size={30} />}
-      />
+        <ButtonStyled
+          className={`${i18n.dir() === "rtl" ? "-scale-x-100" : ""} md:!hidden !inline-flex`}
+          size="custom"
+          onClick={() => setOpenDrawer((prev) => !prev)}
+          SvgIcon={<MdMenuOpen color="#730F20" size={30} />}
+        />
+      </div>
 
       <Drawer
         drawerNavFun={onClickHandler}

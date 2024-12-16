@@ -14,6 +14,7 @@ import { Session } from "../../types/user";
 import { useLocation, useNavigate } from "react-router-dom";
 import useStorage from "../../hooks/useStorage";
 import userImg from "../../assets/imgs/user-male.jpg";
+import { useTranslation } from "react-i18next";
 
 const profileRoutes = [
   {
@@ -41,6 +42,7 @@ const Profile = ({ session }: { session: Session | null }) => {
   const { pathname } = useLocation();
   const push = useNavigate();
   const { removeItem } = useStorage("_hayakomSession");
+  const { i18n } = useTranslation();
 
   const onCloseActions = useCallback(() => {
     setShowComponent(setShowActions, { value: false, delay: 300 });
@@ -103,7 +105,7 @@ const Profile = ({ session }: { session: Session | null }) => {
             flex
             flex-col
             top-15
-            right-0
+            ${i18n.dir() === "ltr" ? "right-0" : "left-0"}
             min-w-40
             transition-[opacity]
             duration-300

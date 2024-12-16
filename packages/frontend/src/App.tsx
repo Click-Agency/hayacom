@@ -1,9 +1,9 @@
 import Providers from "./providers";
 import Layout from "./components/Layout";
 import Routers from "./routers";
-import "swiper/swiper-bundle.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import "swiper/swiper-bundle.css";
 
 export default function App() {
   return (

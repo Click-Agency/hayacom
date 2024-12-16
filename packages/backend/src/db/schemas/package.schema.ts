@@ -9,13 +9,27 @@ export class Package {
     required: true,
     unique: true,
     minlength: [2, 'Title is too short.'],
+    maxlength: [25, 'Title is too long.'],
+  })
+  nameEn: string;
+
+  @Prop({
+    required: true,
+    unique: true,
+    minlength: [2, 'Title is too short.'],
+    maxlength: [25, 'Title is too long.'],
+  })
+  nameAr: string;
+
+  @Prop({
+    required: true,
+    minlength: [2, 'Title is too short.'],
     maxlength: [64, 'Title is too long.'],
   })
   titleEn: string;
 
   @Prop({
     required: true,
-    unique: true,
     minlength: [2, 'Title is too short.'],
     maxlength: [64, 'Title is too long.'],
   })

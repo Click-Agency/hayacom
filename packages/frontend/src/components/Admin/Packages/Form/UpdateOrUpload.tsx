@@ -56,8 +56,11 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
           : t("packages.create.success")
       );
     } catch (err) {
-      console.error(err);
-      toast.error(t("packages.create.error"));
+      toast.error(
+        packageData
+          ? t("packages.update.error")
+          : t("packages.create.error")
+      );
 
       setIsLoading(() => false);
     }
@@ -83,7 +86,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
       <InputStyled
         label={t("packages.name.label.en")}
         placeholder={t("packages.name.placeholder")}
-        {...register("titleEn", {
+        {...register("nameEn", {
           required: {
             value: true,
             message: t("packages.name.errors.required"),
@@ -97,13 +100,13 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
             message: t("packages.name.errors.max"),
           },
         })}
-        error={errors.titleEn?.message}
+        error={errors.nameEn?.message}
       />
 
       <InputStyled
         label={t("packages.name.label.ar")}
         placeholder={t("packages.name.placeholder")}
-        {...register("titleAr", {
+        {...register("nameAr", {
           required: {
             value: true,
             message: t("packages.name.errors.required"),
@@ -115,6 +118,46 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
           maxLength: {
             value: 255,
             message: t("packages.name.errors.max"),
+          },
+        })}
+        error={errors.nameAr?.message}
+      />
+
+      <InputStyled
+        label={t("packages.title.label.en")}
+        placeholder={t("packages.title.placeholder")}
+        {...register("titleEn", {
+          required: {
+            value: true,
+            message: t("packages.title.errors.required"),
+          },
+          minLength: {
+            value: 3,
+            message: t("packages.title.errors.min"),
+          },
+          maxLength: {
+            value: 255,
+            message: t("packages.title.errors.max"),
+          },
+        })}
+        error={errors.titleEn?.message}
+      />
+
+      <InputStyled
+        label={t("packages.title.label.ar")}
+        placeholder={t("packages.title.placeholder")}
+        {...register("titleAr", {
+          required: {
+            value: true,
+            message: t("packages.title.errors.required"),
+          },
+          minLength: {
+            value: 3,
+            message: t("packages.title.errors.min"),
+          },
+          maxLength: {
+            value: 255,
+            message: t("packages.title.errors.max"),
           },
         })}
         error={errors.titleAr?.message}
@@ -147,7 +190,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
           isLoading
             ? t("loading", { ns: "common" })
             : packageData
-              ?t("packages.update.submit")
+              ? t("packages.update.submit")
               : t("packages.create.submit")
         }
         disabled={isLoading}

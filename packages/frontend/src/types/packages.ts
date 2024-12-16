@@ -1,4 +1,6 @@
 type FormPackage = {
+  nameEn: string;
+  nameAr: string;
   titleEn: string;
   titleAr: string;
   itemsEn: string[];
@@ -7,6 +9,8 @@ type FormPackage = {
 
 type Package = {
   _id: string;
+  nameEn: string;
+  nameAr: string;
   titleEn: string;
   titleAr: string;
   itemsEn: string[];
