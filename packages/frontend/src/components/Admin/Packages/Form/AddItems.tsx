@@ -12,6 +12,8 @@ const AddItems = ({
   errors,
   disabled,
   target,
+  elemType,
+  tagSize,
 }: {
   title?: string;
   control: any;
@@ -19,6 +21,8 @@ const AddItems = ({
   disabled?: boolean;
   target: string;
   defaultValues?: string[];
+  elemType?: "input" | "textarea";
+  tagSize?: "sm" | "xs" | "md" | "lg";
 }) => {
   const { t } = useTranslation(["admin", "common"]);
 
@@ -32,7 +36,7 @@ const AddItems = ({
   }, [fields.length, append]);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col flex-1 gap-3">
       <h2
         className={trim(`
           mb-2.5
@@ -77,9 +81,10 @@ const AddItems = ({
               }}
               render={({ field }) => (
                 <InputStyled
+                  elemType={elemType}
                   placeholder={t("packages.items.placeholder")}
                   disabled={disabled}
-                  tagSize="custom"
+                  tagSize={tagSize}
                   transparent
                   type="text"
                   {...field}

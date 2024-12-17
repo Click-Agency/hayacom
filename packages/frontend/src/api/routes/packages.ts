@@ -2,7 +2,7 @@ import axiosInstance from "..";
 import { apiRoutes } from "../../config";
 import { FormPackage, Package } from "../../types/packages";
 
-const getPackages = (page = 0, limit = 0) =>
+const getPackages = ({ page = 1, limit = 20 } = {}) =>
   axiosInstance.get(`${apiRoutes.packages}?page=${page}&limit=${limit}`);
 
 const getPackageById = (_id: Package["_id"]) =>

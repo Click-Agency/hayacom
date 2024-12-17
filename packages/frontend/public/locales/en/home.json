@@ -19,7 +19,74 @@
   },
 
   "comparisons": {
-    "title": "Comparison between packages"
+    "title": "Comparison between packages",
+
+    "table": {
+      "headers": ["Details", "Discounted", "Normal", "Golden", "Diamond"],
+
+      "rows": [
+        [
+          "Supervisory team (number of team members based on the number of guests and package price)",
+          "True",
+          "True",
+          "True",
+          "True"
+        ],
+        [
+          "Open multiple accounts and distribute the number of guests among them.",
+          "True",
+          "True",
+          "True",
+          "True"
+        ],
+        [
+          "One invitation card integrated with an entry barcode",
+          "True",
+          "True",
+          "X",
+          "X"
+        ],
+        [
+          "Invitation card - Entry - Thank you - Snapchat lens",
+          "X",
+          "X",
+          "True",
+          "True"
+        ],
+        ["Design according to the event theme", "X", "True", "True", "True"],
+        [
+          "Apology replacement (percentage varies by package)",
+          "X",
+          "True",
+          "True",
+          "True"
+        ],
+        [
+          "Write the guest's name and the number of invitees",
+          "X",
+          "True",
+          "True",
+          "True"
+        ],
+        ["Acceptance and apology feature", "X", "X", "True", "True"],
+        [
+          "Select the number of attendees (e.g., if 5 invitees are specified, the guest can choose the number of attendees out of 5 people)",
+          "X",
+          "X",
+          "True",
+          "True"
+        ],
+        ["Send from Hayak number", "X", "X", "X", "True"],
+        [
+          "Send automated reminders and thank you messages",
+          "X",
+          "X",
+          "X",
+          "True"
+        ],
+        ["Yes, a welcome message upon guest entry", "X", "X", "X", "True"]
+      ]
+    }
   },
 
   "downloadApp": {

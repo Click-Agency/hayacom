@@ -1,5 +1,5 @@
 import { ImgHTMLAttributes } from "react";
-import logo from "/vite.svg?url";
+import logo from "../../assets/imgs/logo.png";
 import { trim } from "../../utils/functions/general";
 
 const Logo = ({
@@ -12,7 +12,6 @@ const Logo = ({
       alt="logo"
       className={trim(`
         animate-appear
-        max-w-[50px]
         ${className}`)}
       {...attributes}
     />

@@ -43,7 +43,7 @@ const Packages = () => {
   const langAr = i18n.language === "ar";
 
   return (
-    <SectionContainer>
+    <SectionContainer id="packages">
       <SectionHeader title={t("packages.title")} />
 
       {!packages.length && !noPackages ? (

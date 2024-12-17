@@ -42,6 +42,23 @@
       }
     },
 
+    "list": {
+      "table": {
+        "headers": ["Id", "Name", "Title", "Items", "Created", "Actions"],
+        "actions": {
+          "edit": "Edit",
+          "delete": "Delete"
+        }
+      },
+
+      "title": "Packages List",
+      "create": "Create Package",
+      "edit": "Edit",
+      "delete": "Delete",
+      "noData": "No packages found",
+      "error": "Failed to fetch packages"
+    },
+
     "create": {
       "title": "Create Package",
       "submit": "Create",

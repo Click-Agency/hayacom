@@ -8,7 +8,10 @@ const Form = ({ packageData }: { packageData?: Package }) => {
   const { t } = useTranslation("admin");
 
   return (
-    <SectionContainer>
+    <SectionContainer
+      className="justify-center h-full"
+      wraperClassName="items-center"
+    >
       <SectionHeader
         className="text-responsive-2xl"
         title={

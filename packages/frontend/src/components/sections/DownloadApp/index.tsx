@@ -24,6 +24,7 @@ const DownloadApp = () => {
 
   return (
     <SectionContainer
+      id="download-app"
       dir="rtl"
       wraperClassName="md:flex-row items-center justify-center gap-4"
     >
@@ -34,7 +35,7 @@ const DownloadApp = () => {
           flex-1
           w-full
           md:max-w-[25%]
-          max-w-[250px]`)}
+          max-w-[130px]`)}
       />
 
       <div
@@ -75,10 +76,16 @@ const DownloadApp = () => {
                 className={trim(`
                   block
                   w-full
-                  max-w-48
+                  max-w-32
+                  md:max-w-48
                   rounded-xl
                   border-2
-                  border-gray-500`)}
+                  border-gray-500
+                  transition-all
+                  duration-300
+                  ease-in-out
+                  hover:scale-105
+                  active:scale-95`)}
               />
             </Link>
           ))}

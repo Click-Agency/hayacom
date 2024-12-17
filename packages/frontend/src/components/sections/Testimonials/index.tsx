@@ -17,7 +17,7 @@ const Testimonials = () => {
   const { targetRef, isInView } = useScrollInToView();
 
   return (
-    <SectionContainer>
+    <SectionContainer id="testimonials">
       <SectionHeader title={t("testimonials.title")} />
 
       <Swiper

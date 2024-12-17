@@ -9,7 +9,9 @@ const appRoutes = {
   },
   createPacakge: "/admin/create-package",
   editPackage: "/admin/edit-package",
-  packageDetail: "/admin/package-detail",
+
+  createCard: "/admin/create-card",
+  editCard: "/admin/edit-card",
 };
 
 const apiRoutes = {
@@ -17,6 +19,7 @@ const apiRoutes = {
   register: "/auth/register",
   refresh: "/auth/refresh",
   packages: "/packages",
+  cards: "/cards",
 };
 
 export { appRoutes, apiRoutes };

@@ -13,26 +13,8 @@ import { revokeRefreshToken } from "../../api/routes/auth";
 import { Session } from "../../types/user";
 import { useLocation, useNavigate } from "react-router-dom";
 import useStorage from "../../hooks/useStorage";
-import userImg from "../../assets/imgs/user-male.jpg";
+import hayakomImg from "../../assets/imgs/icon-hayakom.png"
 import { useTranslation } from "react-i18next";
-
-const profileRoutes = [
-  {
-    name: "packages",
-    link: appRoutes.admin,
-    Icon: <MdAdminPanelSettings />,
-  },
-  {
-    name: "create package",
-    link: appRoutes.createPacakge,
-    Icon: <GoProjectSymlink />,
-  },
-  {
-    name: "logout",
-    link: appRoutes.home,
-    Icon: <RiLogoutCircleRLine />,
-  },
-];
 
 const Profile = ({ session }: { session: Session | null }) => {
   const [showActions, setShowActions] = useState(false);
@@ -42,7 +24,30 @@ const Profile = ({ session }: { session: Session | null }) => {
   const { pathname } = useLocation();
   const push = useNavigate();
   const { removeItem } = useStorage("_hayakomSession");
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation(["header"]);
+
+  const profileRoutes = [
+    {
+      name: t("admin.control"),
+      link: appRoutes.admin,
+      Icon: <MdAdminPanelSettings />,
+    },
+    {
+      name: t("admin.crPackage"),
+      link: appRoutes.createPacakge,
+      Icon: <GoProjectSymlink />,
+    },
+    {
+      name: t("admin.crCard"),
+      link: appRoutes.createCard,
+      Icon: <GoProjectSymlink />,
+    },
+    {
+      name: t("admin.logout"),
+      link: appRoutes.home,
+      Icon: <RiLogoutCircleRLine />,
+    },
+  ];
 
   const onCloseActions = useCallback(() => {
     setShowComponent(setShowActions, { value: false, delay: 300 });
@@ -82,7 +87,7 @@ const Profile = ({ session }: { session: Session | null }) => {
   };
 
   return (
-    <div id={"profile"} className="relative animate-appeears">
+    <div id={"profile"} className="relative animate-appear">
       <img
         className={trim(`
           rounded-full
@@ -91,7 +96,7 @@ const Profile = ({ session }: { session: Session | null }) => {
           duration-300
           ease-in-out
           ${showActions ? `ring-2 ring-primary` : ``}`)}
-        src={userImg}
+        src={hayakomImg}
         alt="pfp"
         width={45}
         height={45}
@@ -122,6 +127,8 @@ const Profile = ({ session }: { session: Session | null }) => {
           {profileRoutes.map(({ name, link, Icon }, i) => (
             <li key={i} className="w-full">
               <ButtonStyled
+                hover
+                ripple
                 className={trim(`
                   w-full 
                   !pl-2 

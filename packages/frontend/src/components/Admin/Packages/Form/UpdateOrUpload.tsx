@@ -57,9 +57,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
       );
     } catch (err) {
       toast.error(
-        packageData
-          ? t("packages.update.error")
-          : t("packages.create.error")
+        packageData ? t("packages.update.error") : t("packages.create.error")
       );
 
       setIsLoading(() => false);
@@ -77,113 +75,122 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
         rounded-lg
         shadow-lg
         animate-appear
-        max-w-2xl
-        mx-auto
+        max-w-4xl
         w-full
         mt-4`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <InputStyled
-        label={t("packages.name.label.en")}
-        placeholder={t("packages.name.placeholder")}
-        {...register("nameEn", {
-          required: {
-            value: true,
-            message: t("packages.name.errors.required"),
-          },
-          minLength: {
-            value: 3,
-            message: t("packages.name.errors.min"),
-          },
-          maxLength: {
-            value: 255,
-            message: t("packages.name.errors.max"),
-          },
-        })}
-        error={errors.nameEn?.message}
-      />
+      <div className="flex flex-col md:flex-row gap-4">
+        <InputStyled
+          label={t("packages.name.label.en")}
+          placeholder={t("packages.name.placeholder")}
+          {...register("nameEn", {
+            required: {
+              value: true,
+              message: t("packages.name.errors.required"),
+            },
+            minLength: {
+              value: 3,
+              message: t("packages.name.errors.min"),
+            },
+            maxLength: {
+              value: 255,
+              message: t("packages.name.errors.max"),
+            },
+          })}
+          error={errors.nameEn?.message}
+        />
 
-      <InputStyled
-        label={t("packages.name.label.ar")}
-        placeholder={t("packages.name.placeholder")}
-        {...register("nameAr", {
-          required: {
-            value: true,
-            message: t("packages.name.errors.required"),
-          },
-          minLength: {
-            value: 3,
-            message: t("packages.name.errors.min"),
-          },
-          maxLength: {
-            value: 255,
-            message: t("packages.name.errors.max"),
-          },
-        })}
-        error={errors.nameAr?.message}
-      />
+        <InputStyled
+          label={t("packages.name.label.ar")}
+          placeholder={t("packages.name.placeholder")}
+          {...register("nameAr", {
+            required: {
+              value: true,
+              message: t("packages.name.errors.required"),
+            },
+            minLength: {
+              value: 3,
+              message: t("packages.name.errors.min"),
+            },
+            maxLength: {
+              value: 255,
+              message: t("packages.name.errors.max"),
+            },
+          })}
+          error={errors.nameAr?.message}
+        />
+      </div>
 
-      <InputStyled
-        label={t("packages.title.label.en")}
-        placeholder={t("packages.title.placeholder")}
-        {...register("titleEn", {
-          required: {
-            value: true,
-            message: t("packages.title.errors.required"),
-          },
-          minLength: {
-            value: 3,
-            message: t("packages.title.errors.min"),
-          },
-          maxLength: {
-            value: 255,
-            message: t("packages.title.errors.max"),
-          },
-        })}
-        error={errors.titleEn?.message}
-      />
+      <div className="flex flex-col md:flex-row gap-4">
+        <InputStyled
+          label={t("packages.title.label.en")}
+          placeholder={t("packages.title.placeholder")}
+          {...register("titleEn", {
+            required: {
+              value: true,
+              message: t("packages.title.errors.required"),
+            },
+            minLength: {
+              value: 3,
+              message: t("packages.title.errors.min"),
+            },
+            maxLength: {
+              value: 255,
+              message: t("packages.title.errors.max"),
+            },
+          })}
+          error={errors.titleEn?.message}
+        />
 
-      <InputStyled
-        label={t("packages.title.label.ar")}
-        placeholder={t("packages.title.placeholder")}
-        {...register("titleAr", {
-          required: {
-            value: true,
-            message: t("packages.title.errors.required"),
-          },
-          minLength: {
-            value: 3,
-            message: t("packages.title.errors.min"),
-          },
-          maxLength: {
-            value: 255,
-            message: t("packages.title.errors.max"),
-          },
-        })}
-        error={errors.titleAr?.message}
-      />
+        <InputStyled
+          label={t("packages.title.label.ar")}
+          placeholder={t("packages.title.placeholder")}
+          {...register("titleAr", {
+            required: {
+              value: true,
+              message: t("packages.title.errors.required"),
+            },
+            minLength: {
+              value: 3,
+              message: t("packages.title.errors.min"),
+            },
+            maxLength: {
+              value: 255,
+              message: t("packages.title.errors.max"),
+            },
+          })}
+          error={errors.titleAr?.message}
+        />
+      </div>
 
-      <AddItems
-        target="itemsEn"
-        title={t("packages.items.label.en")}
-        control={control}
-        errors={errors}
-        disabled={isLoading}
-      />
+      <div className="flex flex-col md:flex-row gap-4">
+        <AddItems
+          tagSize="xs"
+          elemType="textarea"
+          target="itemsEn"
+          title={t("packages.items.label.en")}
+          control={control}
+          errors={errors}
+          disabled={isLoading}
+        />
 
-      <AddItems
-        target="itemsAr"
-        title={t("packages.items.label.ar")}
-        control={control}
-        errors={errors}
-        disabled={isLoading}
-      />
+        <AddItems
+          tagSize="xs"
+          elemType="textarea"
+          target="itemsAr"
+          title={t("packages.items.label.ar")}
+          control={control}
+          errors={errors}
+          disabled={isLoading}
+        />
+      </div>
 
       <ButtonStyled
         success={!packageData}
         border
         warning={packageData && true}
-        className="rounded-lg"
+        className="rounded-lg md:max-w-sm m-auto w-full mt-2"
         bg
         hover
         title={

@@ -13,6 +13,7 @@ import useActivation from "../../hooks/useActivation";
 import { FaPhone } from "react-icons/fa";
 import Profile from "./Profile";
 import useSession from "../../hooks/useSession";
+import DropdownMenu from "./DropdownMenu";
 
 const Nav = () => {
   const { t, i18n } = useTranslation("header");
@@ -22,8 +23,26 @@ const Nav = () => {
   const session = useSession();
 
   const navArr = [
-    { name: t("nav.home"), link: appRoutes.home },
-    { name: t("nav.categories"), link: appRoutes.categories },
+    {
+      name: t("nav.home"),
+      link: appRoutes.home,
+      sections: [
+        {
+          id: "packages",
+          name: t("nav.packages"),
+        },
+        {
+          id: "comparisons",
+          name: t("nav.comparisons"),
+        },
+      ],
+    },
+
+    {
+      name: t("nav.categories"),
+      link: appRoutes.categories,
+      sections: [],
+    },
   ];
 
   const { activationArr } = useActivation(navArr.length, 300);
@@ -50,17 +69,24 @@ const Nav = () => {
     >
       <Logo
         onClick={() => onClickHandler(appRoutes.home)}
-        className="cursor-pointer w-40 md:w-52"
+        className="cursor-pointer w-40 md:w-52 max-w-12 md:max-w-[80px]"
       />
 
       <ul className="flex gap-10">
-        {navArr.map(({ name, link }, i) => (
-          <li className="hidden md:inline-flex" key={i}>
+        {navArr.map(({ name, link, sections }, i) => (
+          <li
+            className={trim(`
+              relative 
+              hidden 
+              md:inline-flex 
+              group`)}
+            key={i}
+          >
             <ButtonStyled
               onClick={() => onClickHandler(link)}
               className={trim(`
-            !text-primary
-            font-medium
+                !text-primary
+                font-medium
             ${
               pathname === link
                 ? `underline underline-offset-4
@@ -72,6 +98,13 @@ const Nav = () => {
               size="custom"
               animatedUnderline={pathname !== link}
             />
+
+            <DropdownMenu
+              className={`
+              ${sections.length && pathname === link ? "group-hover:block" : ""}
+                hidden`}
+              sections={sections}
+            />
           </li>
         ))}
       </ul>
@@ -79,7 +112,7 @@ const Nav = () => {
       <div className="flex items-center gap-3 md:gap-7">
         <ButtonStyled
           className={trim(`
-            rounded-full 
+            rounded-full
             hover:!scale-105 
             active:!scale-95 
             !hidden 

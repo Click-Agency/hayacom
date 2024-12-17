@@ -4,7 +4,17 @@
   "nav": {
     "home": "Home",
     "categories": "Categories",
+    "packages": "Packages",
+    "comparisons": "Comparisons",
     "contact": "Contact Us",
     "lang": "العربية"
+  },
+
+  "admin": {
+    "control": "Control Panel",
+    "crPackage": "Create Package",
+    "crCategory": "Create Category",
+    "crCard": "Create Card",
+    "logout": "Logout"
   }
 }

@@ -4,7 +4,17 @@
   "nav": {
     "home": "الرئيسية",
     "categories": "التصنيفات",
+    "packages": "الباقات",
+    "comparisons": "المقارنات",
     "contact": "تواصل معنا",
     "lang": "English"
+  },
+
+  "admin": {
+    "control": "لوحة التحكم",
+    "crPackage": "إنشاء باقة",
+    "crCategory": "إنشاء تصنيف",
+    "crCard": "إنشاء بطاقة",
+    "logout": "تسجيل الخروج"
   }
 }
