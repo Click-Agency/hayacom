@@ -6,9 +6,15 @@ import { PaginateUtils } from '../shared/utils/paginate.utils';
 import { PaginatedDto } from 'src/shared/dtos/paginated.dto';
 import { CreateCardDto } from './dtos/create-card.dto';
 import { UpdateCardDto } from './dtos/update-card.dto';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 @Injectable()
 export class CardsService {
+  private readonly s3Client = new S3Client({
+    region: process.env.AWS_S3_REGION,
+  });
+
   public constructor(
     @InjectModel(Card.name) private readonly cardModel: Model<Card>,
   ) {}
@@ -53,12 +59,27 @@ export class CardsService {
     }
   }
 
-  public async create(cardData: CreateCardDto, userId: string) {
+  public async create(
+    cardData: CreateCardDto,
+    imageData: Express.Multer.File,
+    userId: string,
+  ) {
     try {
-      // check if the user exists
+      const Key = `images/${Date.now()}-${imageData.originalname}`;
 
-      await this.cardModel.create({ ...cardData, userId });
-      // status 201 is created
+      const command = new PutObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET_NAME,
+        Key,
+        Body: imageData.buffer,
+        ContentType: imageData.mimetype,
+      });
+
+      await this.s3Client.send(command);
+
+      const image = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_S3_REGION}.amazonaws.com/${Key}`;
+
+      await this.cardModel.create({ ...cardData, image, userId });
+
       return HttpStatus.CREATED;
     } catch (err) {
       if (err instanceof Error && 'code' in err && err.code === 11000)

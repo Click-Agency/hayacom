@@ -3,5 +3,7 @@
   "contactUs": "Contact Us",
   "loading": "Loading...",
   "notFound": "Page Not Found",
-  "goHome": "Go Home"
+  "goHome": "Go Home",
+  "next": "Next",
+  "previous": "Previous"
 }

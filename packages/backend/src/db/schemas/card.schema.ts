@@ -11,7 +11,15 @@ export class Card {
     minlength: [2, 'Custom ID is too short.'],
     maxlength: [64, 'Custom ID is too long.'],
   })
-  customId: string;
+  customIdEn: string;
+
+  @Prop({
+    required: true,
+    unique: true,
+    minlength: [2, 'Custom ID is too short.'],
+    maxlength: [64, 'Custom ID is too long.'],
+  })
+  customIdAr: string;
 
   @Prop({
     required: true,

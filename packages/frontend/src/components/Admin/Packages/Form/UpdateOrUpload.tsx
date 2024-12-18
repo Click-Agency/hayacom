@@ -30,6 +30,8 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
   // Reset form when packageData changes
   useEffect(() => {
     reset({
+      nameEn: packageData?.nameEn,
+      nameAr: packageData?.nameAr,
       titleEn: packageData?.titleEn,
       titleAr: packageData?.titleAr,
       itemsEn: packageData?.itemsEn,

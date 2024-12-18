@@ -14,6 +14,8 @@ const CreatePacakge = lazy(
   () => import("../pages/Admin/Packages/CreatePacakge")
 );
 const EditPacakge = lazy(() => import("../pages/Admin/Packages/EditPacakge"));
+const CreateCard = lazy(() => import("../pages/Admin/Cards/CreateCard"));
+const EditCard = lazy(() => import("../pages/Admin/Cards/EditCard"));
 
 export default function Routers() {
   return (
@@ -24,7 +26,7 @@ export default function Routers() {
 
         {/* Auth rotues */}
         <Route path={appRoutes.auth.path} element={<Auth />} />
-        
+
         {/* Admin routes */}
         <Route element={<AuthGuard />}>
           <Route path={appRoutes.admin} element={<Admin />} />
@@ -35,6 +37,8 @@ export default function Routers() {
             path={`${appRoutes.editPackage}/:_id`}
             element={<EditPacakge />}
           />
+          <Route path={appRoutes.createCard} element={<CreateCard />} />
+          <Route path={`${appRoutes.editCard}/:_id`} element={<EditCard />} />
         </Route>
       </Routes>
     </Suspense>

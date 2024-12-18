@@ -1,3 +1,5 @@
+import { cloneElement } from "react";
+
 const trim = (className: string): string =>
   className.replace(/\s+/g, " ").trim();
 
@@ -9,4 +11,9 @@ const formatDate = (dateString: string) => {
   return `${day}-${month}-${year}`;
 };
 
-export { trim, formatDate };
+const addAttributesToReactNode = (
+  element: JSX.Element,
+  attributes?: React.HTMLAttributes<HTMLOrSVGElement>
+) => cloneElement(element, attributes);
+
+export { trim, formatDate, addAttributesToReactNode };

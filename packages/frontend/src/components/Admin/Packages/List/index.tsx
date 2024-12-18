@@ -8,6 +8,7 @@ import { getPackages } from "../../../../api/routes/packages";
 import { PaginateMeta } from "../../../../types/response";
 import Loader from "../../../shared/Loader";
 import toast from "react-hot-toast";
+import Pagination from "./Pagination";
 
 const List = () => {
   const { t } = useTranslation(["admin"]);
@@ -50,12 +51,12 @@ const List = () => {
     <SectionContainer className="mt-7">
       <SectionHeader title={t("packages.list.title")} />
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Table
-          packages={responseData?.data}
+      {isLoading ? <Loader /> : <Table packages={responseData?.data} />}
+
+      {!isLoading && responseData?.data && (
+        <Pagination
           meta={responseData?.meta}
+          qurery={qurery}
           setQuery={setQuery}
         />
       )}

@@ -1,10 +1,6 @@
 {
   "title": "home",
 
-  "testimonials": {
-    "title": "Clients we were pleased to work with"
-  },
-
   "packages": {
     "title": "Packages",
 
@@ -87,6 +83,18 @@
         ["Yes, a welcome message upon guest entry", "X", "X", "X", "True"]
       ]
     }
+  },
+
+  "designs": {
+    "title": "Designs",
+
+    "noCards": "No designs available",
+
+    "footer": "Your invitations with us, interactive and distinctive"
+  },
+
+  "testimonials": {
+    "title": "Clients we were pleased to work with"
   },
 
   "downloadApp": {

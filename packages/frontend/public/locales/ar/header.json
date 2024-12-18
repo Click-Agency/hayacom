@@ -3,8 +3,10 @@
 
   "nav": {
     "home": "الرئيسية",
-    "categories": "التصنيفات",
+    "designs": "التصاميم",
     "packages": "الباقات",
+    "clients": "عملائنا",
+    "download": "تحميل التطبيق",
     "comparisons": "المقارنات",
     "contact": "تواصل معنا",
     "lang": "English"

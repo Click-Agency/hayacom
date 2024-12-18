@@ -18,7 +18,6 @@ const DropdownMenu = ({
   return (
     <ul
       className={trim(`
-        space-y-2
         absolute
         bg-background-secondary 
         border 

@@ -1,7 +1,7 @@
-import { LegacyRef, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const useScrollInToView = (options?: {
-  ref?: LegacyRef<HTMLDivElement>;
+  ref?: any;
   threshold?: number;
   addClasses?: string[];
   removeClasses?: string[];

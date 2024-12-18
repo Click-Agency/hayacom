@@ -35,12 +35,20 @@ const Nav = () => {
           id: "comparisons",
           name: t("nav.comparisons"),
         },
+        {
+          id: "testimonials",
+          name: t("nav.clients"),
+        },
+        {
+          id: "download-app",
+          name: t("nav.download"),
+        },
       ],
     },
 
     {
-      name: t("nav.categories"),
-      link: appRoutes.categories,
+      name: t("nav.designs"),
+      link: appRoutes.designs,
       sections: [],
     },
   ];

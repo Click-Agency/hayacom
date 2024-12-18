@@ -3,9 +3,11 @@
 
   "nav": {
     "home": "Home",
-    "categories": "Categories",
+    "designs": "designs",
     "packages": "Packages",
     "comparisons": "Comparisons",
+    "clients": "Our Clients",
+    "download": "Download app",
     "contact": "Contact Us",
     "lang": "العربية"
   },

@@ -9,12 +9,14 @@ import Loader from "../../shared/Loader";
 import Headers from "./Headers";
 import Footer from "./Footer";
 import Body from "./Body";
+import useScrollInToView from "../../../hooks/useScrollInToView";
 
 const Packages = () => {
   const { t, i18n } = useTranslation(["home"]);
   const [packages, setPackages] = useState<Package[]>([]);
   const [noPackages, setNoPackages] = useState(false);
   const [packgeIndex, setPackageIndex] = useState(0);
+  const { isInView, targetRef } = useScrollInToView();
 
   useEffect(() => {
     const getPackagesPagnate = async () => {
@@ -43,7 +45,7 @@ const Packages = () => {
   const langAr = i18n.language === "ar";
 
   return (
-    <SectionContainer id="packages">
+    <SectionContainer ref={targetRef} id="packages">
       <SectionHeader title={t("packages.title")} />
 
       {!packages.length && !noPackages ? (
@@ -69,7 +71,11 @@ const Packages = () => {
             rounded-lg
             bg-white
             shadow-lg
-            mt-1`)}
+            mt-1
+            transition-all
+            duration-500
+            ease-in-out
+            ${isInView && packages.length ? "opacity-100" : "opacity-0"}`)}
         >
           <div
             className={trim(`

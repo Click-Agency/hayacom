@@ -79,6 +79,9 @@ export default {
         lg: "4px 4px 8px rgba(0, 0, 0, 0.2)",
         xl: "5px 5px 10px rgba(0, 0, 0, 0.25)",
       },
+      wordBreak: {
+        "break-all": "break-all",
+      },
     },
   },
   plugins: [

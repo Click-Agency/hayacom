@@ -73,5 +73,52 @@
       "success": "Package updated successfully",
       "error": "Failed to update package"
     }
+  },
+
+  "cards": {
+    "customId": {
+      "label": {
+        "en": "CustomId English",
+        "ar": "CustomId Arabic"
+      },
+
+      "placeholder": "Enter card customId",
+      "errors": {
+        "required": "CustomId is required",
+        "min": "CustomId must be at least 3 characters",
+        "max": "CustomId must be at most 255 characters"
+      }
+    },
+
+    "title": {
+      "label": {
+        "en": "Title English",
+        "ar": "Title Arabic"
+      },
+      "placeholder": "Enter card title",
+      "errors": {
+        "required": "Title is required",
+        "min": "Title must be at least 3 characters",
+        "max": "Title must be at most 25 characters"
+      }
+    },
+
+    "image": {
+      "label": "Image",
+      "placeholder": "Enter card image",
+      "errors": {
+        "required": "Image is required",
+        "invalid": "Please upload an image file only.",
+        "max": "Image size must be less than 2MB"
+      }
+    },
+
+    "create": {
+      "title": "Create Card",
+      "submit": "Create",
+      "update": "Update",
+      "success": "Card created successfully",
+      "error": "Failed to create Card"
+    }
   }
 }

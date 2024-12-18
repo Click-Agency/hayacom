@@ -9,7 +9,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 const tailWindClasses = {
   aside: {
     width: "w-2/3",
-    bg: "bg-white",
+    bg: "bg-background-primary",
     darkBg: null,
   },
   backDrop: {

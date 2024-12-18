@@ -1,6 +1,6 @@
 const appRoutes = {
   home: "/",
-  categories: "/categories",
+  designs: "/designs",
   admin: "/admin",
   auth: {
     path: "/auth",
