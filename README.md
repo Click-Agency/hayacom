@@ -22,7 +22,7 @@ $ npm start:frontend
 
 ```
 
-#### [!CAUTION] You need to add the necessary environment variables to backend and fronend
+#### [!CAUTION] You need to add the necessary environment variables to backend and frontend
 
 ```env
 #backend
