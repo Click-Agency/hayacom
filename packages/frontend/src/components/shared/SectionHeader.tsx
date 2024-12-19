@@ -4,24 +4,27 @@ import { trim } from "../../utils/functions/general";
 const SectionHeader = ({
   className = "",
   title,
+  tag: Tag = "h1",
   ...attributes
 }: {
   title: string;
+  tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   className?: string;
 } & HTMLAttributes<HTMLDivElement>) => {
   return (
-    <h1
+    <Tag
       className={trim(`
         text-responsive-lg
         text-primary
         font-semibold
         text-center
         pb-4
+        text-shadow-lg
         ${className}`)}
       {...attributes}
     >
       {title}
-    </h1>
+    </Tag>
   );
 };
 

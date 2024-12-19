@@ -1,6 +1,6 @@
 import axiosInstance from "..";
 import { apiRoutes } from "../../config";
-import { FormCard, Card } from "../../types/cards";
+import { Card } from "../../types/cards";
 
 const getCards = ({ page = 1, limit = 20 } = {}) =>
   axiosInstance.get(`${apiRoutes.cards}?page=${page}&limit=${limit}`);

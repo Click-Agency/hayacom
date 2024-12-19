@@ -49,7 +49,16 @@ const Nav = () => {
     {
       name: t("nav.designs"),
       link: appRoutes.designs,
-      sections: [],
+      sections: [
+        {
+          id: "cards-gallery",
+          name: t("nav.gallery"),
+        },
+        {
+          id: "download-app",
+          name: t("nav.download"),
+        },
+      ],
     },
   ];
 

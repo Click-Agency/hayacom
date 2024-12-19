@@ -25,7 +25,15 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormCard>();
+  } = useForm<FormCard>({
+    defaultValues: {
+      customIdEn: cardData?.customIdEn,
+      customIdAr: cardData?.customIdAr,
+      titleEn: cardData?.titleEn,
+      titleAr: cardData?.titleAr,
+      image: cardData?.image,
+    },
+  });
 
   // Reset form when cardData changes
   useEffect(() => {
@@ -34,7 +42,7 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
       customIdAr: cardData?.customIdAr,
       titleEn: cardData?.titleEn,
       titleAr: cardData?.titleAr,
-      image: cardData?.image as any,
+      image: cardData?.image,
     });
   }, [cardData, reset]);
 
@@ -131,29 +139,35 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
             />
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-4 h-full">
             <InputStyled
+              contianerClassName="md:h-full flex-1"
+              inputContainerClassName="md:h-full"
+              className="md:!h-full"
               elemType="textarea"
               label={t("cards.title.label.en")}
               placeholder={t("cards.title.placeholder")}
               {...register("titleEn", {
                 required: {
                   value: true,
-                  message: t("cards.titleEn.errors.required"),
+                  message: t("cards.title.errors.required"),
                 },
                 minLength: {
                   value: 3,
-                  message: t("cards.titleEn.errors.min"),
+                  message: t("cards.title.errors.min"),
                 },
                 maxLength: {
                   value: 255,
-                  message: t("cards.titleEn.errors.max"),
+                  message: t("cards.title.errors.max"),
                 },
               })}
               error={errors.titleEn?.message}
             />
 
             <InputStyled
+              contianerClassName="md:h-full flex-1"
+              inputContainerClassName="md:h-full"
+              className="md:!h-full"
               elemType="textarea"
               label={t("cards.title.label.ar")}
               placeholder={t("cards.title.placeholder")}
@@ -185,7 +199,7 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
           defaultValue={cardData?.image}
           {...register("image", {
             required: {
-              value: true,
+              value: !cardData?.image,
               message: t("cards.image.errors.required"),
             },
             pattern: {

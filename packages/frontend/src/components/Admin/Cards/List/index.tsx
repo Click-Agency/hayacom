@@ -3,8 +3,8 @@ import SectionContainer from "../../../shared/containers/SectionContainer";
 import SectionHeader from "../../../shared/SectionHeader";
 import Table from "./Table";
 import { useEffect, useState } from "react";
-import { Package } from "../../../../types/packages";
-import { getPackages } from "../../../../api/routes/packages";
+import { Card } from "../../../../types/cards";
+import { getCards } from "../../../../api/routes/cards";
 import { PaginateMeta } from "../../../../types/response";
 import Loader from "../../../shared/Loader";
 import toast from "react-hot-toast";
@@ -13,7 +13,7 @@ import Pagination from "../../../shared/Pagination";
 const List = () => {
   const { t } = useTranslation(["admin"]);
   const [responseData, setResponseData] = useState<{
-    data: Package[];
+    data: Card[];
     meta: PaginateMeta;
   }>();
 
@@ -28,7 +28,7 @@ const List = () => {
       try {
         setIsLoading(() => true);
 
-        const res = await getPackages(qurery);
+        const res = await getCards(qurery);
 
         if (!res.data.data) {
           setIsLoading(() => false);
@@ -39,7 +39,7 @@ const List = () => {
         setIsLoading(() => false);
       } catch (err) {
         setIsLoading(() => false);
-        toast.error(t("packages.list.error"));
+        toast.error(t("cards.list.error"));
       }
     };
 
@@ -48,9 +48,9 @@ const List = () => {
 
   return (
     <SectionContainer className="mt-7">
-      <SectionHeader title={t("packages.list.title")} />
+      <SectionHeader title={t("cards.list.title")} />
 
-      {isLoading ? <Loader /> : <Table packages={responseData?.data} />}
+      {isLoading ? <Loader /> : <Table cards={responseData?.data} />}
 
       {!isLoading && responseData?.data && (
         <Pagination meta={responseData?.meta} setQuery={setQuery} />

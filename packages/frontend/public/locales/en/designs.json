@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "title": "The Best Design",
+    "subtitle": "Personal Touchs For Your Weeding Day"
+  },
+
+  "gallery": {
+    "title": "Invitation card equipped with a QR code and a serial number for each card.",
+
+    "noCards": "No cards available at the moment"
+  }
+}

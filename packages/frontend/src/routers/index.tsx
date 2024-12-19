@@ -4,8 +4,9 @@ import { appRoutes } from "../config";
 import Loading from "../pages/Loading";
 import AuthGuard from "../guard/AuthGuard";
 
-const NotFound = lazy(() => import("../pages/NotFound"));
 const Home = lazy(() => import("../pages/Home"));
+const Designs = lazy(() => import("../pages/Designs"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 const Admin = lazy(() => import("../pages/Admin"));
 const Auth = lazy(() => import("../pages/Auth"));
@@ -22,6 +23,7 @@ export default function Routers() {
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route path={appRoutes.home} element={<Home />} />
+        <Route path={appRoutes.designs} element={<Designs />} />
         <Route path="*" element={<NotFound />} />
 
         {/* Auth rotues */}

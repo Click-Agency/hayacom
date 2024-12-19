@@ -3,7 +3,7 @@ type FormCard = {
   customIdAr: string;
   titleEn: string;
   titleAr: string;
-  image: FileList;
+  image: FileList | string;
 };
 
 type Card = {

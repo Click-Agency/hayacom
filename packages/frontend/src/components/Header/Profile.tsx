@@ -13,7 +13,7 @@ import { revokeRefreshToken } from "../../api/routes/auth";
 import { Session } from "../../types/user";
 import { useLocation, useNavigate } from "react-router-dom";
 import useStorage from "../../hooks/useStorage";
-import hayakomImg from "../../assets/imgs/icon-hayakom.png"
+import hayakomImg from "../../assets/imgs/icon-hayakom.png";
 import { useTranslation } from "react-i18next";
 
 const Profile = ({ session }: { session: Session | null }) => {
@@ -31,21 +31,25 @@ const Profile = ({ session }: { session: Session | null }) => {
       name: t("admin.control"),
       link: appRoutes.admin,
       Icon: <MdAdminPanelSettings />,
+      type: "route",
     },
     {
       name: t("admin.crPackage"),
       link: appRoutes.createPacakge,
       Icon: <GoProjectSymlink />,
+      type: "route",
     },
     {
       name: t("admin.crCard"),
       link: appRoutes.createCard,
       Icon: <GoProjectSymlink />,
+      type: "route",
     },
     {
       name: t("admin.logout"),
       link: appRoutes.home,
       Icon: <RiLogoutCircleRLine />,
+      type: "logout",
     },
   ];
 
@@ -75,6 +79,7 @@ const Profile = ({ session }: { session: Session | null }) => {
   const onLogOutHandler = async () => {
     try {
       setIsLoading(() => true);
+      console.log("Logging out...");
       await revokeRefreshToken();
       removeItem();
       onCloseActions();
@@ -124,7 +129,7 @@ const Profile = ({ session }: { session: Session | null }) => {
             z-[1]
             ${showComponent ? "opacity-100" : "opacity-0"}`)}
         >
-          {profileRoutes.map(({ name, link, Icon }, i) => (
+          {profileRoutes.map(({ name, link, Icon, type }, i) => (
             <li key={i} className="w-full">
               <ButtonStyled
                 hover
@@ -150,7 +155,7 @@ const Profile = ({ session }: { session: Session | null }) => {
                   )
                 }
                 onClick={() =>
-                  name === "logout" ? onLogOutHandler() : onClickHandler(link)
+                  type === "logout" ? onLogOutHandler() : onClickHandler(link)
                 }
               />
             </li>

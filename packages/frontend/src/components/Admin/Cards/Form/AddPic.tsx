@@ -24,7 +24,6 @@ const AddPic = forwardRef(
       error,
       Loader,
       defaultValue,
-      theme,
       imgStyles,
       imgClassName,
       ...attributes
@@ -33,7 +32,6 @@ const AddPic = forwardRef(
       title?: string;
       subTitle?: string;
       defaultValue?: string;
-      theme?: string;
       Loader?: JSX.Element;
       imgStyles?: CSSProperties;
       imgClassName?: string;
@@ -47,6 +45,12 @@ const AddPic = forwardRef(
     const [imgLoaded, setImgLoaded] = useState(false);
 
     const imgContianerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (defaultValue) {
+        setImagePreviewUrl(defaultValue);
+      }
+    }, [defaultValue]);
 
     useEffect(() => {
       const inputFileElement =
@@ -85,6 +89,7 @@ const AddPic = forwardRef(
     return (
       <div className="group flex-1 h-full" ref={imgContianerRef}>
         <input
+          defaultValue={imagePreviewUrl}
           ref={ref}
           id="fileInput"
           className={trim(`
@@ -102,11 +107,11 @@ const AddPic = forwardRef(
         />
         <h1
           className={trim(`
-        text-lg 
-        font-semibold
-        text-center 
-        text-body-lightest 
-        mb-3.5`)}
+            text-lg 
+            font-semibold
+            text-center 
+            text-body-lightest 
+            mb-3.5`)}
         >
           {title}
         </h1>
@@ -143,6 +148,7 @@ const AddPic = forwardRef(
             })}
 
           <img
+            defaultValue={imagePreviewUrl}
             onClick={(e) => {
               e.preventDefault();
               handleFileButtonClick();

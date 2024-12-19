@@ -33,11 +33,10 @@ const useStorage = <T>(
         value instanceof Function ? value(storedValue) : value;
 
       if (type === "localStorage") {
-        if (window.sessionStorage.getItem(key) !== null) {
+        if (window.sessionStorage.getItem(key)) {
           window.sessionStorage.removeItem(key);
-          console.log("sessionStorage removed");
         }
-      } else if (window.localStorage.getItem(key) !== null) {
+      } else if (window.localStorage.getItem(key)) {
         window.localStorage.removeItem(key);
       }
 
@@ -55,9 +54,9 @@ const useStorage = <T>(
       if (type) window[type].removeItem(key);
 
       if (!type) {
-        if (window.sessionStorage.getItem(key) !== null) {
+        if (window.sessionStorage.getItem(key)) {
           window.sessionStorage.removeItem(key);
-        } else if (window.localStorage.getItem(key) !== null) {
+        } else if (window.localStorage.getItem(key)) {
           window.localStorage.removeItem(key);
         }
       }

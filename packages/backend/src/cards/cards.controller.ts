@@ -70,6 +70,7 @@ export class CardsController {
 
   @Patch(':_id')
   @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('image'))
   public async updateCard(
     @Param('_id', ParseObjectIdPipe) _id: string,
     @Body() cardData: UpdateCardDto,
@@ -86,8 +87,8 @@ export class CardsController {
     )
     image: Express.Multer.File,
     @Request() request: { _id: string },
-  ): Promise<HttpStatus> {
-    return await this.cardsService.update(_id, cardData, request._id);
+  ) {
+    return await this.cardsService.update(_id, cardData, request._id, image);
   }
 
   @Delete(':_id')

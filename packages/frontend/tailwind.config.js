@@ -28,7 +28,7 @@ export default {
         "responsive-cover": "clamp(2.5rem, 7vw, 5rem)",
         "responsive-cover-sm": "clamp(2rem, 6vw, 4rem)",
         "responsive-subCover": "clamp(1.7rem, 3vw, 3rem)",
-        "responsive-2xl": "clamp(1rem, 3.8vw, 3rem)",
+        "responsive-2xl": "clamp(2rem, 3.8vw, 3rem)",
         "responsive-xl": "clamp(1.9rem, 3.5vw, 2.2rem)",
         "responsive-2lg": "clamp(1.6rem, 3vw, 1.9rem)",
         "responsive-lg": "clamp(1.5rem, 2.7vw, 1.6rem)",

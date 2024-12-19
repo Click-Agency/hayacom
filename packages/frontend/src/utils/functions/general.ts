@@ -11,9 +11,16 @@ const formatDate = (dateString: string) => {
   return `${day}-${month}-${year}`;
 };
 
+const pascalCase = (fullString: string): string =>
+  fullString
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
 const addAttributesToReactNode = (
   element: JSX.Element,
   attributes?: React.HTMLAttributes<HTMLOrSVGElement>
 ) => cloneElement(element, attributes);
 
-export { trim, formatDate, addAttributesToReactNode };
+export { trim, formatDate, addAttributesToReactNode, pascalCase };
