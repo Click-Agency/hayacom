@@ -1,6 +1,11 @@
 {
   "title": "home",
 
+  "hero": {
+    "title": "With One Click",
+    "subtitle": "Invite your loved ones in the way that suits you and welcome your guests"
+  },
+
   "packages": {
     "title": "Packages",
 
