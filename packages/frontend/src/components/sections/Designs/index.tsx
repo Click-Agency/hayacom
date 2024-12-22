@@ -37,7 +37,7 @@ const Designs = () => {
   }, []);
 
   return (
-    <SectionContainer ref={targetRef} wraperClassName="gap-4">
+    <SectionContainer id={"designs"} ref={targetRef} wraperClassName="gap-4">
       <SectionHeader title={t("designs.title")} />
 
       {!cards.length && !noCards ? (

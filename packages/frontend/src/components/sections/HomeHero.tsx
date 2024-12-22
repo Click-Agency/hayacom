@@ -14,7 +14,7 @@ const HomeHero = () => {
     <SectionContainer
       className="bg-secondary"
       ref={targetRef}
-      id="download-app"
+      id="home-hero"
       dir="rtl"
       wraperClassName={`
         md:flex-row 

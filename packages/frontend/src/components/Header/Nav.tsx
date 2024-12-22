@@ -36,6 +36,10 @@ const Nav = () => {
           name: t("nav.comparisons"),
         },
         {
+          id: "designs",
+          name: t("nav.ourDesigns"),
+        },
+        {
           id: "testimonials",
           name: t("nav.clients"),
         },
