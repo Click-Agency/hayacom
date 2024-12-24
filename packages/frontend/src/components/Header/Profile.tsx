@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { useCookies } from "react-cookie";
 import Cookies from "../../enum/Cookies";
 
-const Profile = ({ session }: { session: Session | null }) => {
+const Profile = ({ session }: { session?: Session }) => {
   const [showActions, setShowActions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { scrollDir } = useScrollSpy();
