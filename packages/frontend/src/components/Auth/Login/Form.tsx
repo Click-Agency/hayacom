@@ -9,9 +9,10 @@ import { ClipLoader } from "react-spinners";
 import { trim } from "../../../utils/functions/general";
 import { getHeaderAuthorization } from "../../../api/utils";
 import { login } from "../../../api/routes/auth";
-import useStorage from "../../../hooks/useStorage";
 import toast from "react-hot-toast";
 import { appRoutes } from "../../../config";
+import { useCookies } from "react-cookie";
+import Cookies from "../../../enum/Cookies";
 
 const Form = () => {
   const { t } = useTranslation(["auth", "common"]);
@@ -19,7 +20,10 @@ const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [invalidCredentials, setInvalidCredentials] = useState(false);
   const push = useNavigate();
-  const { setValue } = useStorage("_hayakomSession");
+  const [, setCookie] = useCookies([Cookies.SESSION], {
+    doNotParse: true,
+    doNotUpdate: true,
+  });
 
   const {
     register,
@@ -47,11 +51,19 @@ const Form = () => {
         return;
       }
 
-      if (data.rememberMe) {
-        setValue({ ...res.data.user, accessToken }, "localStorage");
-      } else {
-        setValue({ ...res.data.user, accessToken }, "sessionStorage");
-      }
+      setCookie(
+        Cookies.SESSION,
+        { ...res.data.user, accessToken },
+        {
+          expires: data.rememberMe
+            ? new Date(Date.now() + 60 * 60 * 24 * 7)
+            : undefined,
+
+          maxAge: data.rememberMe ? 60 * 60 * 24 * 7 : undefined,
+          secure: import.meta.env.NODE_ENV === "production",
+          sameSite: "strict",
+        }
+      );
 
       setIsLoading(() => false);
       reset();

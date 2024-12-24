@@ -12,9 +12,10 @@ import useScrollSpy from "../../hooks/useScrollSpy";
 import { revokeRefreshToken } from "../../api/routes/auth";
 import { Session } from "../../types/user";
 import { useLocation, useNavigate } from "react-router-dom";
-import useStorage from "../../hooks/useStorage";
 import hayakomImg from "../../assets/imgs/icon-hayakom.png";
 import { useTranslation } from "react-i18next";
+import { useCookies } from "react-cookie";
+import Cookies from "../../enum/Cookies";
 
 const Profile = ({ session }: { session: Session | null }) => {
   const [showActions, setShowActions] = useState(false);
@@ -23,7 +24,7 @@ const Profile = ({ session }: { session: Session | null }) => {
   const [showComponent, setShowComponent] = useDelay(10, showActions);
   const { pathname } = useLocation();
   const push = useNavigate();
-  const { removeItem } = useStorage("_hayakomSession");
+  const [, , removeCookie] = useCookies([Cookies.SESSION]);
   const { t, i18n } = useTranslation(["header"]);
 
   const profileRoutes = [
@@ -81,7 +82,7 @@ const Profile = ({ session }: { session: Session | null }) => {
       setIsLoading(() => true);
       console.log("Logging out...");
       await revokeRefreshToken();
-      removeItem();
+      removeCookie(Cookies.SESSION);
       onCloseActions();
       window.location.reload();
       push(appRoutes.home);

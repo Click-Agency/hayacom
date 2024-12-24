@@ -33,7 +33,10 @@ export class AuthService {
 
   public async login(res: Response, userData: LoginDto) {
     try {
-      const userDoc = await this.userModel.findOne({ email: userData.email });
+      const userDoc = await this.userModel.findOne(
+        { email: userData.email },
+        { password: 1, email: 1, name: 1, role: 1, _id: 1 },
+      );
 
       const ok = await compare(userData.password, userDoc.password);
 

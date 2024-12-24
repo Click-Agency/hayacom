@@ -1,14 +1,16 @@
 import { useEffect } from "react";
-import useStorage from "./useStorage";
 import axiosInstance from "../api";
 import { getAccessToken } from "../api/routes/auth";
 import { Session } from "../types/user";
 import { getHeaderAuthorization, setHeaderAuthorization } from "../api/utils";
 import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { useCookies } from "react-cookie";
+import Cookies from "../enum/Cookies";
 
 const useSession = () => {
-  const { storedValue } = useStorage("_hayakomSession");
-  const session = storedValue as Session | null;
+  const [cookies, , , updateCookies] = useCookies([Cookies.SESSION]);
+
+  const session = cookies["hayakom-session"] as Session | undefined;
 
   useEffect(() => {
     const requestIntercept = axiosInstance.interceptors.request.use(
@@ -37,6 +39,7 @@ const useSession = () => {
           const res = await getAccessToken();
 
           session.accessToken = getHeaderAuthorization(res)!;
+          updateCookies();
           setHeaderAuthorization(originalRequest, session.accessToken);
 
           return axiosInstance(originalRequest);
