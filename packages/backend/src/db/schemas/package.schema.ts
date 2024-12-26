@@ -49,6 +49,11 @@ export class Package {
   })
   itemsAr: string[];
 
+  @Prop({
+    required: true,
+  })
+  video: string;
+
   @Prop({ type: String, required: true })
   userId: string;
 

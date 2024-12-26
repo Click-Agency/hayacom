@@ -23,26 +23,18 @@ export class Card {
 
   @Prop({
     required: true,
-    minlength: [2, 'Title is too short.'],
-    maxlength: [64, 'Title is too long.'],
+    type: [String],
+    validate: {
+      validator: (v: string[]) => v.length > 0,
+      message: 'At least one image is required.',
+    },
+    validateAll: {
+      validator: (v: string[]) =>
+        v.every((i) => /\.(jpe?g|png|gif|bmp)$/i.test(i)),
+      message: 'Invalid image format.',
+    },
   })
-  titleEn: string;
-
-  @Prop({
-    required: true,
-    minlength: [2, 'Title is too short.'],
-    maxlength: [64, 'Title is too long.'],
-  })
-  titleAr: string;
-
-  @Prop({
-    required: true,
-    match: [
-      /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-      'Invalid URL.',
-    ],
-  })
-  image: string;
+  images: string[];
 
   @Prop({ type: String, required: true })
   userId: string;

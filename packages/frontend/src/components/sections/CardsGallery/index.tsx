@@ -22,6 +22,7 @@ const CardsGallery = () => {
   }>();
   const [noCards, setNoCards] = useState(false);
   const [openGallery, setOpenGellery] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
 
   useRemoveScroll(openGallery);
 
@@ -40,8 +41,17 @@ const CardsGallery = () => {
     fetchCards();
   }, [qurey]);
 
+  const targetGallery = (i: number) => {
+    setGalleryIndex(() => i);
+    setOpenGellery(() => true);
+  };
+
   return (
-    <SectionContainer id="cards-gallery" wraperClassName="items-center">
+    <SectionContainer
+      id="cards-gallery"
+      className="mt-5"
+      wraperClassName="items-center"
+    >
       <SectionHeader className="max-w-xl" title={t("gallery.title")} />
 
       {!resposeCards?.data.length && !noCards ? (
@@ -74,7 +84,14 @@ const CardsGallery = () => {
             ease-in-out`)}
         >
           {resposeCards?.data.map((card, i) => (
-            <GalleryCard key={i} setOpenGallery={setOpenGellery} {...card} />
+            <GalleryCard
+              key={i}
+              setOpenGallery={setOpenGellery}
+              customIdAr={card.customIdAr}
+              customIdEn={card.customIdEn}
+              images={card.images}
+              onClick={() => targetGallery(i)}
+            />
           ))}
         </ul>
       )}
@@ -87,9 +104,12 @@ const CardsGallery = () => {
         <Lightbox
           plugins={[Captions, Zoom, Thumbnails]}
           open={openGallery}
-          slides={resposeCards?.data.map(({ image, titleAr, titleEn }) => ({
-            src: image,
-            title: i18n.language === "ar" ? titleAr : titleEn,
+          slides={resposeCards?.data[galleryIndex]?.images.map((img) => ({
+            src: img,
+            title:
+              i18n.language === "ar"
+                ? resposeCards?.data[galleryIndex]?.customIdAr
+                : resposeCards?.data[galleryIndex]?.customIdEn,
           }))}
           close={() => setOpenGellery(() => false)}
         />

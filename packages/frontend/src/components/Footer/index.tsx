@@ -1,14 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { trim } from "../../utils/functions/general";
-import Logo from "../shared/Logo";
+import { addAttributesToReactNode, trim } from "../../utils/functions/general";
 import { Link } from "react-router-dom";
 import useScrollInToView from "../../hooks/useScrollInToView";
 import useActivation from "../../hooks/useActivation";
-import instaIcon from "../../assets/svgs/inta-icon.svg";
-import xIcon from "../../assets/svgs/x-icon.svg";
-import snapIcon from "../../assets/svgs/snap-icon.svg";
-import tiktokIcon from "../../assets/svgs/tiktok-icon.svg";
-import whatsIcon from "../../assets/svgs/whats-icon.svg";
+import {
+  FaInstagram,
+  FaXTwitter,
+  FaSnapchat,
+  FaTiktok,
+  FaWhatsapp,
+} from "react-icons/fa6";
 
 const Footer = () => {
   const { t } = useTranslation(["footer", "header", "common"]);
@@ -17,23 +18,23 @@ const Footer = () => {
 
   const socialIcons = [
     {
-      svg: instaIcon,
+      Svg: <FaInstagram size={35} />,
       link: "",
     },
     {
-      svg: xIcon,
+      Svg: <FaXTwitter size={35} />,
       link: "",
     },
     {
-      svg: snapIcon,
+      Svg: <FaSnapchat size={35} />,
       link: "",
     },
     {
-      svg: tiktokIcon,
+      Svg: <FaTiktok size={35} />,
       link: "",
     },
     {
-      svg: whatsIcon,
+      Svg: <FaWhatsapp size={35} />,
       link: "",
     },
   ];
@@ -56,7 +57,7 @@ const Footer = () => {
         justify-center 
         items-center 
         pb-2 
-        bg-background-primary 
+        bg-primary 
         gap-4
         py-7
         transition-opacity
@@ -64,7 +65,6 @@ const Footer = () => {
         duration-500
         ${isInView ? "opacity-100" : "opacity-0"}`)}
     >
-      <Logo className="w-60 md:w-72 max-w-[80px]" />
       <ul
         className={trim(`
           flex
@@ -73,12 +73,11 @@ const Footer = () => {
           gap-4
           flex-wrap`)}
       >
-        {socialIcons.map(({ link, svg }, i) => (
+        {socialIcons.map(({ link, Svg }, i) => (
           <li key={i}>
             <Link to={link}>
-              <img
-                src={svg}
-                className={trim(`
+              {addAttributesToReactNode(Svg, {
+                className: trim(`
                   w-full
                   max-w-12
                   transition-all
@@ -87,23 +86,20 @@ const Footer = () => {
                   hover:scale-110 
                   active:scale-90
                   rounded-full
-                  ${activationArr[i].active ? "opacity-100" : "opacity-"}`)}
-              />
+                  fill-secondary
+                  ${activationArr[i].active ? "opacity-100" : "opacity-"}`),
+              })}
             </Link>
           </li>
         ))}
       </ul>
 
-      <p className="font-semibold text-primary text-responsive-2md">
-        {t("visit", { ns: "footer" })}
-      </p>
-
       <small
         className={trim(`
-          text-primary 
           text-center 
           text-responsive-xs 
-          font-medium`)}
+          font-medium
+          text-secondary`)}
       >
         &copy; {new Date().getFullYear()} {t("copyRights")}{" "}
         {t("coName", { ns: "common" })}

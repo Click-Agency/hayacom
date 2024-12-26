@@ -5,6 +5,7 @@ type FormPackage = {
   titleAr: string;
   itemsEn: string[];
   itemsAr: string[];
+  video: string | FileList;
 };
 
 type Package = {
@@ -15,6 +16,7 @@ type Package = {
   titleAr: string;
   itemsEn: string[];
   itemsAr: string[];
+  video: string;
   createdAt: string;
 };
 

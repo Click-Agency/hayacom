@@ -28,25 +28,49 @@ const Body = ({
         {langAr ? packages[packgeIndex].titleAr : packages[packgeIndex].titleEn}
       </h2>
 
-      <ol
+      <div
         className={trim(`
           flex
-          flex-col
-          gap-2
-          p-4
-          text-responsive-xs
-          font-semibold
-          list-disc
-          list-inside`)}
+          justify-center
+          gap-4
+          items-center
+          flex-col-reverse
+          md:flex-row
+          pb-4`)}
       >
-        {langAr
-          ? packages[packgeIndex].itemsAr.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))
-          : packages[packgeIndex].itemsEn.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-      </ol>
+        <ol
+          className={trim(`
+            flex
+            flex-col
+            gap-2
+            p-4
+            text-responsive-xs
+            font-semibold
+            list-disc
+            list-inside`)}
+        >
+          {langAr
+            ? packages[packgeIndex].itemsAr.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))
+            : packages[packgeIndex].itemsEn.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+        </ol>
+
+        <video
+          autoPlay
+          loop
+          muted
+          className={trim(`
+            w-full
+            h-full 
+            max-w-[400px] 
+            max-h-[400px]
+            rounded-lg`)}
+          src={packages[packgeIndex].video}
+        />
+      </div>
     </div>
   );
 };

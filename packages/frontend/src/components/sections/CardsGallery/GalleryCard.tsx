@@ -1,23 +1,20 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, HTMLAttributes, SetStateAction } from "react";
 import { trim } from "../../../utils/functions/general";
 import { useTranslation } from "react-i18next";
 import useScrollInToView from "../../../hooks/useScrollInToView";
 
 const GalleryCard = ({
-  image,
+  images,
   customIdAr,
   customIdEn,
-  titleAr,
-  titleEn,
   setOpenGallery,
+  ...attributes
 }: {
-  image: string;
+  images: string[];
   customIdAr: string;
   customIdEn: string;
-  titleAr: string;
-  titleEn: string;
   setOpenGallery: Dispatch<SetStateAction<boolean>>;
-}) => {
+} & HTMLAttributes<HTMLLIElement>) => {
   const { i18n } = useTranslation();
   const { targetRef, isInView } = useScrollInToView();
 
@@ -38,9 +35,10 @@ const GalleryCard = ({
         w-full
         max-w-xs
         ${isInView ? "opacity-100" : "opacity-0"}`)}
+      {...attributes}
     >
       <img
-        src={image}
+        src={images[0]}
         alt="gallery"
         className={trim(`
           cursor-pointer 
@@ -64,17 +62,6 @@ const GalleryCard = ({
       >
         {langAr ? customIdAr : customIdEn}
       </h2>
-      <h3
-        className={trim(`
-          break-all
-          transition-opacity
-          duration-500
-          ease-in-out
-          delay-700
-          ${isInView ? "opacity-100" : "opacity-0"}`)}
-      >
-        {langAr ? titleAr : titleEn}
-      </h3>
     </li>
   );
 };

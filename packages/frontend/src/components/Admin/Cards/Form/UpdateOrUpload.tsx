@@ -11,8 +11,7 @@ import { RiUploadCloud2Line } from "react-icons/ri";
 import { createCard, updateCard } from "../../../../api/routes/cards";
 import toast from "react-hot-toast";
 import useSession from "../../../../hooks/useSession";
-import AddPic from "./AddPic";
-import Loader from "../../../shared/Loader";
+import AddPics from "./AddPics";
 
 const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,14 +23,13 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<FormCard>({
     defaultValues: {
       customIdEn: cardData?.customIdEn,
       customIdAr: cardData?.customIdAr,
-      titleEn: cardData?.titleEn,
-      titleAr: cardData?.titleAr,
-      image: cardData?.image,
+      images: cardData?.images,
     },
   });
 
@@ -40,9 +38,7 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
     reset({
       customIdEn: cardData?.customIdEn,
       customIdAr: cardData?.customIdAr,
-      titleEn: cardData?.titleEn,
-      titleAr: cardData?.titleAr,
-      image: cardData?.image,
+      images: cardData?.images,
     });
   }, [cardData, reset]);
 
@@ -53,18 +49,19 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
 
       formData.append("customIdEn", data.customIdEn);
       formData.append("customIdAr", data.customIdAr);
-      formData.append("titleEn", data.titleEn);
-      formData.append("titleAr", data.titleAr);
-      if (data.image instanceof FileList) {
-        formData.append("image", data.image[0], data.image[0].name);
+
+      data.images.forEach((img) => {
+        if (img instanceof File) {
+          formData.append("images", img, img.name);
+        }
+      });
+
+      if (!cardData) {
+        await createCard(formData);
       }
 
       if (cardData) {
         await updateCard(cardData._id, formData);
-      }
-
-      if (!cardData) {
-        await createCard(formData);
       }
 
       setIsLoading(() => false);
@@ -92,10 +89,11 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
         animate-appear
         w-full
         h-full
+        max-w-3xl
         mt-4`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <div className="flex md:flex-row flex-col-reverse gap-4 h-full">
+      <div className="flex flex-col-reverse gap-4 h-full">
         <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col md:flex-row gap-4">
             <InputStyled
@@ -138,59 +136,9 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
               error={errors.customIdAr?.message}
             />
           </div>
-
-          <div className="flex flex-col md:flex-row gap-4 h-full">
-            <InputStyled
-              contianerClassName="md:h-full flex-1"
-              inputContainerClassName="md:h-full"
-              className="md:!h-full"
-              elemType="textarea"
-              label={t("cards.title.label.en")}
-              placeholder={t("cards.title.placeholder")}
-              {...register("titleEn", {
-                required: {
-                  value: true,
-                  message: t("cards.title.errors.required"),
-                },
-                minLength: {
-                  value: 3,
-                  message: t("cards.title.errors.min"),
-                },
-                maxLength: {
-                  value: 255,
-                  message: t("cards.title.errors.max"),
-                },
-              })}
-              error={errors.titleEn?.message}
-            />
-
-            <InputStyled
-              contianerClassName="md:h-full flex-1"
-              inputContainerClassName="md:h-full"
-              className="md:!h-full"
-              elemType="textarea"
-              label={t("cards.title.label.ar")}
-              placeholder={t("cards.title.placeholder")}
-              {...register("titleAr", {
-                required: {
-                  value: true,
-                  message: t("cards.title.errors.required"),
-                },
-                minLength: {
-                  value: 3,
-                  message: t("cards.title.errors.min"),
-                },
-                maxLength: {
-                  value: 255,
-                  message: t("cards.title.errors.max"),
-                },
-              })}
-              error={errors.titleAr?.message}
-            />
-          </div>
         </div>
 
-        <AddPic
+        {/* <AddPic
           title={t("cards.image.label")}
           subTitle={t("cards.image.placeholder")}
           error={errors.image?.message as string}
@@ -207,6 +155,14 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
               message: t("cards.image.errors.invalid"),
             },
           })}
+        /> */}
+
+        <AddPics
+          control={control}
+          errors={errors}
+          disabled={isLoading}
+          target="images"
+          defaultValues={cardData?.images}
         />
       </div>
 

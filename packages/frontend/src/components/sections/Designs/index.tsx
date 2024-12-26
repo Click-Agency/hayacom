@@ -74,9 +74,12 @@ const Designs = () => {
             p-2
             ${isInView ? "opacity-100" : "opacity-0"}`)}
         >
-          {cards.map(({ image }, i) => (
+          {cards.map(({ images }, i) => (
             <SwiperSlide className="!w-auto shadow-xl" key={i} tag="li">
-              <img className={`block !w-auto max-w-[25.6rem]`} src={image} />
+              <img
+                className={`block !w-auto max-w-[25.6rem]`}
+                src={images[0]}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

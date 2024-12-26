@@ -15,6 +15,7 @@ import {
   Query,
   Request,
   UploadedFile,
+  UploadedFiles,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -25,7 +26,7 @@ import { PaginatedDto } from '../shared/dtos/paginated.dto';
 import { AuthGuard } from '../shared/guard/auth.guard';
 import { CreateCardDto } from './dtos/create-card.dto';
 import { UpdateCardDto } from './dtos/update-card.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('cards')
 export class CardsController {
@@ -48,55 +49,56 @@ export class CardsController {
 
   @Post()
   @UseGuards(AuthGuard)
-  @UseInterceptors(FileInterceptor('image'))
+  @UseInterceptors(FilesInterceptor('images'))
   public async createCard(
     @Body() cardData: CreateCardDto,
-    @UploadedFile(
+    @UploadedFiles(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }), // 5 MB max file size
           new FileTypeValidator({
-            fileType: /image\/(jpeg|png|gif|bmp|webp)/,
+            fileType: /image\/(jpeg|png|gif|bmp|webp)/, // Valid image types
           }),
         ],
         fileIsRequired: true,
       }),
     )
-    image: Express.Multer.File,
+    images: Express.Multer.File[],
     @Request() request: { _id: string },
   ) {
-    return await this.cardsService.create(cardData, image, request._id);
+    return await this.cardsService.create(cardData, images, request._id);
   }
 
   @Patch(':_id')
   @UseGuards(AuthGuard)
-  @UseInterceptors(FileInterceptor('image'))
+  @UseInterceptors(FilesInterceptor('images'))
   public async updateCard(
     @Param('_id', ParseObjectIdPipe) _id: string,
-    @Body() cardData: UpdateCardDto,
-    @UploadedFile(
+    @Body() cardData: CreateCardDto,
+    @UploadedFiles(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }), // 5 MB max file size
           new FileTypeValidator({
-            fileType: /image\/(jpeg|png|gif|bmp|webp)/,
+            fileType: /image\/(jpeg|png|gif|bmp|webp)/, // Valid image types
           }),
         ],
         fileIsRequired: false,
       }),
     )
-    image: Express.Multer.File,
-    @Request() request: { _id: string },
+    images: Express.Multer.File[],
   ) {
-    return await this.cardsService.update(_id, cardData, request._id, image);
+
+    `"http:img", "file:gime ", "ghhtp://"`
+
+    return await this.cardsService.update(_id, cardData, images);
   }
 
   @Delete(':_id')
   @UseGuards(AuthGuard)
   public async deleteCard(
     @Param('_id', ParseObjectIdPipe) _id: string,
-    @Request() request: { _id: string },
   ): Promise<HttpStatus> {
-    return await this.cardsService.delete(_id, request._id);
+    return await this.cardsService.delete(_id);
   }
 }

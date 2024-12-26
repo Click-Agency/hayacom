@@ -1,18 +1,14 @@
 type FormCard = {
   customIdEn: string;
   customIdAr: string;
-  titleEn: string;
-  titleAr: string;
-  image: FileList | string;
+  images: (File | string)[];
 };
 
 type Card = {
   _id: string;
   customIdEn: string;
   customIdAr: string;
-  titleEn: string;
-  titleAr: string;
-  image: string;
+  images: string[];
   createdAt: string;
 };
 

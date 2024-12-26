@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { formatDate, trim } from "../../../../utils/functions/general";
 import ButtonStyled from "../../../shared/ButtonStyled";
 import useScrollInToView from "../../../../hooks/useScrollInToView";
-import { appRoutes } from "../../../../config";
+//import { appRoutes } from "../../../../config";
 import { useDispatch } from "react-redux";
 import { showDialog } from "../../../../store/slices/deleteSlice";
 import { deleteCard } from "../../../../api/routes/cards";
@@ -28,11 +28,10 @@ const Table = ({ cards }: { cards?: Card[] }) => {
     );
   };
 
-  const arBodyArr = cards?.map(
-    ({ _id, image, customIdAr, titleAr, createdAt }, i) => (
-      <tr key={i} className="text-center">
-        <td
-          className={trim(`
+  const arBodyArr = cards?.map(({ _id, images, customIdAr, createdAt }, i) => (
+    <tr key={i} className="text-center">
+      <td
+        className={trim(`
             break-all
             p-2
             border-b
@@ -40,20 +39,20 @@ const Table = ({ cards }: { cards?: Card[] }) => {
             border-primary
             max-w-40
             min-w-20`)}
-        >
-          {_id}
-        </td>
-        <td
-          className={trim(`
+      >
+        {_id}
+      </td>
+      <td
+        className={trim(`
             p-2
             border-b
             border-r
             border-primary`)}
-        >
-          <img
-            src={image}
-            alt={titleAr}
-            className={trim(`
+      >
+        <img
+          src={images[0]}
+          alt={customIdAr}
+          className={trim(`
               w-20
               h-20
               rounded-xl
@@ -66,79 +65,68 @@ const Table = ({ cards }: { cards?: Card[] }) => {
               md:rounded-2xl
               md:object-cover
               md:border-primary`)}
-          />
-        </td>
-        <td
-          className={trim(`
+        />
+      </td>
+      <td
+        className={trim(`
             p-2
             border-b
             border-r
             border-primary`)}
-        >
-          {customIdAr}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary`)}
-        >
-          {titleAr}
-        </td>
-        <td
-          className={trim(`
+      >
+        {customIdAr}
+      </td>
+      <td
+        className={trim(`
             p-2
             border-b
             border-r
             border-primary
             text-nowrap`)}
-        >
-          {formatDate(createdAt)}
-        </td>
-        <td
-          className={trim(`
+      >
+        {formatDate(createdAt)}
+      </td>
+      <td
+        className={trim(`
             p-2
             border-b
             border-r
             border-primary
             space-y-2
             max-w-16`)}
-        >
-          <ButtonStyled
-            ripple
-            size="sm"
-            href={`${appRoutes.editCard}/${_id}`}
-            className={trim(`
-              w-full
-              rounded-xl
-              hover:scale-105
-              active:scale-95`)}
-            warning
-            title={t("cards.list.table.actions.edit")}
-          />
-          <ButtonStyled
-            ripple
-            size="sm"
-            className={trim(`
-              w-full
-              rounded-xl
-              hover:scale-105
-              active:scale-95`)}
-            danger
-            title={t("cards.list.table.actions.delete")}
-            onClick={() => onDeleteHandler(_id, customIdAr)}
-          />
-        </td>
-      </tr>
-    )
-  );
-
-  const enBodyArr = cards?.map(
-    ({ _id, image, customIdEn, titleEn, createdAt }, i) => (
-      <tr key={i} className="text-center">
-        <td
+      >
+        {/* <ButtonStyled
+          ripple
+          size="sm"
+          href={`${appRoutes.editCard}/${_id}`}
           className={trim(`
+              w-full
+              rounded-xl
+              hover:scale-105
+              active:scale-95`)}
+          warning
+          title={t("cards.list.table.actions.edit")}
+        /> */}
+        <ButtonStyled
+          ripple
+          size="sm"
+          className={trim(`
+              w-full
+              rounded-xl
+              hover:scale-105
+              active:scale-95`)}
+          danger
+          title={t("cards.list.table.actions.delete")}
+          onClick={() => onDeleteHandler(_id, customIdAr)}
+        />
+      </td>
+    </tr>
+  ));
+
+  const enBodyArr = cards?.map(({ _id, images, customIdEn, createdAt }, i) => (
+    <tr key={i} className="text-center">
+      <td
+        className={trim(`
           break-all
           p-2
           border-b
@@ -146,20 +134,20 @@ const Table = ({ cards }: { cards?: Card[] }) => {
           border-primary
           max-w-40
           min-w-20`)}
-        >
-          {_id}
-        </td>
-        <td
-          className={trim(`
+      >
+        {_id}
+      </td>
+      <td
+        className={trim(`
             p-2
             border-b
             border-r
             border-primary`)}
-        >
-          <img
-            src={image}
-            alt={titleEn}
-            className={trim(`
+      >
+        <img
+          src={images[0]}
+          alt={customIdEn}
+          className={trim(`
               w-20
               h-20
               rounded-xl
@@ -172,73 +160,63 @@ const Table = ({ cards }: { cards?: Card[] }) => {
               md:rounded-2xl
               md:object-cover
               md:border-primary`)}
-          />
-        </td>
-        <td
-          className={trim(`
+        />
+      </td>
+      <td
+        className={trim(`
           p-2
           border-b
           border-r
           border-primary`)}
-        >
-          {customIdEn}
-        </td>
-        <td
-          className={trim(`
-          p-2
-          border-b
-          border-r
-          border-primary`)}
-        >
-          {titleEn}
-        </td>
-        <td
-          className={trim(`
+      >
+        {customIdEn}
+      </td>
+      <td
+        className={trim(`
           p-2
           border-b
           border-r
           border-primary
           text-nowrap`)}
-        >
-          {formatDate(createdAt)}
-        </td>
-        <td
-          className={trim(`
+      >
+        {formatDate(createdAt)}
+      </td>
+      <td
+        className={trim(`
             p-2
             border-b
             border-r
             border-primary
             space-y-2
             max-w-16`)}
-        >
-          <ButtonStyled
-            ripple
-            size="sm"
-            href={`${appRoutes.editCard}/${_id}`}
-            className={trim(`
+      >
+        {/* <ButtonStyled
+          ripple
+          size="sm"
+          href={`${appRoutes.editCard}/${_id}`}
+          className={trim(`
               w-full
               rounded-xl
               hover:scale-105
               active:scale-95`)}
-            warning
-            title={t("cards.list.table.actions.edit")}
-          />
-          <ButtonStyled
-            ripple
-            size="sm"
-            className={trim(`
+          warning
+          title={t("cards.list.table.actions.edit")}
+        /> */}
+        <ButtonStyled
+          ripple
+          size="sm"
+          className={trim(`
               w-full
               rounded-xl
               hover:scale-105
               active:scale-95`)}
-            danger
-            title={t("cards.list.table.actions.delete")}
-            onClick={() => onDeleteHandler(_id, customIdEn)}
-          />
-        </td>
-      </tr>
-    )
-  );
+          danger
+          title={t("cards.list.table.actions.delete")}
+          onClick={() => onDeleteHandler(_id, customIdEn)}
+        />
+      </td>
+    </tr>
+  ));
 
   return (
     <div className="!overflow-x-auto w-full">

@@ -21,7 +21,7 @@ const Header = () => {
         duration-300
         box-border
         z-10
-        ${isTop ? "bg-background-primary/90" : "bg-background-primary"}
+        ${isTop ? "bg-secondary/90" : "bg-secondary"}
         ${scrollDir === "down" ? "-translate-y-full" : "translate-y-0"}
         ${isTop ? "shadow-none" : "shadow-headerShadow"}`)}
     >

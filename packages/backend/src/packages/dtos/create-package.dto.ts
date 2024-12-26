@@ -26,14 +26,10 @@ export class CreatePackageDto {
   titleAr: string;
 
   @IsNotEmpty()
-  @IsString({ each: true })
-  @MinLength(2, { each: true })
-  @MaxLength(256, { each: true })
-  itemsEn: string[];
+  @IsString()
+  itemsEn: string;
 
   @IsNotEmpty()
-  @IsString({ each: true })
-  @MinLength(2, { each: true })
-  @MaxLength(256, { each: true })
-  itemsAr: string[];
+  @IsString()
+  itemsAr: string;
 }

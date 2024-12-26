@@ -43,6 +43,15 @@
       }
     },
 
+    "video": {
+      "label": "Add Video",
+      "btn": "Upload Video",
+      "errors": {
+        "required": "Video is required",
+        "invalid": "Please enter a valid video"
+      }
+    },
+
     "list": {
       "table": {
         "headers": ["Id", "Name", "Title", "Items", "Created", "Actions"],
@@ -107,7 +116,7 @@
 
     "list": {
       "table": {
-        "headers": ["Id", "Image", "CustomId", "Title", "Created", "Actions"],
+        "headers": ["Id", "Image", "CustomId", "Created", "Actions"],
         "actions": {
           "edit": "Edit",
           "delete": "Delete"
@@ -122,9 +131,10 @@
       "error": "Failed to fetch cards"
     },
 
-    "image": {
-      "label": "Image",
-      "placeholder": "Enter card image",
+    "images": {
+      "label": "Images",
+      "main": "Main Image",
+      "gallery": "Gallery Image",
       "errors": {
         "required": "Image is required",
         "invalid": "Please upload an image file only.",

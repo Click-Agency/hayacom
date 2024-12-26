@@ -6,21 +6,13 @@ import { PaginateUtils } from '../shared/utils/paginate.utils';
 import { PaginatedDto } from 'src/shared/dtos/paginated.dto';
 import { CreateCardDto } from './dtos/create-card.dto';
 import { UpdateCardDto } from './dtos/update-card.dto';
-import {
-  DeleteObjectCommand,
-  PutObjectCommand,
-  S3Client,
-} from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3BucketService } from 'src/s3Bucket/s3Bucket.service';
 
 @Injectable()
 export class CardsService {
-  private readonly s3Client = new S3Client({
-    region: process.env.AWS_S3_REGION,
-  });
-
   public constructor(
     @InjectModel(Card.name) private readonly cardModel: Model<Card>,
+    private readonly s3Bucket: S3BucketService,
   ) {}
 
   public async find(page: number, limit: number) {
@@ -65,24 +57,13 @@ export class CardsService {
 
   public async create(
     cardData: CreateCardDto,
-    imageData: Express.Multer.File,
+    imagesData: Express.Multer.File[],
     userId: string,
   ) {
     try {
-      const Key = `images/${Date.now()}-${imageData.originalname}`;
+      const images = await this.s3Bucket.uploadImages(imagesData);
 
-      const command = new PutObjectCommand({
-        Bucket: process.env.AWS_S3_BUCKET_NAME,
-        Key,
-        Body: imageData.buffer,
-        ContentType: imageData.mimetype,
-      });
-
-      await this.s3Client.send(command);
-
-      const image = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_S3_REGION}.amazonaws.com/${Key}`;
-
-      await this.cardModel.create({ ...cardData, image, userId });
+      await this.cardModel.create({ ...cardData, images, userId });
 
       return HttpStatus.CREATED;
     } catch (err) {
@@ -96,38 +77,35 @@ export class CardsService {
   public async update(
     _id: string,
     cardData: UpdateCardDto,
-    userId: string,
-    imageData?: Express.Multer.File,
+    imagesData?: Express.Multer.File[],
   ) {
     try {
-      const cardDoc = await this.cardModel.findOne({ _id, userId }).exec();
+      const cardDoc = await this.cardModel.findOne({ _id }).exec();
+
+      //arrray of files [file1, file2, file3]
+
+      
 
       if (!cardDoc) throw new HttpException({ message: 'card not found' }, 404);
 
-      if (imageData) {
-        const deleteCommand = new DeleteObjectCommand({
-          Bucket: process.env.AWS_S3_BUCKET_NAME,
-          Key: `images/${cardDoc.toObject().image.split('/').slice(-1)[0]}`,
-        });
-
-        await this.s3Client.send(deleteCommand);
-
-        const Key = `images/${Date.now()}-${imageData.originalname}`;
-
-        const putCommand = new PutObjectCommand({
-          Bucket: process.env.AWS_S3_BUCKET_NAME,
-          Key,
-          Body: imageData.buffer,
-          ContentType: imageData.mimetype,
-        });
-
-        await this.s3Client.send(putCommand);
-
-        const image = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_S3_REGION}.amazonaws.com/${Key}`;
-
-        await this.cardModel.updateOne({ _id, userId }, { ...cardData, image });
+      if (imagesData) {
+        // const deleteCommand = new DeleteObjectCommand({
+        //   Bucket: process.env.AWS_S3_BUCKET_NAME,
+        //   Key: `images/${cardDoc.toObject().image.split('/').slice(-1)[0]}`,
+        // });
+        // await this.s3Client.send(deleteCommand);
+        // const Key = `images/${Date.now()}-${imageData.originalname}`;
+        // const putCommand = new PutObjectCommand({
+        //   Bucket: process.env.AWS_S3_BUCKET_NAME,
+        //   Key,
+        //   Body: imageData.buffer,
+        //   ContentType: imageData.mimetype,
+        // });
+        // await this.s3Client.send(putCommand);
+        // const image = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_S3_REGION}.amazonaws.com/${Key}`;
+        // await this.cardModel.updateOne({ _id, userId }, { ...cardData, image });
       } else {
-        await this.cardModel.updateOne({ _id, userId }, { ...cardData });
+        await this.cardModel.updateOne({ _id }, { ...cardData });
       }
 
       return HttpStatus.ACCEPTED;
@@ -137,20 +115,17 @@ export class CardsService {
     }
   }
 
-  public async delete(_id: string, userId: string) {
+  public async delete(_id: string) {
     try {
-      const cardDoc = await this.cardModel.findOne({ _id, userId }).exec();
+      const cardDoc = await this.cardModel.findOne({ _id }).exec();
 
       if (!cardDoc) throw new HttpException({ message: 'card not found' }, 404);
 
-      const deleteCommand = new DeleteObjectCommand({
-        Bucket: process.env.AWS_S3_BUCKET_NAME,
-        Key: `images/${cardDoc.toObject().image.split('/').slice(-1)[0]}`,
-      });
+      const images = cardDoc.toObject().images;
 
-      await this.s3Client.send(deleteCommand);
+      await this.s3Bucket.deleteImages(images);
 
-      await this.cardModel.deleteOne({ _id, userId });
+      await this.cardModel.deleteOne({ _id });
 
       return HttpStatus.ACCEPTED;
     } catch (err) {

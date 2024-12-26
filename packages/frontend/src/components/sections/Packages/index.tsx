@@ -82,9 +82,12 @@ const Packages = () => {
               flex
               flex-col
               gap-4
-              border-2
+              border-x-2
+              border-t-2
+              border-t-transparent
               border-x-primary
-              rounded-lg`)}
+              rounded-lg
+              rounded-b-none`)}
           >
             <Headers
               setPackageIndex={setPackageIndex}

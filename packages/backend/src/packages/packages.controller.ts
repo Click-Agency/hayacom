@@ -3,15 +3,20 @@ import {
   Controller,
   DefaultValuePipe,
   Delete,
+  FileTypeValidator,
   Get,
   HttpStatus,
+  MaxFileSizeValidator,
   Param,
+  ParseFilePipe,
   ParseIntPipe,
   Patch,
   Post,
   Query,
   Request,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { PackagesService } from './packages.service';
 import { ParseObjectIdPipe } from '../shared/pipes/parse-objectId.pipe';
@@ -20,6 +25,7 @@ import { PaginatedDto } from '../shared/dtos/paginated.dto';
 import { AuthGuard } from '../shared/guard/auth.guard';
 import { CreatePackageDto } from './dtos/create-package.dto';
 import { UpdatePackageDto } from './dtos/update-package.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('packages')
 export class PackagesController {
@@ -42,29 +48,54 @@ export class PackagesController {
 
   @Post()
   @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('video'))
   public async createPackage(
     @Body() packageData: CreatePackageDto,
-    @Request() request: { _id: string },
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: 50 * 1024 * 1024 }),
+          new FileTypeValidator({
+            fileType: /video\/(mp4|webm|ogg)/,
+          }),
+        ], // 10 MB max file size
+        fileIsRequired: true,
+      }),
+    )
+    video: Express.Multer.File,
+    @Request()
+    request: { _id: string },
   ): Promise<HttpStatus> {
-    return await this.packagesService.create(packageData, request._id);
+    return await this.packagesService.create(packageData, video, request._id);
   }
 
   @Patch(':_id')
   @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('video'))
   public async updatePackage(
     @Param('_id', ParseObjectIdPipe) _id: string,
     @Body() packageData: UpdatePackageDto,
-    @Request() request: { _id: string },
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: 50 * 1024 * 1024 }),
+          new FileTypeValidator({
+            fileType: /video\/(mp4|webm|ogg)/,
+          }),
+        ], // 10 MB max file size
+        fileIsRequired: false,
+      }),
+    )
+    video: Express.Multer.File,
   ): Promise<HttpStatus> {
-    return await this.packagesService.update(_id, packageData, request._id);
+    return await this.packagesService.update(_id, packageData, video);
   }
 
   @Delete(':_id')
   @UseGuards(AuthGuard)
   public async deletePackage(
     @Param('_id', ParseObjectIdPipe) _id: string,
-    @Request() request: { _id: string },
   ): Promise<HttpStatus> {
-    return await this.packagesService.delete(_id, request._id);
+    return await this.packagesService.delete(_id);
   }
 }

@@ -12,6 +12,7 @@ import { RiUploadCloud2Line } from "react-icons/ri";
 import { createPackage, updatePackage } from "../../../../api/routes/packages";
 import toast from "react-hot-toast";
 import useSession from "../../../../hooks/useSession";
+import AddVideo from "./AddVideo";
 
 const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +37,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
       titleAr: packageData?.titleAr,
       itemsEn: packageData?.itemsEn,
       itemsAr: packageData?.itemsAr,
+      video: packageData?.video,
     });
   }, [packageData, reset]);
 
@@ -43,12 +45,25 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
     try {
       setIsLoading(() => true);
 
+      const formData = new FormData();
+
+      formData.append("nameEn", data.nameEn);
+      formData.append("nameAr", data.nameAr);
+      formData.append("titleEn", data.titleEn);
+      formData.append("titleAr", data.titleAr);
+      formData.append("itemsEn", data.itemsEn.join("$/"));
+      formData.append("itemsAr", data.itemsAr.join("$/"));
+
+      if (data.video instanceof FileList) {
+        formData.append("video", data.video[0]);
+      }
+
       if (packageData) {
-        await updatePackage(packageData._id, data);
+        await updatePackage(packageData._id, formData);
       }
 
       if (!packageData) {
-        await createPackage(data);
+        await createPackage(formData);
       }
 
       setIsLoading(() => false);
@@ -58,6 +73,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
           : t("packages.create.success")
       );
     } catch (err) {
+      console.log(err);
       toast.error(
         packageData ? t("packages.update.error") : t("packages.create.error")
       );
@@ -82,6 +98,30 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
         mt-4`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
+      <AddVideo
+        defaultValue={packageData?.video}
+        error={errors.video?.message}
+        {...register("video", {
+          required: {
+            value: !packageData?.video,
+            message: t("packages.video.errors.required"),
+          },
+          validate: {
+            fileType: (value) => {
+              const file = value[0];
+              const videoFilePattern = /\.(mp4|webm|ogg)$/i;
+              if (file instanceof File) {
+                return (
+                  (file && videoFilePattern.test(file.name)) ||
+                  t("packages.video.errors.invalid")
+                );
+              }
+              return true;
+            },
+          },
+        })}
+      />
+
       <div className="flex flex-col md:flex-row gap-4">
         <InputStyled
           label={t("packages.name.label.en")}

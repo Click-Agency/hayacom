@@ -21,7 +21,7 @@ const HomeHero = () => {
         items-center 
         justify-center 
         gap-4
-        min-h-screen
+        md:min-h-screen
         md:-mt-20`}
     >
       <img
@@ -31,7 +31,8 @@ const HomeHero = () => {
           flex-1
           w-full
           md:max-w-[25%]
-          max-w-[240px]
+          max-w-[150px]
+          block
           drop-shadow-2xl
           shadow-primary
           transition-all
@@ -58,7 +59,7 @@ const HomeHero = () => {
             text-secondary
             pt-2
             px-6
-            !text-responsive-2xl
+            md:!text-responsive-2xl
             rounded-full
             transition-all
             duration-500
@@ -70,9 +71,10 @@ const HomeHero = () => {
 
         <SectionHeader
           className={`
-            ${i18n.language === "ar" ? "text-start" : "text-end"}
+            ${i18n.language === "ar" ? "md:text-start" : "md:text-end"}
+            text-center
             max-w-[450px]
-            !text-responsive-xl
+            md:!text-responsive-xl
             duration-500
             delay-700
             ease-in-out
