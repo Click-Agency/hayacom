@@ -5,7 +5,6 @@ import ButtonStyled from "../shared/ButtonStyled";
 import { appRoutes } from "../../config";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { RiLogoutCircleRLine } from "react-icons/ri";
-import { GoProjectSymlink } from "react-icons/go";
 import { ClipLoader } from "react-spinners";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import useScrollSpy from "../../hooks/useScrollSpy";
@@ -16,6 +15,9 @@ import hayakomImg from "../../assets/imgs/icon-hayakom.png";
 import { useTranslation } from "react-i18next";
 import { useCookies } from "react-cookie";
 import Cookies from "../../enum/Cookies";
+import { LuPackagePlus } from "react-icons/lu";
+import { MdOutlineAddCard } from "react-icons/md";
+import { FaUser, FaUserPlus } from "react-icons/fa";
 
 const Profile = ({ session }: { session?: Session }) => {
   const [showActions, setShowActions] = useState(false);
@@ -29,6 +31,18 @@ const Profile = ({ session }: { session?: Session }) => {
 
   const profileRoutes = [
     {
+      name: t("admin.profile"),
+      link: appRoutes.profile,
+      Icon: <FaUser />,
+      type: "route",
+    },
+    {
+      name: t("admin.register"),
+      link: appRoutes.auth.register,
+      Icon: <FaUserPlus />,
+      type: "route",
+    },
+    {
       name: t("admin.control"),
       link: appRoutes.admin,
       Icon: <MdAdminPanelSettings />,
@@ -37,13 +51,13 @@ const Profile = ({ session }: { session?: Session }) => {
     {
       name: t("admin.crPackage"),
       link: appRoutes.createPacakge,
-      Icon: <GoProjectSymlink />,
+      Icon: <LuPackagePlus />,
       type: "route",
     },
     {
       name: t("admin.crCard"),
       link: appRoutes.createCard,
-      Icon: <GoProjectSymlink />,
+      Icon: <MdOutlineAddCard />,
       type: "route",
     },
     {
@@ -80,7 +94,6 @@ const Profile = ({ session }: { session?: Session }) => {
   const onLogOutHandler = async () => {
     try {
       setIsLoading(() => true);
-      console.log("Logging out...");
       await revokeRefreshToken();
       removeCookie(Cookies.SESSION);
       onCloseActions();

@@ -12,6 +12,8 @@ const appRoutes = {
 
   createCard: "/admin/create-card",
   editCard: "/admin/edit-card",
+
+  profile: "/profile",
 };
 
 const apiRoutes = {
@@ -20,6 +22,10 @@ const apiRoutes = {
   refresh: "/auth/refresh",
   packages: "/packages",
   cards: "/cards",
+  users: {
+    path: "/users",
+    me: "/users/me",
+  },
 };
 
 export { appRoutes, apiRoutes };

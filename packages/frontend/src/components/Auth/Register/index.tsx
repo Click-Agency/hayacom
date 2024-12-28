@@ -1,9 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { appRoutes } from "../../../config";
 import { trim } from "../../../utils/functions/general";
 import SectionContainer from "../../shared/containers/SectionContainer";
-import Switcher from "../../shared/Switcher";
 import Form from "./Form";
+import SectionHeader from "../../shared/SectionHeader";
 
 const Register = () => {
   const { t } = useTranslation(["auth"]);
@@ -23,11 +22,7 @@ const Register = () => {
           rounded-lg
           shadow-lg`)}
       >
-        <Switcher
-          title={t("register.login")}
-          className="border-y-0 border-b pt-0"
-          btn={{ title: t("login.title"), link: appRoutes.auth.login }}
-        />
+        <SectionHeader title={t("register.title")} />
         <Form />
       </div>
     </SectionContainer>

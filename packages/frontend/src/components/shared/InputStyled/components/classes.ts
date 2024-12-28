@@ -11,17 +11,21 @@ const addAttributesToReactNode = (
 ) => cloneElement(element, attributes);
 
 const getClasses = (
-  target: "label" | "tag" | "input" | "textarea" | "error",
+  target: "label" | "tag" | "input" | "textarea" | "error" | "svgIcon",
   {
     tagSize,
     border,
+    iconLeft,
     error,
     transparent,
+    svgIcon,
   }: {
     tagSize?: "xs" | "sm" | "md" | "lg" | "xl" | "custom";
     border?: boolean;
     error?: string;
     transparent?: boolean;
+    iconLeft?: boolean;
+    svgIcon?: JSX.Element;
   } = {}
 ) => {
   const classes = {
@@ -76,10 +80,12 @@ const getClasses = (
               ${styles["text-xl"]}`
               : ""
           }
-          ${
-            error ? styles.errorTag : `${border ? variables.borderColors : ""}`
-          }`,
-
+          ${error ? styles.errorTag : `${border ? variables.borderColors : ""}`}
+          ${svgIcon && tagSize === "xs" ? (iconLeft ? "pl-10" : "pr-10") : ""}
+          ${svgIcon && tagSize === "sm" ? (iconLeft ? "pl-10" : "pr-10") : ""}
+          ${svgIcon && tagSize === "md" ? (iconLeft ? "pl-12" : "pr-12") : ""}
+          ${svgIcon && tagSize === "lg" ? (iconLeft ? "pl-14" : "pr-14") : ""}
+          ${svgIcon && tagSize === "xl" ? (iconLeft ? "pl-14" : "pr-14") : ""}`,
     input: `
           ${
             tagSize === "xs"
@@ -168,6 +174,18 @@ const getClasses = (
               ${styles["h-52"]}`
                   : ""
               }`,
+
+    svgIcon: `absolute
+              top-0
+              bottom-0
+              m-auto
+              ${iconLeft ? "left-3" : "right-3"}
+              ${tagSize === "xs" ? "text-lg" : ""}
+              ${tagSize === "sm" ? "text-xl" : ""}
+              ${tagSize === "md" ? "text-2xl" : ""}
+              ${tagSize === "lg" ? "text-3xl" : ""}
+              ${tagSize === "xl" ? "text-4xl" : ""}
+              ${error ? "text-rose-500" : ""}`,
 
     error: `${styles.error}
             ${tagSize === "xs" ? styles["text-xs"] : ""}

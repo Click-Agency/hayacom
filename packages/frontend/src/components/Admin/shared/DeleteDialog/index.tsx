@@ -67,6 +67,9 @@ const DeleteDialog = ({
   const deleteFunction = useSelector(
     (state: RootState) => state.delete.target.deleteFunction
   );
+  const onSuccess = useSelector(
+    (state: RootState) => state.delete.target.onSuccess
+  );
   const { uniqueId, uniqueIdentifier, type } = target;
 
   useRemoveScroll(show);
@@ -121,12 +124,14 @@ const DeleteDialog = ({
         // throw error non serilaible
         await deleteFunction(target.uniqueId);
 
+        if (onSuccess) await onSuccess();
+
         close();
         inputRef.current.value = "";
         setLoading(() => false);
         setError(() => ({ text: "", touched: false }));
         window.location.reload();
-        
+
         toast.success(`${target.type} ${success}`);
       } catch (err) {
         setLoading(() => false);

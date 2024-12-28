@@ -12,6 +12,7 @@ import Error from "./components/Error";
 
 import { formatClasses } from "./components/classes";
 import styles from "./input-styles.module.css";
+import SvgIcon from "./components/SvgIcon";
 
 const InputStyled = forwardRef(
   (
@@ -25,10 +26,13 @@ const InputStyled = forwardRef(
       tagSize = "md",
       elemType = "input",
       transparent,
+      svgIcon,
       errorClassName = "",
       inputContainerClassName = "",
       contianerClassName = "",
       customInputElement,
+      svgIconClassName = "",
+      iconLeft,
       ...attributes
     }: {
       className?: string;
@@ -37,12 +41,15 @@ const InputStyled = forwardRef(
       border?: boolean;
       transparent?: boolean;
       labelClassName?: string;
+      svgIcon?: JSX.Element;
       error?: string;
       tagSize?: "xs" | "sm" | "md" | "lg" | "xl" | "custom";
       elemType?: "input" | "textarea";
       errorClassName?: string;
+      svgIconClassName?: string;
       inputContainerClassName?: string;
       contianerClassName?: string;
+      iconLeft?: boolean;
       customInputElement?: (classes: {
         tagClasses: string;
         inputClasses: string;
@@ -78,11 +85,22 @@ const InputStyled = forwardRef(
           elemType={elemType}
           error={error}
           id={id}
+          svgIcon={svgIcon}
           tagSize={tagSize}
           transparent={transparent}
           customInputElement={customInputElement}
           {...attributes}
         />
+
+        {svgIcon && (
+          <SvgIcon
+            svgIcon={svgIcon}
+            svgIconClassName={svgIconClassName}
+            iconLeft={iconLeft}
+            tagSize={tagSize}
+            error={error}
+          />
+        )}
       </div>
 
       {error && (

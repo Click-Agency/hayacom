@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { PackagesModule } from './packages/packages.module';
 import { CardsModule } from './cards/cards.module';
 import { S3BucketModule } from './s3Bucket/s3Bucket.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { S3BucketModule } from './s3Bucket/s3Bucket.module';
     PackagesModule,
     CardsModule,
     S3BucketModule,
+    UsersModule,
   ],
   controllers: [AppController],
 })

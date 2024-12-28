@@ -14,6 +14,11 @@ import { FaPhone } from "react-icons/fa";
 import Profile from "./Profile";
 import useSession from "../../hooks/useSession";
 import DropdownMenu from "./DropdownMenu";
+import { TbPackages, TbGitCompare } from "react-icons/tb";
+import { GiCardJoker } from "react-icons/gi";
+import { FaUsers } from "react-icons/fa";
+import { RiMobileDownloadFill } from "react-icons/ri";
+import { GrGallery } from "react-icons/gr";
 
 const Nav = () => {
   const { t, i18n } = useTranslation("header");
@@ -30,22 +35,27 @@ const Nav = () => {
         {
           id: "packages",
           name: t("nav.packages"),
+          icon: <TbPackages />,
         },
         {
           id: "comparisons",
           name: t("nav.comparisons"),
+          icon: <TbGitCompare />,
         },
         {
           id: "designs",
           name: t("nav.ourDesigns"),
+          icon: <GiCardJoker />,
         },
         {
           id: "testimonials",
           name: t("nav.clients"),
+          icon: <FaUsers />,
         },
         {
           id: "download-app",
           name: t("nav.download"),
+          icon: <RiMobileDownloadFill />,
         },
       ],
     },
@@ -57,10 +67,12 @@ const Nav = () => {
         {
           id: "cards-gallery",
           name: t("nav.gallery"),
+          icon: <GrGallery />,
         },
         {
           id: "download-app",
           name: t("nav.download"),
+          icon: <RiMobileDownloadFill />,
         },
       ],
     },

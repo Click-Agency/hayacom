@@ -6,7 +6,7 @@ const DropdownMenu = ({
   sections,
   className = "",
 }: {
-  sections: { id: string; name: string }[];
+  sections: { id: string; name: string; icon: JSX.Element }[];
   className?: string;
 }) => {
   const { i18n } = useTranslation();
@@ -26,18 +26,20 @@ const DropdownMenu = ({
         shadow-lg 
         z-[1]
         top-5
-        w-40
+        w-fit
         ${i18n.dir() === "ltr" ? "left-0" : "right-0"}
         ${className}`)}
     >
-      {sections.map(({ name, id }, index) => (
+      {sections.map(({ name, id, icon }, index) => (
         <li key={index}>
           <ButtonStyled
             hover
-            className="w-full !justify-start"
+            className="text-nowrap w-full"
             ripple
             onClick={() => handleSectionClick(id)}
             title={name}
+            IconRight
+            SvgIcon={icon}
           />
         </li>
       ))}

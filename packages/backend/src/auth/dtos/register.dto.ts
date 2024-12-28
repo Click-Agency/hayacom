@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsEmail, Length, IsEnum } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsEmail,
+  Length,
+  IsEnum,
+  IsOptional,
+} from 'class-validator';
 import { RolesEnum } from '../../shared/decorators/roles.decorator';
 
 export class RegisterDto {
@@ -14,7 +20,7 @@ export class RegisterDto {
   @Length(8, 64, { message: 'Password must be between 8 or 64 characters.' })
   password: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(RolesEnum)
   role: RolesEnum;
 }

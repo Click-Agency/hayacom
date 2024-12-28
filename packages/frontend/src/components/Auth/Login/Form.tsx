@@ -13,10 +13,11 @@ import toast from "react-hot-toast";
 import { appRoutes } from "../../../config";
 import { useCookies } from "react-cookie";
 import Cookies from "../../../enum/Cookies";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Form = () => {
   const { t } = useTranslation(["auth", "common"]);
-
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [invalidCredentials, setInvalidCredentials] = useState(false);
   const push = useNavigate();
@@ -24,7 +25,6 @@ const Form = () => {
     doNotParse: true,
     doNotUpdate: true,
   });
-
   const {
     register,
     handleSubmit,
@@ -108,7 +108,15 @@ const Form = () => {
         placeholder={t("login.password.placeholder")}
         className="rounded-sm"
         tagSize="sm"
-        type="password"
+        svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+        svgIcon={
+          showPassword ? (
+            <FaEye onClick={() => setShowPassword(() => false)} />
+          ) : (
+            <FaEyeSlash onClick={() => setShowPassword(() => true)} />
+          )
+        }
+        type={showPassword ? "text" : "password"}
         {...register("password", {
           required: {
             value: true,

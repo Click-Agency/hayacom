@@ -1,6 +1,45 @@
 {
   "title": "Control Panel",
 
+  "profile": {
+    "noProfile": "No Profile",
+
+    "user": {
+      "title": "User",
+      "id": "Id",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "createdAt": "Created At"
+    },
+
+    "actions": {
+      "title": "Profile Actions",
+
+      "edit": {
+        "newPassword": {
+          "label": "New Password",
+          "placeholder": "Enter new password",
+          "errors": {
+            "required": "New password is required if password is entered",
+            "min": "New password must be at least 6 characters",
+            "max": "New password must be at most 255 characters"
+          }
+        },
+
+        "submit": "Edit Profile",
+        "error": "Failed to update profile",
+        "success": "Profile updated successfully",
+        "noData": "No data to edit"
+      },
+
+      "delete": {
+        "submit": "Delete Profile",
+        "error": "Failed to delete profile"
+      }
+    }
+  },
+
   "packages": {
     "titleId": "Package",
     "name": {

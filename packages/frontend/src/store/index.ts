@@ -8,7 +8,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["delete/showDialog"],
+        ignoredActions: ["delete/showDialog", "delete/closeDialog"],
       },
     }),
 });

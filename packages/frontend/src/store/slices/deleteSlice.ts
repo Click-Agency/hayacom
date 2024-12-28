@@ -8,6 +8,7 @@ const INITAL_STATE: ISlice["delete"] = {
     uniqueIdentifier: "",
     type: "",
     deleteFunction: undefined,
+    onSuccess: undefined,
   },
 };
 
@@ -18,11 +19,14 @@ const deleteSlice = createSlice({
     showDialog: (state, action) => {
       state.show = true;
       state.target = action.payload;
+      state.target.deleteFunction = action.payload.deleteFunction;
+      state.target.onSuccess = action.payload.onSuccess;
     },
     closeDialog: (state) => {
       state.show = false;
       state.target = { uniqueId: "", uniqueIdentifier: "", type: "" };
       state.target.deleteFunction = undefined;
+      state.target.onSuccess = undefined;
     },
   },
 });

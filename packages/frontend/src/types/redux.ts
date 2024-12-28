@@ -10,7 +10,10 @@ interface IDeleteState {
     uniqueId: string;
     uniqueIdentifier: string;
     type: string;
-    deleteFunction?: (unique: string) => Promise<AxiosResponse<any, any>>;
+    deleteFunction?:
+      | ((unique: string) => Promise<AxiosResponse<any, any>>)
+      | (() => Promise<AxiosResponse<any, any>>);
+    onSuccess?: () => void | Promise<void>;
   };
 }
 

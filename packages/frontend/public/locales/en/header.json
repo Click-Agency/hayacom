@@ -19,6 +19,8 @@
     "crPackage": "Create Package",
     "crCategory": "Create Category",
     "crCard": "Create Card",
+    "profile": "Profile",
+    "register": "Register",
     "logout": "Logout"
   }
 }
