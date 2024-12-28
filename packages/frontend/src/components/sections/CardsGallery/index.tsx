@@ -28,15 +28,19 @@ const CardsGallery = () => {
 
   useEffect(() => {
     const fetchCards = async () => {
-      setResposeCards(() => undefined);
-      const res = await getCards(qurey);
+      try {
+        setResposeCards(() => undefined);
+        const res = await getCards(qurey);
 
-      if (!res.data) {
+        if (!res.data) {
+          setNoCards(() => true);
+          return;
+        }
+
+        setResposeCards(res.data);
+      } catch (err) {
         setNoCards(() => true);
-        return;
       }
-
-      setResposeCards(res.data);
     };
     fetchCards();
   }, [qurey]);
