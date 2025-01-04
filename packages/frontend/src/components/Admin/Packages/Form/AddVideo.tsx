@@ -29,7 +29,7 @@ const AddVideo = forwardRef(
 
     useEffect(() => {
       if (defaultValue) setVideo(defaultValue);
-    }, []);
+    }, [defaultValue]);
 
     const handleVideoChange = (e: ChangeEvent<HTMLInputElement>) => {
       setVideo(undefined);

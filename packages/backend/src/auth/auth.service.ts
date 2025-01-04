@@ -49,7 +49,7 @@ export class AuthService {
       const payload = { _id: user._id, email: user.email, role: user.role };
 
       res.cookie(
-        'x-refresh-token',
+        'x-hayacom-token',
         this.jwtService.sign(payload, {
           expiresIn: process.env.JWT_SECRET_REFRESH_TOKEN_EXPIRES_IN,
           secret: process.env.JWT_SECRET_REFRESH_TOKEN,
@@ -138,7 +138,7 @@ export class AuthService {
 
   public async revokeRefresh(res: Response) {
     try {
-      res.clearCookie('x-refresh-token');
+      res.clearCookie('x-hayacom-token');
 
       res.sendStatus(200).end();
     } catch (err) {

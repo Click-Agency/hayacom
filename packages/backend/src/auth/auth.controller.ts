@@ -24,7 +24,7 @@ export class AuthController {
 
   @Get('refresh')
   public async refresh(
-    @Cookies('x-refresh-token') refreshToken: string,
+    @Cookies('x-hayacom-token') refreshToken: string,
     @RequestToken() token: string,
     @Res() res: Response,
   ) {

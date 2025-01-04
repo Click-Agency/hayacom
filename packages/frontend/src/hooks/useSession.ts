@@ -8,9 +8,9 @@ import { useCookies } from "react-cookie";
 import Cookies from "../enum/Cookies";
 
 const useSession = () => {
-  const [cookies, , , updateCookies] = useCookies([Cookies.SESSION]);
+  const [cookies] = useCookies([Cookies.SESSION]);
 
-  const session = cookies["hayakom-session"] as Session | undefined;
+  const session = cookies[Cookies.SESSION] as Session | undefined;
 
   useEffect(() => {
     const requestIntercept = axiosInstance.interceptors.request.use(
@@ -39,7 +39,7 @@ const useSession = () => {
           const res = await getAccessToken();
 
           session.accessToken = getHeaderAuthorization(res)!;
-          updateCookies();
+
           setHeaderAuthorization(originalRequest, session.accessToken);
 
           return axiosInstance(originalRequest);
