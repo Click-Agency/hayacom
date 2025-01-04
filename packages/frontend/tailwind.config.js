@@ -7,7 +7,8 @@ export default {
     extend: {
       theme: {
         fontFamily: {
-          sans: ["Inter", ...defaultTheme.fontFamily.sans],
+          sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
+          hacen: ["Hacen", ...defaultTheme.fontFamily.sans],
         },
       },
       screens: {

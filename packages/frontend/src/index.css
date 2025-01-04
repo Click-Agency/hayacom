@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Hacen";
+  src: url("/fonts/Hacen-Maghreb-Bd.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     @apply scroll-smooth;
+  }
+
+  html[lang="ar"] {
+    font-family: "Hacen", sans-serif;
   }
 }
 
