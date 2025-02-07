@@ -10,7 +10,7 @@ const SectionHeader = ({
   title: string;
   tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   className?: string;
-} & HTMLAttributes<HTMLDivElement>) => {
+} & HTMLAttributes<HTMLHeadElement>) => {
   return (
     <Tag
       className={trim(`
@@ -18,7 +18,7 @@ const SectionHeader = ({
         text-primary
         font-semibold
         text-center
-        pb-4
+        pb-10
         text-shadow-lg
         ${className}`)}
       {...attributes}

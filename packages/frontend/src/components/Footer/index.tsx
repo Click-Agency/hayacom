@@ -1,40 +1,41 @@
-import { useTranslation } from "react-i18next";
-import { addAttributesToReactNode, trim } from "../../utils/functions/general";
-import { Link } from "react-router-dom";
+import {
+  addAttributesToReactNode,
+  isRouteFound,
+  trim,
+} from "../../utils/functions/general";
+import { Link, useLocation } from "react-router-dom";
 import useScrollInToView from "../../hooks/useScrollInToView";
 import useActivation from "../../hooks/useActivation";
-import {
-  FaInstagram,
-  FaXTwitter,
-  FaSnapchat,
-  FaTiktok,
-  FaWhatsapp,
-} from "react-icons/fa6";
+import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa6";
+import Logo from "../shared/Logo";
+import { FaSnapchatGhost } from "react-icons/fa";
+import { appRoutes } from "../../config";
 
 const Footer = () => {
-  const { t } = useTranslation(["footer", "header", "common"]);
+  // const { t } = useTranslation(["footer", "header", "common"]);
 
   const { targetRef, isInView } = useScrollInToView();
+  const { pathname } = useLocation();
 
   const socialIcons = [
     {
       Svg: <FaInstagram size={35} />,
       link: "",
     },
-    {
-      Svg: <FaXTwitter size={35} />,
-      link: "",
-    },
-    {
-      Svg: <FaSnapchat size={35} />,
-      link: "",
-    },
+    // {
+    //   Svg: <FaXTwitter size={35} />,
+    //   link: "",
+    // },
     {
       Svg: <FaTiktok size={35} />,
       link: "",
     },
     {
       Svg: <FaWhatsapp size={35} />,
+      link: "",
+    },
+    {
+      Svg: <FaSnapchatGhost size={35} />,
       link: "",
     },
   ];
@@ -56,22 +57,33 @@ const Footer = () => {
         flex-col 
         justify-center 
         items-center 
-        pb-2 
-        bg-primary 
-        gap-4
-        py-7
+        bg-background-tertiary/50
+        border-t
+        border-primary
+        gap-8
+        pt-8
+        pb-14
         transition-opacity
         ease-in-out
         duration-500
+        ${
+          isRouteFound(pathname, {
+            dynamicRoutes: [appRoutes.auth.path],
+          })
+            ? "hidden"
+            : "flex"
+        }
         ${isInView ? "opacity-100" : "opacity-0"}`)}
     >
+      <Logo className="max-w-16" />
       <ul
         className={trim(`
           flex
           items-center
           justify-center
           gap-4
-          flex-wrap`)}
+          flex-wrap
+          text-primary`)}
       >
         {socialIcons.map(({ link, Svg }, i) => (
           <li key={i}>
@@ -79,14 +91,19 @@ const Footer = () => {
               {addAttributesToReactNode(Svg, {
                 className: trim(`
                   w-full
-                  max-w-12
+                  border-2
+                  p-1
+                  w-8
+                  h-8
+                  border-primary
+                  rounded-full
                   transition-all
                   duration-300
                   ease-in-out
                   hover:scale-110 
                   active:scale-90
                   rounded-full
-                  fill-secondary
+                  fill-primary
                   ${activationArr[i].active ? "opacity-100" : "opacity-"}`),
               })}
             </Link>
@@ -94,7 +111,7 @@ const Footer = () => {
         ))}
       </ul>
 
-      <small
+      {/* <small
         className={trim(`
           text-center 
           text-responsive-xs 
@@ -103,7 +120,7 @@ const Footer = () => {
       >
         &copy; {new Date().getFullYear()} {t("copyRights")}{" "}
         {t("coName", { ns: "common" })}
-      </small>
+      </small> */}
     </footer>
   );
 };

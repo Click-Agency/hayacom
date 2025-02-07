@@ -7,20 +7,52 @@
   },
 
   "packages": {
-    "title": "Packages",
+    "title": "Our Packages",
 
     "noPackages": "No packages available",
 
-    "footer": [
-      "The number of supervisors is determined based on the number of guests, with the option to request additional supervisors for an extra fee.",
-      "There may be additional fees for the supervisory team depending on the event location, and you will be informed of any fees before confirming the booking.",
-      "Prices are based on the number of guests, not the number of invitations sent.",
-      "Terms and conditions apply."
-    ]
+    "prices": {
+      "title": "Prices",
+      "guest": "Guest",
+      "currency": "SR",
+
+      "items": [
+        { "guest": 50, "price": 1138 },
+        {
+          "guest": 100,
+          "price": 157
+        },
+        { "guest": 150, "price": 2013 },
+        { "guest": 200, "price": 2205 },
+        {
+          "guest": 250,
+          "price": 3138
+        },
+        { "guest": 300, "price": 3575 },
+        { "guest": 350, "price": 4013 },
+        {
+          "guest": 400,
+          "price": 4250
+        },
+        { "guest": 450, "price": 4889 },
+        { "guest": 500, "price": 5575 }
+      ]
+    },
+
+    "footer": {
+      "title": "Note",
+
+      "list": [
+        "The number of supervisors is determined based on the number of guests, with the option to request additional supervisors for an extra fee.",
+        "There may be additional fees for the supervisory team depending on the event location, and you will be informed of any fees before confirming the booking.",
+        "Prices are based on the number of guests, not the number of invitations sent.",
+        "Terms and conditions apply."
+      ]
+    }
   },
 
   "comparisons": {
-    "title": "Comparison between packages",
+    "title": "Compare packages",
 
     "table": {
       "headers": ["Details", "Discounted", "Normal", "Golden", "Diamond"],
@@ -28,64 +60,76 @@
       "rows": [
         [
           "Supervisory team (number of team members based on the number of guests and package price)",
-          "✔️",
-          "✔️",
-          "✔️",
-          "✔️"
+          "true",
+          "true",
+          "true",
+          "true"
         ],
         [
           "Open multiple accounts and distribute the number of guests among them.",
-          "✔️",
-          "✔️",
-          "✔️",
-          "✔️"
+          "true",
+          "true",
+          "true",
+          "true"
         ],
         [
           "One invitation card integrated with an entry barcode",
-          "✔️",
-          "✔️",
-          "❌",
-          "❌"
+          "true",
+          "true",
+          "false",
+          "false"
         ],
         [
           "Invitation card - Entry - Thank you - Snapchat lens",
-          "❌",
-          "❌",
-          "✔️",
-          "✔️"
+          "false",
+          "false",
+          "true",
+          "true"
         ],
-        ["Design according to the event theme", "❌", "✔️", "✔️", "✔️"],
+        [
+          "Design according to the event theme",
+          "false",
+          "true",
+          "true",
+          "true"
+        ],
         [
           "Apology replacement (percentage varies by package)",
-          "❌",
-          "✔️",
-          "✔️",
-          "✔️"
+          "false",
+          "true",
+          "true",
+          "true"
         ],
         [
           "Write the guest's name and the number of invitees",
-          "❌",
-          "✔️",
-          "✔️",
-          "✔️"
+          "false",
+          "true",
+          "true",
+          "true"
         ],
-        ["Acceptance and apology feature", "❌", "❌", "✔️", "✔️"],
+        ["Acceptance and apology feature", "false", "false", "true", "true"],
         [
           "Select the number of attendees (e.g., if 5 invitees are specified, the guest can choose the number of attendees out of 5 people)",
-          "❌",
-          "❌",
-          "✔️",
-          "✔️"
+          "false",
+          "false",
+          "true",
+          "true"
         ],
-        ["Send from Hayak number", "❌", "❌", "❌", "✔️"],
+        ["Send from Hayak number", "false", "false", "false", "true"],
         [
           "Send automated reminders and thank you messages",
-          "❌",
-          "❌",
-          "❌",
-          "✔️"
+          "false",
+          "false",
+          "false",
+          "true"
         ],
-        ["Yes, a welcome message upon guest entry", "❌", "❌", "❌", "✔️"]
+        [
+          "Yes, a welcome message upon guest entry",
+          "false",
+          "false",
+          "false",
+          "true"
+        ]
       ]
     }
   },
@@ -95,14 +139,14 @@
 
     "noCards": "No designs available",
 
-    "footer": "Your invitations with us, interactive and distinctive"
+    "galleryBtn": "Go to Designs Gallery →"
   },
 
   "testimonials": {
     "title": "Clients we were pleased to work with"
   },
 
-  "downloadApp": {
-    "title": "Download our app now and book your suitable package"
+  "contactBanner": {
+    "title": "To get the Enterprise package for companies"
   }
 }

@@ -14,6 +14,7 @@ import { appRoutes } from "../../../config";
 import { useCookies } from "react-cookie";
 import Cookies from "../../../enum/Cookies";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import i18n from "../../../i18n";
 
 const Form = () => {
   const { t } = useTranslation(["auth", "common"]);
@@ -80,7 +81,7 @@ const Form = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-4 w-full md:w-2/3"
     >
       <InputStyled
         border
@@ -109,6 +110,7 @@ const Form = () => {
         className="rounded-sm"
         tagSize="sm"
         svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+        iconLeft={i18n.dir() === "rtl"}
         svgIcon={
           showPassword ? (
             <FaEye onClick={() => setShowPassword(() => false)} />

@@ -39,7 +39,7 @@ const Packages = () => {
   }, []);
 
   const footerList = Object.values(
-    t("packages.footer", { returnObjects: true })
+    t("packages.footer.list", { returnObjects: true })
   );
 
   const langAr = i18n.language === "ar";
@@ -63,48 +63,48 @@ const Packages = () => {
           </h2>
         </div>
       ) : (
-        <div
-          className={trim(`
-            flex
-            flex-col
-            p-6
-            rounded-lg
-            bg-white
-            shadow-lg
-            mt-1
-            transition-all
-            duration-500
-            ease-in-out
-            ${isInView && packages.length ? "opacity-100" : "opacity-0"}`)}
-        >
+        <>
+          <Headers
+            setPackageIndex={setPackageIndex}
+            packgeIndex={packgeIndex}
+            langAr={langAr}
+            packages={packages}
+          />
+
           <div
             className={trim(`
               flex
               flex-col
-              gap-4
-              border-x-2
-              border-t-2
-              border-t-transparent
-              border-x-primary
+              mt-10
               rounded-lg
-              rounded-b-none`)}
+              bg-white
+              shadow-lg
+              transition-all
+              duration-500
+              ease-in-out
+              ${isInView && packages.length ? "opacity-100" : "opacity-0"}`)}
           >
-            <Headers
-              setPackageIndex={setPackageIndex}
-              packgeIndex={packgeIndex}
-              langAr={langAr}
-              packages={packages}
-            />
+            <div
+              className={trim(`
+                flex
+                flex-col
+                gap-4
+                rounded-lg
+                rounded-b-none`)}
+            >
+              <Body
+                packages={packages}
+                langAr={langAr}
+                packgeIndex={packgeIndex}
+              />
+            </div>
 
-            <Body
-              packages={packages}
-              langAr={langAr}
-              packgeIndex={packgeIndex}
+            <Footer
+              title={t("packages.footer.title")}
+              footerList={footerList}
             />
           </div>
-
-          <Footer footerList={footerList} />
-        </div>
+        </>
       )}
     </SectionContainer>
   );

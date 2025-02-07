@@ -7,11 +7,13 @@ const SectionContainer = forwardRef(
       children,
       className = "",
       wraperClassName = "",
+      Background,
       ...attributes
     }: Readonly<{
       children: ReactNode;
       className?: string;
       wraperClassName?: string;
+      Background?: ReactNode;
     }> &
       HTMLAttributes<HTMLElement>,
     ref: ForwardedRef<HTMLElement>
@@ -28,6 +30,7 @@ const SectionContainer = forwardRef(
         ${className}`)}
       {...attributes}
     >
+      {Background}
       <div
         id="section-wrapper"
         className={trim(`

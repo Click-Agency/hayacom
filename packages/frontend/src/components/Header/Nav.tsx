@@ -90,78 +90,24 @@ const Nav = () => {
       className={trim(`
         flex
         items-center
-        justify-between
-        lg:justify-around
+        md:px-[2%]
+        lg:px-[4%]
+        xl:px-[5%]
         gap-3
         py-5
         px-5
-        w-full
-        md:px-[3%]
-        lg:px-[10%]
-        xl:px-[15%]`)}
+        w-full`)}
     >
-      <Logo
-        onClick={() => onClickHandler(appRoutes.home)}
-        className="cursor-pointer w-40 md:w-52 max-w-12 md:max-w-[80px]"
+      <Profile
+        session={session}
+        className={`${session?._id ? "md:inline-flex hidden" : "hidden"}`}
       />
 
-      <ul className="flex gap-10">
-        {navArr.map(({ name, link, sections }, i) => (
-          <li
-            className={trim(`
-              relative 
-              hidden 
-              md:inline-flex 
-              group`)}
-            key={i}
-          >
-            <ButtonStyled
-              onClick={() => onClickHandler(link)}
-              className={trim(`
-                !text-primary
-                font-medium
-            ${
-              pathname === link
-                ? `underline underline-offset-4
-                 decoration-body-primary decoration-4`
-                : ""
-            }
-            ${activationArr[i].active ? `opacity-100` : `opacity-0`}`)}
-              title={name}
-              size="custom"
-              animatedUnderline={pathname !== link}
-            />
-
-            <DropdownMenu
-              className={`
-              ${sections.length && pathname === link ? "group-hover:block" : ""}
-                hidden`}
-              sections={sections}
-            />
-          </li>
-        ))}
-      </ul>
-
-      <div className="flex items-center gap-3 md:gap-7">
+      <ul className="hidden md:flex gap-7 flex-1">
+        <hr className="h-6 w-0.5 bg-gray-500" />
         <ButtonStyled
           className={trim(`
-            rounded-full
-            hover:!scale-105 
-            active:!scale-95 
-            !hidden 
-            md:!inline-flex 
-            animate-appear`)}
-          ripple
-          href="tel:1234567890"
-          bg
-          size="sm"
-          title={t("nav.contact")}
-          SvgIcon={<FaPhone color="#FFEEE1" size={15} />}
-        />
-
-        <ButtonStyled
-          className={trim(`
-            !text-primary 
+            !text-gray-500
             !hidden
             md:!inline-flex
             text-responsive-2xs 
@@ -173,10 +119,77 @@ const Nav = () => {
             changeLanguage(i18n.dir() === "ltr" ? "ar" : "en");
           }}
         />
+        <hr className="h-6 w-0.5 bg-gray-500" />
+        {navArr
+          .map(({ name, link, sections }, i) => (
+            <li
+              className={trim(`
+              relative 
+              hidden 
+              md:inline-flex 
+              group`)}
+              key={i}
+            >
+              <ButtonStyled
+                onClick={() => onClickHandler(link)}
+                className={trim(`
+                  font-medium
+            ${
+              pathname === link
+                ? `
+                  underline underline-offset-4
+                  !text-[#730f20]
+                  decoration-body-primary 
+                  decoration-4`
+                : `
+                  !text-gray-500 
+                  hover:!text-body-primary`
+            }
+            ${activationArr[i].active ? `opacity-100` : `opacity-0`}`)}
+                title={name}
+                size="custom"
+                animatedUnderline={pathname !== link}
+              />
 
-        <div className={`${session?._id ? "inline-flex" : "hidden"}`}>
-          <Profile session={session} />
-        </div>
+              <DropdownMenu
+                className={`
+              ${sections.length && pathname === link ? "group-hover:block" : ""}
+                hidden`}
+                sections={sections}
+              />
+            </li>
+          ))
+          .reverse()}
+      </ul>
+
+      <div className="flex-1">
+        <Logo
+          onClick={() => onClickHandler(appRoutes.home)}
+          className="cursor-pointer w-40 md:w-52 max-w-12 md:max-w-[80px] block"
+        />
+      </div>
+
+      <div className="flex items-center gap-3 md:gap-7">
+        <ButtonStyled
+          className={`
+            rounded-full
+            hover:!scale-105 
+            active:!scale-95 
+            !hidden 
+            md:!inline-flex 
+            animate-appear`}
+          ripple
+          href="tel:1234567890"
+          bg
+          size="sm"
+          title={t("nav.contact")}
+          SvgIcon={<FaPhone color="#FFEEE1" size={15} />}
+        />
+
+        <Profile
+          session={session}
+          className={`${session?._id ? "inline-flex md:hidden" : "hidden"}`}
+        />
 
         <ButtonStyled
           className={`${i18n.dir() === "rtl" ? "-scale-x-100" : ""} md:!hidden !inline-flex`}

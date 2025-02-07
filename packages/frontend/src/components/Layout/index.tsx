@@ -18,7 +18,6 @@ const Layout = ({
       min-h-screen
       min-w-screen
       overflow-x-hidden
-      bg-background-secondary
       ${className}`)}
     {...attributes}
   >

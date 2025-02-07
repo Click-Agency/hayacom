@@ -10,7 +10,7 @@ import { PaginateMeta } from "../../../types/response";
 import Loader from "../../shared/Loader";
 import Lightbox from "yet-another-react-lightbox";
 import { Captions, Thumbnails, Zoom } from "yet-another-react-lightbox/plugins";
-import GalleryCard from "./GalleryCard";
+import GalleryCard from "../../shared/GalleryCard";
 import Pagination from "../../shared/Pagination";
 
 const CardsGallery = () => {
@@ -53,10 +53,15 @@ const CardsGallery = () => {
   return (
     <SectionContainer
       id="cards-gallery"
-      className="mt-5"
-      wraperClassName="items-center"
+      className={`
+        mt-5
+        background-bubbles`}
+      wraperClassName="items-center mt-15 md:mt-28"
     >
-      <SectionHeader className="max-w-xl" title={t("gallery.title")} />
+      <SectionHeader
+        className="max-w-xl self-start"
+        title={t("gallery.title")}
+      />
 
       {!resposeCards?.data.length && !noCards ? (
         <Loader className="min-h-[900px]" />
@@ -80,8 +85,6 @@ const CardsGallery = () => {
             gap-8
             md:grid-cols-2
             lg:grid-cols-3
-            xl:grid-cols-4
-            2xl:grid-cols-5
             mt-5
             transition-all
             duration-500

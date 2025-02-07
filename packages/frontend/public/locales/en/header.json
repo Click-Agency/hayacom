@@ -3,7 +3,7 @@
 
   "nav": {
     "home": "Home",
-    "designs": "designs",
+    "designs": "Designs",
     "packages": "Packages",
     "comparisons": "Comparisons",
     "clients": "Our Clients",
@@ -11,7 +11,7 @@
     "gallery": "Gallery",
     "download": "Download app",
     "contact": "Contact Us",
-    "lang": "العربية"
+    "lang": "عربي"
   },
 
   "admin": {

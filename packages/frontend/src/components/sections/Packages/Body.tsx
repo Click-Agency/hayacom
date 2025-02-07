@@ -1,5 +1,8 @@
 import { Package } from "../../../types/packages";
 import { trim } from "../../../utils/functions/general";
+import SectionHeader from "../../shared/SectionHeader";
+import BodyCard from "./BodyCard";
+import Prices from "./Prices";
 
 const Body = ({
   packages,
@@ -16,22 +19,22 @@ const Body = ({
         flex
         flex-col
         gap-4
-        px-4`)}
+        px-4
+        rounded-lg
+        shadow-2xl`)}
     >
-      <h2
-        className={trim(`
-          text-center 
-          text-responsive-lg
-          font-semibold
-          text-primary`)}
-      >
-        {langAr ? packages[packgeIndex].titleAr : packages[packgeIndex].titleEn}
-      </h2>
+      <SectionHeader
+        tag="h2"
+        title={
+          langAr ? packages[packgeIndex].titleAr : packages[packgeIndex].titleEn
+        }
+        className="!font-bold pb-0"
+      />
 
       <div
         className={trim(`
           flex
-          justify-center
+          justify-evenly
           gap-4
           items-center
           flex-col-reverse
@@ -40,21 +43,22 @@ const Body = ({
       >
         <ol
           className={trim(`
-            flex
-            flex-col
-            gap-2
+            grid
+            grid-cols-1
+            md:grid-cols-2
+            gap-4
             p-4
             text-responsive-xs
-            font-semibold
             list-disc
-            list-inside`)}
+            list-inside
+            marker:text-primary`)}
         >
           {langAr
             ? packages[packgeIndex].itemsAr.map((item, i) => (
-                <li key={i}>{item}</li>
+                <BodyCard key={i} text={item} />
               ))
             : packages[packgeIndex].itemsEn.map((item, i) => (
-                <li key={i}>{item}</li>
+                <BodyCard key={i} text={item} />
               ))}
         </ol>
 
@@ -67,10 +71,12 @@ const Body = ({
             h-full 
             max-w-[400px] 
             max-h-[400px]
+            md:self-start
             rounded-lg`)}
           src={packages[packgeIndex].video}
         />
       </div>
+      <Prices />
     </div>
   );
 };

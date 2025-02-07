@@ -19,16 +19,22 @@ const Headers = ({
         flex
         items-center
         gap-2
-        flex-wrap`)}
+        flex-wrap
+        rounded-xl
+        md:rounded-full
+        px-20
+        py-2
+        bg-[#A39FA0]/30`)}
     >
       {packages.map(({ nameEn, nameAr }, i) => (
         <ButtonStyled
           className={`
             flex-1
             font-semibold
-            ${i === packgeIndex ? "!bg-background-primary !text-primary" : ""}`}
-          bg
-          hover
+            rounded-full
+            ${i === packgeIndex ? "bg-primary text-secondary" : "!text-gray-500"}`}
+          hover={i !== packgeIndex}
+          size="sm"
           key={i}
           title={langAr ? nameAr : nameEn}
           onClick={() => setPackageIndex(i)}

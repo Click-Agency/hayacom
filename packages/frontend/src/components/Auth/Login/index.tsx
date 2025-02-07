@@ -1,32 +1,33 @@
-import { useTranslation } from "react-i18next";
 import { trim } from "../../../utils/functions/general";
-import SectionContainer from "../../shared/containers/SectionContainer";
 import Form from "./Form";
+import Logo from "../../shared/Logo";
+import { appRoutes } from "../../../config";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { t } = useTranslation(["auth"]);
+  const push = useNavigate();
 
   return (
-    <SectionContainer className="animate-appear" wraperClassName="items-center">
-      <div
-        className={trim(`
-          flex 
+    <div
+      className={trim(`
+          flex
           flex-col
-          bg-background-primary
           gap-4 
           border 
           w-full 
-          max-w-[400px] 
-          p-7 
+          p-7
+          items-center
+          justify-center
           rounded-lg
-          shadow-lg`)}
-      >
-        <h1 className="text-center text-2xl font-bold text-primary">
-          {t("login.title")}
-        </h1>
-        <Form />
-      </div>
-    </SectionContainer>
+          shadow-lg
+          h-screen`)}
+    >
+      <Logo
+        className="max-w-20 cursor-pointer"
+        onClick={() => push(appRoutes.home)}
+      />
+      <Form />
+    </div>
   );
 };
 

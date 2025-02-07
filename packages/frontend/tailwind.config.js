@@ -22,6 +22,7 @@ export default {
         secondary: "#FDE7D9",
         "background-primary": "#F9D3C8",
         "background-secondary": "#FFEEE1",
+        "background-tertiary": "#FEE2CF",
         "body-primary": "#871B2A",
         "body-secondary": "#ACACAC",
       },
@@ -46,6 +47,8 @@ export default {
 
         "gradient-t-dark":
           "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 100%)",
+
+        "sheet-paper": "url('assets/imgs/sheet-paper.png')",
       },
       boxShadow: {
         "custom-glow":
@@ -88,6 +91,9 @@ export default {
   plugins: [
     function ({ addUtilities }) {
       const newUtilities = {
+        "text-shadow-none": {
+          textShadow: "none",
+        },
         ".text-shadow": {
           textShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
         },
@@ -99,6 +105,9 @@ export default {
         },
         ".text-shadow-xl": {
           textShadow: "5px 5px 10px rgba(0, 0, 0, 0.25)",
+        },
+        ".marker-primary": {
+          color: "#730F20" /* Change this to your desired color */,
         },
       };
 

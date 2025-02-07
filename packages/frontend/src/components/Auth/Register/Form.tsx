@@ -76,7 +76,7 @@ const Form = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-4 w-full md:w-2/3"
     >
       <InputStyled
         border

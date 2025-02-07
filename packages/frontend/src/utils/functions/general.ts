@@ -23,4 +23,23 @@ const addAttributesToReactNode = (
   attributes?: React.HTMLAttributes<HTMLOrSVGElement>
 ) => cloneElement(element, attributes);
 
-export { trim, formatDate, addAttributesToReactNode, pascalCase };
+const isRouteFound = (
+  pathname: string,
+  {
+    routes = [],
+    dynamicRoutes = [],
+    regExp = {
+      pattern: `(?:/[^/?]+(?:\\?[^/]+)?)?$`,
+    },
+  }: {
+    routes?: string[];
+    dynamicRoutes?: string[];
+    regExp?: { pattern?: RegExp | string; flags?: string };
+  } = {}
+) =>
+  routes.some((route) => route === pathname) ||
+  dynamicRoutes.some((route) =>
+    new RegExp(`^${route}${regExp.pattern}`, regExp.flags).test(pathname)
+  );
+
+export { trim, formatDate, addAttributesToReactNode, pascalCase, isRouteFound };

@@ -3,6 +3,7 @@ import SectionContainer from "../../shared/containers/SectionContainer";
 import SectionHeader from "../../shared/SectionHeader";
 import { trim } from "../../../utils/functions/general";
 import useScrollInToView from "../../../hooks/useScrollInToView";
+import { RxCrossCircled, RxCheckCircled } from "react-icons/rx";
 
 const Comparisons = () => {
   const { t } = useTranslation(["home"]);
@@ -21,24 +22,26 @@ const Comparisons = () => {
     <SectionContainer id="comparisons">
       <SectionHeader title={t("comparisons.title")} />
 
-      <div className="!overflow-x-auto w-full">
+      <div
+        ref={targetRef}
+        className={trim(`
+          !overflow-x-auto
+          w-full
+          bg-[#F1E8E7]
+          rounded-3xl
+          px-28
+          py-20
+          transition-all
+          duration-500
+          ease-in-out
+          ${isInView ? "opacity-100" : "opacity-0"}`)}
+      >
         <table
-          ref={targetRef}
           dir="ltr"
           className={trim(`
             w-full
-            text-center
             text-responsive-2md
-            border-collapse
-            border
-            border-primary
-            rounded-xl
-            text-primary
-            font-medium
-            transition-all
-            duration-500
-            ease-in-out
-            ${isInView ? "opacity-100" : "opacity-0"}`)}
+            font-medium`)}
         >
           <thead>
             <tr>
@@ -46,11 +49,10 @@ const Comparisons = () => {
                 <th
                   key={i}
                   className={trim(`
-                    ${i === 0 ? "min-w-96                   bg-primary text-background-primary" : "min-w-40"}
-                    p-4
-                    border-b
-                    border-r
-                    border-primary`)}
+                    ${i === 0 ? "min-w-96 text-start" : "min-w-40"}
+                    pb-6
+                    text-primary
+                    font-bold`)}
                 >
                   {header}
                 </th>
@@ -60,18 +62,32 @@ const Comparisons = () => {
 
           <tbody>
             {tableRows.map((row, i) => (
-              <tr key={i}>
+              <tr
+                key={i}
+                className={trim(`
+                  border-gray-400
+                  ${i !== tableRows.length - 1 ? "border-b" : ""}`)}
+              >
                 {row.map((cell, j) => (
                   <td
                     key={j}
                     className={trim(`
-                      p-2
-                      border-b
-                      border-r
-                      border-primary
-                      ${j !== 0 ? "bg-white" : ""}`)}
+                      py-4
+                      ${j !== 0 ? "text-center" : ""}`)}
                   >
-                    {cell}
+                    {cell !== "true" && cell !== "false" ? (
+                      cell
+                    ) : cell === "true" ? (
+                      <RxCheckCircled
+                        className="m-auto text-gray-500"
+                        size={30}
+                      />
+                    ) : (
+                      <RxCrossCircled
+                        className="m-auto text-primary"
+                        size={30}
+                      />
+                    )}
                   </td>
                 ))}
               </tr>

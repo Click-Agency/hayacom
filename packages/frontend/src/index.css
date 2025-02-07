@@ -24,6 +24,31 @@
     @apply mx-auto px-4 md:px-6;
   }
 
+  .background-bubbles {
+    @apply before:content-[""]
+    before:absolute
+    before:top-0
+    before:left-0
+    before:w-[90%]
+    before:h-[35%]
+    md:before:w-[92%]
+    md:before:h-[75%]
+    before:bg-[#FEE2CF]/50
+    before:rounded-br-[1000px]
+    before:z-[-1]
+    after:content-[""]
+    after:absolute
+    after:top-0
+    after:right-0
+    after:w-[80%]
+    after:h-[40%]
+    md:after:w-[90%]
+    md:after:h-full
+    after:bg-[#751813]/10
+    after:rounded-bl-[1000px]
+    after:z-[-1];
+  }
+
   .mask-hero-top {
     mask-image: linear-gradient(
       to top,

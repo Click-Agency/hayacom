@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
 import AuthQuery from "../enum/Auth";
+import SectionContainer from "../components/shared/containers/SectionContainer";
 
 export default function Auth() {
   const push = useNavigate();
@@ -28,9 +29,14 @@ export default function Auth() {
     return <NotFound />;
 
   return (
-    <PageContainer className="justify-center">
-      {ref === AuthQuery.REGISTER && <Register />}
-      {ref === AuthQuery.LOGIN && <Login />}
+    <PageContainer className={`background-bubbles`}>
+      <SectionContainer
+        className="!m-0 !p-0"
+        wraperClassName="items-center !m-0 md:!w-1/2 !p-0 md:bg-white"
+      >
+        {ref === AuthQuery.REGISTER && <Register />}
+        {ref === AuthQuery.LOGIN && <Login />}
+      </SectionContainer>
     </PageContainer>
   );
 }

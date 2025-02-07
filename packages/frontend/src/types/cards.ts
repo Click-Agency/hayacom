@@ -12,4 +12,9 @@ type Card = {
   createdAt: string;
 };
 
-export type { FormCard, Card };
+type PriceCard = {
+  guest: number;
+  price: number;
+};
+
+export type { FormCard, Card, PriceCard };

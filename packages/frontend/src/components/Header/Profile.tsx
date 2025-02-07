@@ -19,7 +19,13 @@ import { LuPackagePlus } from "react-icons/lu";
 import { MdOutlineAddCard } from "react-icons/md";
 import { FaUser, FaUserPlus } from "react-icons/fa";
 
-const Profile = ({ session }: { session?: Session }) => {
+const Profile = ({
+  session,
+  className = "",
+}: {
+  session?: Session;
+  className?: string;
+}) => {
   const [showActions, setShowActions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { scrollDir } = useScrollSpy();
@@ -106,7 +112,13 @@ const Profile = ({ session }: { session?: Session }) => {
   };
 
   return (
-    <div id={"profile"} className="relative animate-appear">
+    <div
+      id={"profile"}
+      className={trim(`
+        relative
+        animate-appear
+        ${className}`)}
+    >
       <img
         className={trim(`
           rounded-full
@@ -128,8 +140,8 @@ const Profile = ({ session }: { session?: Session }) => {
             absolute
             flex
             flex-col
-            top-15
-            ${i18n.dir() === "ltr" ? "right-0" : "left-0"}
+            top-12
+            ${i18n.dir() === "rtl" ? "md:right-0 left-0" : "md:left-0 right-0"}
             min-w-40
             transition-[opacity]
             duration-300
