@@ -70,6 +70,7 @@ const Table = ({ cards }: { cards?: Card[] }) => {
                   image={images[0]}
                   createdAt={createdAt}
                   onDeleteHandler={onDeleteHandler}
+                  dir="rtl"
                   cards={cards}
                 />
               ))
@@ -82,6 +83,7 @@ const Table = ({ cards }: { cards?: Card[] }) => {
                   image={images[0]}
                   createdAt={createdAt}
                   onDeleteHandler={onDeleteHandler}
+                  dir="ltr"
                   cards={cards}
                 />
               ))}

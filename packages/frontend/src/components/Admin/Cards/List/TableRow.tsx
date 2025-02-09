@@ -14,6 +14,7 @@ const TableRow = ({
   i = 0,
   dir = "ltr",
   onDeleteHandler,
+  disableUpdate,
 }: {
   _id: string;
   image: string;
@@ -23,6 +24,7 @@ const TableRow = ({
   onDeleteHandler: any;
   dir?: "ltr" | "rtl";
   i?: number;
+  disableUpdate?: boolean;
 }) => (
   <tr key={i} className={`text-center`}>
     <td
@@ -188,14 +190,16 @@ const TableRow = ({
           SvgIcon={<GoTrash size={23} />}
         />
 
-        <ButtonStyled
-          size="custom"
-          href={`${appRoutes.editCard}/${_id}`}
-          className={`
+        {disableUpdate && (
+          <ButtonStyled
+            size="custom"
+            href={`${appRoutes.editCard}/${_id}`}
+            className={`
             hover:text-orange-400
             active:scale-95`}
-          SvgIcon={<CiEdit size={23} />}
-        />
+            SvgIcon={<CiEdit size={23} />}
+          />
+        )}
       </div>
     </td>
   </tr>
