@@ -168,6 +168,16 @@ const Form = () => {
           {t("login.error")}
         </p>
       )}
+
+      <div className="flex gap-2 items-center justify-center text-responsive-xs mt-6 flex-wrap">
+        <h6>{t("login.notStaff")}</h6>
+        <ButtonStyled
+          animatedUnderline
+          size="custom"
+          href={appRoutes.home}
+          title={t("login.goBack")}
+        />
+      </div>
     </form>
   );
 };

@@ -232,6 +232,16 @@ const Form = () => {
         disabled={isLoading}
         className="text-white bg-primary hover:bg-green-900"
       />
+
+      <div className="flex gap-2 items-center justify-center text-responsive-xs mt-6 flex-wrap">
+        <h6>{t("register.changedMind")}</h6>
+        <ButtonStyled
+          animatedUnderline
+          size="custom"
+          href={appRoutes.admin}
+          title={t("register.goBack")}
+        />
+      </div>
     </form>
   );
 };
