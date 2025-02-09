@@ -12,7 +12,6 @@ const HomeHero = () => {
 
   return (
     <SectionContainer
-      className={`background-bubbles`}
       ref={targetRef}
       id="home-hero"
       wraperClassName={`

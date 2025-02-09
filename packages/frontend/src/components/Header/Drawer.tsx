@@ -5,6 +5,7 @@ import useRemoveScroll from "../../hooks/useRemoveScroll";
 import { trim } from "../../utils/functions/general";
 import ButtonStyled from "../shared/ButtonStyled";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { Session } from "../../types/user";
 
 const tailWindClasses = {
   aside: {
@@ -24,12 +25,14 @@ const Drawer = ({
   SpecialBtn,
   lang,
   drawerNavFun,
+  session,
 }: {
-  navArr: { name: string; link: string }[];
+  navArr: { name: string; link: string | Function; type: string }[];
   activePath?: string | null;
   ChangeLanguageBtn?: JSX.Element;
   SpecialBtn?: JSX.Element;
   lang: string;
+  session?: Session;
   drawerNavFun: (link: string) => void;
 }) => {
   const { openDrawer, setOpenDrawer } = useContext(DrawerContext);
@@ -111,11 +114,24 @@ const Drawer = ({
             gap-5
             overflow-y-auto`)}
         >
-          {navArr.map(({ name, link }, i) => (
-            <li key={i}>
-              <ButtonStyled
-                onClick={() => onNavHandler(link)}
-                className={trim(`
+          {navArr.map(({ name, link, type }, i) => {
+            if (
+              (!session?._id && type === "admin") ||
+              (session?._id && type === "userOnly")
+            )
+              return;
+
+            return (
+              <li key={i}>
+                <ButtonStyled
+                  onClick={() => {
+                    if (typeof link === "string") {
+                      onNavHandler(link);
+                    } else {
+                      link();
+                    }
+                  }}
+                  className={trim(`
                   !text-primary
                   font-medium
                   ${
@@ -124,12 +140,13 @@ const Drawer = ({
                        decoration-body-primary decoration-4`
                       : ""
                   }`)}
-                size="md"
-                title={name}
-                animatedUnderline={activePath !== link}
-              />
-            </li>
-          ))}
+                  size="md"
+                  title={name}
+                  animatedUnderline={activePath !== link}
+                />
+              </li>
+            );
+          })}
 
           {SpecialBtn && <li>{SpecialBtn}</li>}
           {ChangeLanguageBtn && <li>{ChangeLanguageBtn}</li>}

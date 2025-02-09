@@ -161,7 +161,7 @@ const DeleteDialog = ({
         rounded-xl
         max-w-2xl`)}
       {...attributes}
-      onClick={onClickHanlder}
+      onMouseDown={onClickHanlder}
     >
       <div
         ref={childRef}
@@ -224,8 +224,9 @@ const DeleteDialog = ({
             md:flex-row`)}
           >
             <ButtonStyled
-              className="rounded-lg"
+              className="rounded-full !px-14"
               border
+              hover
               title={cancel}
               size="sm"
               type="reset"
@@ -233,8 +234,9 @@ const DeleteDialog = ({
               disabled={loading}
             />
             <ButtonStyled
-              className="rounded-lg"
+              className="rounded-full !px-14"
               border
+              hover
               danger
               title={loading ? deleting : deleteText}
               size="sm"

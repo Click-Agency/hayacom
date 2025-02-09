@@ -83,9 +83,6 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
         flex-col
         gap-4
         p-4
-        bg-background-primary
-        rounded-lg
-        shadow-lg
         animate-appear
         w-full
         h-full
@@ -93,10 +90,22 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
         mt-4`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <div className="flex flex-col-reverse gap-4 h-full">
+      <div
+        className={trim(`
+          flex
+          flex-col-reverse
+          md:flex-row
+          gap-4
+          h-full
+          bg-white
+          rounded-xl
+          shadow-xl
+          p-4`)}
+      >
         <div className="flex flex-col gap-4 flex-1">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col gap-4">
             <InputStyled
+              className="bg-gray-200"
               label={t("cards.customId.label.en")}
               placeholder={t("cards.customId.placeholder")}
               {...register("customIdEn", {
@@ -117,6 +126,7 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
             />
 
             <InputStyled
+              className="bg-gray-200"
               label={t("cards.customId.label.ar")}
               placeholder={t("cards.customId.placeholder")}
               {...register("customIdAr", {
@@ -167,10 +177,8 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
       </div>
 
       <ButtonStyled
-        success={!cardData}
         border
-        warning={cardData && true}
-        className="rounded-lg md:max-w-sm m-auto w-full mt-2"
+        className="rounded-full md:max-w-sm m-auto w-full mt-6 bg-primary"
         bg
         hover
         title={

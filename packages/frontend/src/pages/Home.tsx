@@ -7,7 +7,7 @@ import PageContainer from "../components/shared/containers/PageContainer";
 
 export default function Home() {
   return (
-    <PageContainer paddingTop>
+    <PageContainer paddingTop className="background-bubbles">
       <HomeHero />
       <Packages />
       <Comparisons />

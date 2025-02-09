@@ -134,146 +134,159 @@ const Form = ({ user }: { user: UserDetails }) => {
         flex-col
         gap-4
         p-4
-        bg-background-primary
-        rounded-lg
-        shadow-lg
         animate-appear
         max-w-xl
-        w-full
-        mt-4`)}
+        w-full`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <InputStyled
-        border
-        label={t("register.name.label", { ns: "auth" })}
-        placeholder={t("register.name.placeholder", { ns: "auth" })}
-        className="rounded-sm"
-        tagSize="sm"
-        {...register("name", {
-          minLength: {
-            value: 3,
-            message: t("register.name.errors.min", { ns: "auth" }),
-          },
-          maxLength: {
-            value: 20,
-            message: t("register.name.errors.max", { ns: "auth" }),
-          },
-        })}
-        error={errors.name?.message}
-        disabled={isLoading}
-      />
+      <div
+        className={trim(`
+          flex
+          flex-col
+          gap-4
+          p-6
+          bg-white
+          rounded-xl
+          shadow-2xl
+          animate-appear
+          w-full`)}
+      >
+        <InputStyled
+          border
+          label={t("register.name.label", { ns: "auth" })}
+          placeholder={t("register.name.placeholder", { ns: "auth" })}
+          className="rounded-sm"
+          tagSize="sm"
+          {...register("name", {
+            minLength: {
+              value: 3,
+              message: t("register.name.errors.min", { ns: "auth" }),
+            },
+            maxLength: {
+              value: 20,
+              message: t("register.name.errors.max", { ns: "auth" }),
+            },
+          })}
+          error={errors.name?.message}
+          disabled={isLoading}
+        />
 
-      <InputStyled
-        border
-        label={t("register.password.label", { ns: "auth" })}
-        placeholder={t("register.password.placeholder", { ns: "auth" })}
-        className="rounded-sm"
-        tagSize="sm"
-        svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
-        svgIcon={
-          state.passwordType === "password" ? (
-            <FaEyeSlash onClick={() => dispatchReducer({ type: "password" })} />
-          ) : (
-            <FaEye onClick={() => dispatchReducer({ type: "password" })} />
-          )
-        }
-        type={state.passwordType}
-        {...register("password", {
-          required: newPassword
-            ? t("register.password.errors.required", { ns: "auth" })
-            : false,
-          minLength: {
-            value: 6,
-            message: t("register.password.errors.min", { ns: "auth" }),
-          },
-          maxLength: {
-            value: 30,
-            message: t("register.password.errors.max", { ns: "auth" }),
-          },
-        })}
-        error={errors.password?.message}
-        disabled={isLoading}
-      />
+        <InputStyled
+          border
+          label={t("register.password.label", { ns: "auth" })}
+          placeholder={t("register.password.placeholder", { ns: "auth" })}
+          className="rounded-sm"
+          tagSize="sm"
+          svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+          svgIcon={
+            state.passwordType === "password" ? (
+              <FaEyeSlash
+                onClick={() => dispatchReducer({ type: "password" })}
+              />
+            ) : (
+              <FaEye onClick={() => dispatchReducer({ type: "password" })} />
+            )
+          }
+          type={state.passwordType}
+          {...register("password", {
+            required: newPassword
+              ? t("register.password.errors.required", { ns: "auth" })
+              : false,
+            minLength: {
+              value: 6,
+              message: t("register.password.errors.min", { ns: "auth" }),
+            },
+            maxLength: {
+              value: 30,
+              message: t("register.password.errors.max", { ns: "auth" }),
+            },
+          })}
+          error={errors.password?.message}
+          disabled={isLoading}
+        />
 
-      <InputStyled
-        border
-        label={t("profile.actions.edit.newPassword.label")}
-        placeholder={t("profile.actions.edit.newPassword.placeholder")}
-        className="rounded-sm"
-        tagSize="sm"
-        svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
-        svgIcon={
-          state.newPasswordType === "password" ? (
-            <FaEyeSlash
-              onClick={() => dispatchReducer({ type: "newPassword" })}
-            />
-          ) : (
-            <FaEye onClick={() => dispatchReducer({ type: "newPassword" })} />
-          )
-        }
-        type={state.newPasswordType}
-        {...register("newPassword", {
-          required: password
-            ? t("register.password.errors.required", { ns: "auth" })
-            : false,
-          minLength: {
-            value: 6,
-            message: t("profile.actions.edit.newPassword.errors.min"),
-          },
-          maxLength: {
-            value: 30,
-            message: t("profile.actions.edit.newPassword.errors.max"),
-          },
-        })}
-        error={errors.newPassword?.message}
-        disabled={isLoading}
-      />
+        <InputStyled
+          border
+          label={t("profile.actions.edit.newPassword.label")}
+          placeholder={t("profile.actions.edit.newPassword.placeholder")}
+          className="rounded-sm"
+          tagSize="sm"
+          svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+          svgIcon={
+            state.newPasswordType === "password" ? (
+              <FaEyeSlash
+                onClick={() => dispatchReducer({ type: "newPassword" })}
+              />
+            ) : (
+              <FaEye onClick={() => dispatchReducer({ type: "newPassword" })} />
+            )
+          }
+          type={state.newPasswordType}
+          {...register("newPassword", {
+            required: password
+              ? t("register.password.errors.required", { ns: "auth" })
+              : false,
+            minLength: {
+              value: 6,
+              message: t("profile.actions.edit.newPassword.errors.min"),
+            },
+            maxLength: {
+              value: 30,
+              message: t("profile.actions.edit.newPassword.errors.max"),
+            },
+          })}
+          error={errors.newPassword?.message}
+          disabled={isLoading}
+        />
 
-      <InputStyled
-        border
-        label={t("register.confirmPassword.label", { ns: "auth" })}
-        placeholder={t("register.confirmPassword.placeholder", { ns: "auth" })}
-        className="rounded-sm"
-        tagSize="sm"
-        svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
-        svgIcon={
-          state.confirmPasswordType === "password" ? (
-            <FaEyeSlash
-              onClick={() => dispatchReducer({ type: "confirmPassword" })}
-            />
-          ) : (
-            <FaEye
-              onClick={() => dispatchReducer({ type: "confirmPassword" })}
-            />
-          )
-        }
-        type={state.confirmPasswordType}
-        {...register("confirmPassword", {
-          validate: (value) =>
-            newPassword
-              ? value === newPassword ||
-                t("register.confirmPassword.errors.match", { ns: "auth" })
-              : true,
-          minLength: {
-            value: 6,
-            message: t("register.confirmPassword.errors.min", { ns: "auth" }),
-          },
-          maxLength: {
-            value: 30,
-            message: t("register.confirmPassword.errors.max", { ns: "auth" }),
-          },
-        })}
-        error={errors.confirmPassword?.message}
-        disabled={isLoading}
-      />
+        <InputStyled
+          border
+          label={t("register.confirmPassword.label", { ns: "auth" })}
+          placeholder={t("register.confirmPassword.placeholder", {
+            ns: "auth",
+          })}
+          className="rounded-sm"
+          tagSize="sm"
+          svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+          svgIcon={
+            state.confirmPasswordType === "password" ? (
+              <FaEyeSlash
+                onClick={() => dispatchReducer({ type: "confirmPassword" })}
+              />
+            ) : (
+              <FaEye
+                onClick={() => dispatchReducer({ type: "confirmPassword" })}
+              />
+            )
+          }
+          type={state.confirmPasswordType}
+          {...register("confirmPassword", {
+            validate: (value) =>
+              newPassword
+                ? value === newPassword ||
+                  t("register.confirmPassword.errors.match", { ns: "auth" })
+                : true,
+            minLength: {
+              value: 6,
+              message: t("register.confirmPassword.errors.min", { ns: "auth" }),
+            },
+            maxLength: {
+              value: 30,
+              message: t("register.confirmPassword.errors.max", { ns: "auth" }),
+            },
+          })}
+          error={errors.confirmPassword?.message}
+          disabled={isLoading}
+        />
 
-      {noData && (
-        <p className="text-red-500 text-responsive-2md text-center font-semibold">
-          {t("profile.actions.edit.noData")}
-        </p>
-      )}
+        {noData && (
+          <p className="text-red-500 text-responsive-2md text-center font-semibold">
+            {t("profile.actions.edit.noData")}
+          </p>
+        )}
+      </div>
 
-      <div className="flex flex-col md:flex-row gap-4 justify-center">
+      <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
         <ButtonStyled
           warning
           type="submit"

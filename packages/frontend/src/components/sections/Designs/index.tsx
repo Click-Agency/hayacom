@@ -47,7 +47,7 @@ const Designs = () => {
         bg-background-tertiary/50
         rounded-tl-[20%]
         pb-28
-        mb-0`}
+        !mb-0`}
       wraperClassName="gap-4"
     >
       <SectionHeader title={t("designs.title")} className="mt-10" />

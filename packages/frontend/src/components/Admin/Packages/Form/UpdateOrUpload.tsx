@@ -89,150 +89,162 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
         flex-col
         gap-4
         p-4
-        bg-background-primary
-        rounded-lg
-        shadow-lg
         animate-appear
         max-w-4xl
         w-full
         mt-4`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <AddVideo
-        defaultValue={packageData?.video}
-        error={errors.video?.message}
-        {...register("video", {
-          required: {
-            value: !packageData?.video,
-            message: t("packages.video.errors.required"),
-          },
-          validate: {
-            fileType: (value) => {
-              const file = value[0];
-              const videoFilePattern = /\.(mp4|webm|ogg)$/i;
-              if (file instanceof File) {
-                return (
-                  (file && videoFilePattern.test(file.name)) ||
-                  t("packages.video.errors.invalid")
-                );
-              }
-              return true;
-            },
-          },
-        })}
-      />
-
-      <div className="flex flex-col md:flex-row gap-4">
-        <InputStyled
-          label={t("packages.name.label.en")}
-          placeholder={t("packages.name.placeholder")}
-          {...register("nameEn", {
+      <div
+        className={trim(`
+        flex
+        flex-col
+        gap-4
+        p-4
+        bg-white
+        rounded-xl
+        shadow-xl
+        w-full`)}
+      >
+        <AddVideo
+          defaultValue={packageData?.video}
+          error={errors.video?.message}
+          {...register("video", {
             required: {
-              value: true,
-              message: t("packages.name.errors.required"),
+              value: !packageData?.video,
+              message: t("packages.video.errors.required"),
             },
-            minLength: {
-              value: 3,
-              message: t("packages.name.errors.min"),
-            },
-            maxLength: {
-              value: 255,
-              message: t("packages.name.errors.max"),
+            validate: {
+              fileType: (value) => {
+                const file = value[0];
+                const videoFilePattern = /\.(mp4|webm|ogg)$/i;
+                if (file instanceof File) {
+                  return (
+                    (file && videoFilePattern.test(file.name)) ||
+                    t("packages.video.errors.invalid")
+                  );
+                }
+                return true;
+              },
             },
           })}
-          error={errors.nameEn?.message}
         />
 
-        <InputStyled
-          label={t("packages.name.label.ar")}
-          placeholder={t("packages.name.placeholder")}
-          {...register("nameAr", {
-            required: {
-              value: true,
-              message: t("packages.name.errors.required"),
-            },
-            minLength: {
-              value: 3,
-              message: t("packages.name.errors.min"),
-            },
-            maxLength: {
-              value: 255,
-              message: t("packages.name.errors.max"),
-            },
-          })}
-          error={errors.nameAr?.message}
-        />
-      </div>
+        <div className="flex flex-col md:flex-row gap-4">
+          <InputStyled
+            className="bg-gray-200"
+            label={t("packages.name.label.en")}
+            placeholder={t("packages.name.placeholder")}
+            {...register("nameEn", {
+              required: {
+                value: true,
+                message: t("packages.name.errors.required"),
+              },
+              minLength: {
+                value: 3,
+                message: t("packages.name.errors.min"),
+              },
+              maxLength: {
+                value: 255,
+                message: t("packages.name.errors.max"),
+              },
+            })}
+            error={errors.nameEn?.message}
+          />
 
-      <div className="flex flex-col md:flex-row gap-4">
-        <InputStyled
-          label={t("packages.title.label.en")}
-          placeholder={t("packages.title.placeholder")}
-          {...register("titleEn", {
-            required: {
-              value: true,
-              message: t("packages.title.errors.required"),
-            },
-            minLength: {
-              value: 3,
-              message: t("packages.title.errors.min"),
-            },
-            maxLength: {
-              value: 255,
-              message: t("packages.title.errors.max"),
-            },
-          })}
-          error={errors.titleEn?.message}
-        />
+          <InputStyled
+            className="bg-gray-200"
+            label={t("packages.name.label.ar")}
+            placeholder={t("packages.name.placeholder")}
+            {...register("nameAr", {
+              required: {
+                value: true,
+                message: t("packages.name.errors.required"),
+              },
+              minLength: {
+                value: 3,
+                message: t("packages.name.errors.min"),
+              },
+              maxLength: {
+                value: 255,
+                message: t("packages.name.errors.max"),
+              },
+            })}
+            error={errors.nameAr?.message}
+          />
+        </div>
 
-        <InputStyled
-          label={t("packages.title.label.ar")}
-          placeholder={t("packages.title.placeholder")}
-          {...register("titleAr", {
-            required: {
-              value: true,
-              message: t("packages.title.errors.required"),
-            },
-            minLength: {
-              value: 3,
-              message: t("packages.title.errors.min"),
-            },
-            maxLength: {
-              value: 255,
-              message: t("packages.title.errors.max"),
-            },
-          })}
-          error={errors.titleAr?.message}
-        />
-      </div>
+        <div className="flex flex-col md:flex-row gap-4">
+          <InputStyled
+            className="bg-gray-200"
+            label={t("packages.title.label.en")}
+            placeholder={t("packages.title.placeholder")}
+            {...register("titleEn", {
+              required: {
+                value: true,
+                message: t("packages.title.errors.required"),
+              },
+              minLength: {
+                value: 3,
+                message: t("packages.title.errors.min"),
+              },
+              maxLength: {
+                value: 255,
+                message: t("packages.title.errors.max"),
+              },
+            })}
+            error={errors.titleEn?.message}
+          />
 
-      <div className="flex flex-col md:flex-row gap-4">
-        <AddItems
-          tagSize="xs"
-          elemType="textarea"
-          target="itemsEn"
-          title={t("packages.items.label.en")}
-          control={control}
-          errors={errors}
-          disabled={isLoading}
-        />
+          <InputStyled
+            className="bg-gray-200"
+            label={t("packages.title.label.ar")}
+            placeholder={t("packages.title.placeholder")}
+            {...register("titleAr", {
+              required: {
+                value: true,
+                message: t("packages.title.errors.required"),
+              },
+              minLength: {
+                value: 3,
+                message: t("packages.title.errors.min"),
+              },
+              maxLength: {
+                value: 255,
+                message: t("packages.title.errors.max"),
+              },
+            })}
+            error={errors.titleAr?.message}
+          />
+        </div>
 
-        <AddItems
-          tagSize="xs"
-          elemType="textarea"
-          target="itemsAr"
-          title={t("packages.items.label.ar")}
-          control={control}
-          errors={errors}
-          disabled={isLoading}
-        />
+        <div className="flex flex-col md:flex-row gap-4">
+          <AddItems
+            tagSize="xs"
+            elemType="textarea"
+            target="itemsEn"
+            title={t("packages.items.label.en")}
+            control={control}
+            errors={errors}
+            disabled={isLoading}
+          />
+
+          <AddItems
+            tagSize="xs"
+            elemType="textarea"
+            target="itemsAr"
+            title={t("packages.items.label.ar")}
+            control={control}
+            errors={errors}
+            disabled={isLoading}
+          />
+        </div>
       </div>
 
       <ButtonStyled
-        success={!packageData}
         border
         warning={packageData && true}
-        className="rounded-lg md:max-w-sm m-auto w-full mt-2"
+        className="rounded-full md:max-w-sm m-auto w-full mt-6 bg-primary"
         bg
         hover
         title={

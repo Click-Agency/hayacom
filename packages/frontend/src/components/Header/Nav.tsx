@@ -13,11 +13,9 @@ import useActivation from "../../hooks/useActivation";
 import { FaPhone } from "react-icons/fa";
 import Profile from "./Profile";
 import useSession from "../../hooks/useSession";
-import DropdownMenu from "./DropdownMenu";
 import { TbPackages, TbGitCompare } from "react-icons/tb";
 import { GiCardJoker } from "react-icons/gi";
 import { FaUsers } from "react-icons/fa";
-import { RiMobileDownloadFill } from "react-icons/ri";
 import { GrGallery } from "react-icons/gr";
 
 const Nav = () => {
@@ -27,10 +25,25 @@ const Nav = () => {
   const push = useNavigate();
   const session = useSession();
 
+  const handleSectionClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+    else {
+      push(appRoutes.home);
+
+      setTimeout(() => {
+        const elementReFetch = document.getElementById(sectionId);
+        elementReFetch?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
+
   const navArr = [
     {
       name: t("nav.home"),
       link: appRoutes.home,
+      type: "user",
       sections: [
         {
           id: "packages",
@@ -52,29 +65,57 @@ const Nav = () => {
           name: t("nav.clients"),
           icon: <FaUsers />,
         },
-        {
-          id: "download-app",
-          name: t("nav.download"),
-          icon: <RiMobileDownloadFill />,
-        },
+        // {
+        //   id: "download-app",
+        //   name: t("nav.download"),
+        //   icon: <RiMobileDownloadFill />,
+        // },
       ],
+    },
+
+    {
+      name: t("nav.packages"),
+      link: () => handleSectionClick("packages"),
+      type: "userOnly",
+      sections: [],
     },
 
     {
       name: t("nav.designs"),
       link: appRoutes.designs,
+      type: "user",
       sections: [
         {
           id: "cards-gallery",
           name: t("nav.gallery"),
           icon: <GrGallery />,
         },
-        {
-          id: "download-app",
-          name: t("nav.download"),
-          icon: <RiMobileDownloadFill />,
-        },
+        // {
+        //   id: "download-app",
+        //   name: t("nav.download"),
+        //   icon: <RiMobileDownloadFill />,
+        // },
       ],
+    },
+
+    {
+      name: t("admin.crPackage"),
+      link: appRoutes.createPacakge,
+      type: "admin",
+      sessions: [],
+    },
+    {
+      name: t("admin.crCard"),
+      link: appRoutes.createCard,
+      type: "admin",
+      session: [],
+    },
+
+    {
+      name: t("admin.control"),
+      link: appRoutes.admin,
+      type: "admin",
+      sections: [],
     },
   ];
 
@@ -103,8 +144,8 @@ const Nav = () => {
         className={`${session?._id ? "md:inline-flex hidden" : "hidden"}`}
       />
 
-      <ul className="hidden md:flex gap-7 flex-1">
-        <hr className="h-6 w-0.5 bg-gray-500" />
+      <ul className="hidden md:flex lg:gap-7 gap-5 flex-1">
+        {session?._id && <hr className="h-6 w-0.5 bg-gray-500" />}
         <ButtonStyled
           className={trim(`
             !text-gray-500
@@ -121,48 +162,62 @@ const Nav = () => {
         />
         <hr className="h-6 w-0.5 bg-gray-500" />
         {navArr
-          .map(({ name, link, sections }, i) => (
-            <li
-              className={trim(`
-              relative 
-              hidden 
-              md:inline-flex 
-              group`)}
-              key={i}
-            >
-              <ButtonStyled
-                onClick={() => onClickHandler(link)}
-                className={trim(`
-                  font-medium
-            ${
-              pathname === link
-                ? `
-                  underline underline-offset-4
-                  !text-[#730f20]
-                  decoration-body-primary 
-                  decoration-4`
-                : `
-                  !text-gray-500 
-                  hover:!text-body-primary`
-            }
-            ${activationArr[i].active ? `opacity-100` : `opacity-0`}`)}
-                title={name}
-                size="custom"
-                animatedUnderline={pathname !== link}
-              />
+          .map(({ name, link, type }, i) => {
+            if (
+              (!session?._id && type === "admin") ||
+              (session?._id && type === "userOnly")
+            )
+              return;
 
-              <DropdownMenu
+            return (
+              <li
+                className={trim(`
+                  relative 
+                  hidden 
+                  md:inline-flex 
+                  group`)}
+                key={i}
+              >
+                <ButtonStyled
+                  onClick={() => {
+                    if (typeof link === "string") {
+                      onClickHandler(link);
+                    } else {
+                      link();
+                    }
+                  }}
+                  className={trim(`
+                    font-medium
+                    ${
+                      pathname === link
+                        ? `
+                          underline underline-offset-4
+                          !text-[#730f20]
+                          decoration-body-primary 
+                          decoration-4`
+                        : `
+                          !text-gray-500 
+                          hover:!text-body-primary`
+                    }
+                    ${activationArr[i].active ? `opacity-100` : `opacity-0`}`)}
+                  title={name}
+                  size="custom"
+                  animatedUnderline={pathname !== link}
+                />
+
+                {/* <DropdownMenu
                 className={`
               ${sections.length && pathname === link ? "group-hover:block" : ""}
                 hidden`}
                 sections={sections}
-              />
-            </li>
-          ))
+              /> */}
+              </li>
+            );
+          })
           .reverse()}
       </ul>
 
-      <div className="flex-1">
+      <div className={`${!session?._id ? "flex-1" : "md:flex-initial flex-1"}`}>
         <Logo
           onClick={() => onClickHandler(appRoutes.home)}
           className="cursor-pointer w-40 md:w-52 max-w-12 md:max-w-[80px] block"
@@ -176,8 +231,8 @@ const Nav = () => {
             hover:!scale-105 
             active:!scale-95 
             !hidden 
-            md:!inline-flex 
-            animate-appear`}
+            animate-appear
+            ${!session?._id ? "md:!inline-flex" : ""}`}
           ripple
           href="tel:1234567890"
           bg
@@ -192,7 +247,9 @@ const Nav = () => {
         />
 
         <ButtonStyled
-          className={`${i18n.dir() === "rtl" ? "-scale-x-100" : ""} md:!hidden !inline-flex`}
+          className={`
+            ${i18n.dir() === "rtl" ? "-scale-x-100" : ""} md:!hidden 
+            ${!session?._id ? "!md:!inline-flex" : ""}`}
           size="custom"
           onClick={() => setOpenDrawer((prev) => !prev)}
           SvgIcon={<MdMenuOpen color="#730F20" size={30} />}
@@ -204,10 +261,13 @@ const Nav = () => {
         activePath={pathname}
         lang={i18n.language}
         navArr={navArr}
+        session={session}
         SpecialBtn={
           <ButtonStyled
             ripple
-            className="rounded-full"
+            className={`
+              rounded-full
+              ${session?._id ? "!hidden" : ""}`}
             href="tel:1234567890"
             bg
             size="sm"

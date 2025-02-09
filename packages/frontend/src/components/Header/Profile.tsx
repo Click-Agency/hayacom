@@ -3,7 +3,6 @@ import { trim } from "../../utils/functions/general";
 import { useCallback, useEffect, useState } from "react";
 import ButtonStyled from "../shared/ButtonStyled";
 import { appRoutes } from "../../config";
-import { MdAdminPanelSettings } from "react-icons/md";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { ClipLoader } from "react-spinners";
 import useOutsideClick from "../../hooks/useOutsideClick";
@@ -15,8 +14,6 @@ import hayakomImg from "../../assets/imgs/icon-hayakom.png";
 import { useTranslation } from "react-i18next";
 import { useCookies } from "react-cookie";
 import Cookies from "../../enum/Cookies";
-import { LuPackagePlus } from "react-icons/lu";
-import { MdOutlineAddCard } from "react-icons/md";
 import { FaUser, FaUserPlus } from "react-icons/fa";
 
 const Profile = ({
@@ -48,24 +45,24 @@ const Profile = ({
       Icon: <FaUserPlus />,
       type: "route",
     },
-    {
-      name: t("admin.control"),
-      link: appRoutes.admin,
-      Icon: <MdAdminPanelSettings />,
-      type: "route",
-    },
-    {
-      name: t("admin.crPackage"),
-      link: appRoutes.createPacakge,
-      Icon: <LuPackagePlus />,
-      type: "route",
-    },
-    {
-      name: t("admin.crCard"),
-      link: appRoutes.createCard,
-      Icon: <MdOutlineAddCard />,
-      type: "route",
-    },
+    // {
+    //   name: t("admin.control"),
+    //   link: appRoutes.admin,
+    //   Icon: <MdAdminPanelSettings />,
+    //   type: "route",
+    // },
+    // {
+    //   name: t("admin.crPackage"),
+    //   link: appRoutes.createPacakge,
+    //   Icon: <LuPackagePlus />,
+    //   type: "route",
+    // },
+    // {
+    //   name: t("admin.crCard"),
+    //   link: appRoutes.createCard,
+    //   Icon: <MdOutlineAddCard />,
+    //   type: "route",
+    // },
     {
       name: t("admin.logout"),
       link: appRoutes.home,

@@ -3,8 +3,8 @@ import { Controller, useFieldArray } from "react-hook-form";
 import { trim } from "../../../../utils/functions/general";
 import InputStyled from "../../../shared/InputStyled";
 import ButtonStyled from "../../../shared/ButtonStyled";
-import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { AiOutlineMinusCircle, AiTwotonePlusCircle } from "react-icons/ai";
 
 const AddItems = ({
   title,
@@ -52,7 +52,7 @@ const AddItems = ({
               flex
               items-center
               gap-4
-              bg-background-secondary
+              bg-gray-200
               rounded-lg
               p-2`)}
           >
@@ -95,14 +95,14 @@ const AddItems = ({
               {index > 0 && (
                 <ButtonStyled
                   size="custom"
-                  SvgIcon={<IoIosRemoveCircle size={20} />}
+                  SvgIcon={<AiOutlineMinusCircle size={20} />}
                   onClick={() => remove(index)}
                 />
               )}
               {index === fields.length - 1 && (
                 <ButtonStyled
                   size="custom"
-                  SvgIcon={<IoIosAddCircle size={20} />}
+                  SvgIcon={<AiTwotonePlusCircle size={20} />}
                   onClick={() => append("")}
                 />
               )}

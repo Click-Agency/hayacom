@@ -28,7 +28,7 @@ const EditCard = () => {
   }, []);
 
   return (
-    <PageContainer paddingTop>
+    <PageContainer paddingTop className="background-bubbles">
       <Form cardData={cardData} />
     </PageContainer>
   );

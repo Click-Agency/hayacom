@@ -32,7 +32,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <PageContainer paddingTop>
+    <PageContainer paddingTop className="background-bubbles">
       {noUser ? (
         <SectionHeader title={t("profile.noProfile")} />
       ) : !user ? (

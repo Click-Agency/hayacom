@@ -3,7 +3,7 @@ import PageContainer from "../../../components/shared/containers/PageContainer";
 
 const CreateCard = () => {
   return (
-    <PageContainer paddingTop>
+    <PageContainer paddingTop className="background-bubbles">
       <Form />
     </PageContainer>
   );

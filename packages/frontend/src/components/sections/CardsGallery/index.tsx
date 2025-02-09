@@ -53,9 +53,7 @@ const CardsGallery = () => {
   return (
     <SectionContainer
       id="cards-gallery"
-      className={`
-        mt-5
-        background-bubbles`}
+      className={`mt-5`}
       wraperClassName="items-center mt-15 md:mt-28"
     >
       <SectionHeader

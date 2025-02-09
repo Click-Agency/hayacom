@@ -30,7 +30,7 @@ const EditPacakge = () => {
   }, []);
 
   return (
-    <PageContainer paddingTop>
+    <PageContainer paddingTop className="background-bubbles">
       <Form packageData={packageData} />
     </PageContainer>
   );

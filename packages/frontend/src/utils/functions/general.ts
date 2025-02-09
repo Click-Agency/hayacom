@@ -28,18 +28,22 @@ const isRouteFound = (
   {
     routes = [],
     dynamicRoutes = [],
+    includes = [],
     regExp = {
       pattern: `(?:/[^/?]+(?:\\?[^/]+)?)?$`,
     },
   }: {
     routes?: string[];
     dynamicRoutes?: string[];
+    includes?: string[];
     regExp?: { pattern?: RegExp | string; flags?: string };
   } = {}
 ) =>
   routes.some((route) => route === pathname) ||
-  dynamicRoutes.some((route) =>
-    new RegExp(`^${route}${regExp.pattern}`, regExp.flags).test(pathname)
+  dynamicRoutes.some(
+    (route) =>
+      new RegExp(`^${route}${regExp.pattern}`, regExp.flags).test(pathname) ||
+      includes.some((include) => pathname.includes(include))
   );
 
 export { trim, formatDate, addAttributesToReactNode, pascalCase, isRouteFound };

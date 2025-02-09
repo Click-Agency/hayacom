@@ -1,12 +1,11 @@
 import { Package } from "../../../../types/packages";
 import { useTranslation } from "react-i18next";
-import { formatDate, trim } from "../../../../utils/functions/general";
-import ButtonStyled from "../../../shared/ButtonStyled";
+import { trim } from "../../../../utils/functions/general";
 import useScrollInToView from "../../../../hooks/useScrollInToView";
-import { appRoutes } from "../../../../config";
 import { useDispatch } from "react-redux";
 import { showDialog } from "../../../../store/slices/deleteSlice";
 import { deletePackage } from "../../../../api/routes/packages";
+import TableRow from "./TableRow";
 
 const Table = ({ packages }: { packages?: Package[] }) => {
   const { t, i18n } = useTranslation(["admin"]);
@@ -29,230 +28,73 @@ const Table = ({ packages }: { packages?: Package[] }) => {
     t("packages.list.table.headers", { returnObjects: true })
   );
 
-  const arBodyArr = packages?.map(
-    ({ _id, nameAr, titleAr, itemsAr, createdAt }, i) => (
-      <tr key={i} className="text-center">
-        <td
-          className={trim(`
-            break-all
-            p-2
-            border-b
-            border-r
-            border-primary
-            max-w-40
-            min-w-20`)}
-        >
-          {_id}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary`)}
-        >
-          {nameAr}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary`)}
-        >
-          {titleAr}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary
-            min-w-96`)}
-        >
-          <ol className="list-decimal list-inside space-y-2 text-start">
-            {itemsAr.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ol>
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary
-            text-nowrap`)}
-        >
-          {formatDate(createdAt)}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary
-            space-y-2`)}
-        >
-          <ButtonStyled
-            ripple
-            size="sm"
-            href={`${appRoutes.editPackage}/${_id}`}
-            className={trim(`
-              w-full
-              rounded-xl
-              hover:scale-105
-              active:scale-95`)}
-            warning
-            title={t("packages.list.table.actions.edit")}
-          />
-          <ButtonStyled
-            onClick={() => onDeleteHandler(_id, nameAr)}
-            ripple
-            size="sm"
-            className={trim(`
-              w-full
-              rounded-xl
-              hover:scale-105
-              active:scale-95`)}
-            danger
-            title={t("packages.list.table.actions.delete")}
-          />
-        </td>
-      </tr>
-    )
-  );
-
-  const enBodyArr = packages?.map(
-    ({ _id, nameEn, titleEn, itemsEn, createdAt }, i) => (
-      <tr key={i} className="text-center">
-        <td
-          className={trim(`
-            break-all
-            p-2
-            border-b
-            border-r
-            border-primary
-            max-w-40
-            min-w-20`)}
-        >
-          {_id}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary`)}
-        >
-          {nameEn}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary`)}
-        >
-          {titleEn}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary
-            min-w-96`)}
-        >
-          <ol className="list-decimal list-inside space-y-2 text-start">
-            {itemsEn.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ol>
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary
-            text-nowrap`)}
-        >
-          {formatDate(createdAt)}
-        </td>
-        <td
-          className={trim(`
-            p-2
-            border-b
-            border-r
-            border-primary
-            space-y-2`)}
-        >
-          <ButtonStyled
-            ripple
-            size="sm"
-            href={`${appRoutes.editPackage}/${_id}`}
-            className={trim(`
-              w-full
-              rounded-xl
-              hover:scale-105
-              active:scale-95`)}
-            warning
-            title={t("packages.list.table.actions.edit")}
-          />
-          <ButtonStyled
-            onClick={() => onDeleteHandler(_id, nameEn)}
-            ripple
-            size="sm"
-            className={trim(`
-              w-full
-              rounded-xl
-              hover:scale-105
-              active:scale-95`)}
-            danger
-            title={t("packages.list.table.actions.delete")}
-          />
-        </td>
-      </tr>
-    )
-  );
-
   return (
     <div className="!overflow-x-auto w-full">
       <table
         ref={targetRef}
         className={trim(`
           w-full 
-          text-center 
-          border-collapse 
-          border 
-          border-primary 
+          text-center
           rounded-xl
-          text-primary 
           font-medium
           transition-all
           duration-500
           ease-in-out
+          border-separate 
+          border-spacing-0
           ${isInView ? "opacity-100" : "opacity-0"}`)}
       >
-        <thead>
-          <tr>
+        <thead className="">
+          <tr className="text-primary bg-[#A39FA04D]">
             {headers.map((header, i) => (
               <th
                 key={i}
                 className={trim(`
                   p-4
-                  border
-                  border-primary
-                  bg-primary
-                  text-background-primary`)}
+                  ${i === 0 ? (i18n.dir() === "ltr" ? "rounded-l-full" : "rounded-r-full") : ""}
+                  ${i === headers.length - 1 ? (i18n.dir() === "ltr" ? "rounded-r-full" : "rounded-l-full") : ""}`)}
+                rowSpan={i} // Adjust the rowSpan value as needed
               >
                 {header}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>{i18n.language === "ar" ? arBodyArr : enBodyArr}</tbody>
+        <tbody className="text-gray-500">
+          {i18n.language === "ar"
+            ? packages?.map(
+                ({ _id, nameAr, titleAr, itemsAr, createdAt }, i) => (
+                  <TableRow
+                    key={i}
+                    _id={_id}
+                    name={nameAr}
+                    title={titleAr}
+                    items={itemsAr}
+                    createdAt={createdAt}
+                    packages={packages}
+                    onDeleteHandler={onDeleteHandler}
+                    i={i}
+                    dir="rtl"
+                  />
+                )
+              )
+            : packages?.map(
+                ({ _id, nameEn, titleEn, itemsEn, createdAt }, i) => (
+                  <TableRow
+                    key={i}
+                    _id={_id}
+                    name={nameEn}
+                    title={titleEn}
+                    items={itemsEn}
+                    createdAt={createdAt}
+                    packages={packages}
+                    onDeleteHandler={onDeleteHandler}
+                    i={i}
+                    dir="ltr"
+                  />
+                )
+              )}
+        </tbody>
       </table>
     </div>
   );

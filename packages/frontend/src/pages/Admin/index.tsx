@@ -5,7 +5,7 @@ import PageContainer from "../../components/shared/containers/PageContainer";
 
 export default function Admin() {
   return (
-    <PageContainer paddingTop>
+    <PageContainer paddingTop className="background-bubbles">
       <ListPackages />
       <ListCards />
       <DeleteDialog />

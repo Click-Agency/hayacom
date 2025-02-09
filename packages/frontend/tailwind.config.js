@@ -48,7 +48,7 @@ export default {
         "gradient-t-dark":
           "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 100%)",
 
-        "sheet-paper": "url('assets/imgs/sheet-paper.png')",
+        "sheet-paper": "url('/public/assets/imgs/sheet-paper.png')",
       },
       boxShadow: {
         "custom-glow":
@@ -85,6 +85,17 @@ export default {
       },
       wordBreak: {
         "break-all": "break-all",
+      },
+      boxShadow: {
+        r: "7px 0px 7px -5px rgba(0, 0, 0, .2)",
+        l: "-17px 0px 7px -5px rgba(0, 0, 0, .2)",
+        t: "0px -7px 7px -5px rgba(0, 0, 0, .2)",
+        b: "0px 7px 7px -5px rgba(0, 0, 0, .2)",
+
+        tr: "7px -7px 7px -5px rgba(0, 0, 0, .2)",
+        tl: "-7px -7px 7px -5px rgba(0, 0, 0, .2)",
+        br: "7px 7px 7px -5px rgba(0, 0, 0, .2)",
+        bl: "-7px 7px 7px -5px rgba(0, 0, 0, .2)",
       },
     },
   },

@@ -45,7 +45,7 @@ const Body = ({
           className={trim(`
             grid
             grid-cols-1
-            md:grid-cols-2
+            sm:grid-cols-2
             gap-4
             p-4
             text-responsive-xs

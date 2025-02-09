@@ -69,6 +69,7 @@ const Footer = () => {
         ${
           isRouteFound(pathname, {
             dynamicRoutes: [appRoutes.auth.path],
+            includes: [appRoutes.admin],
           })
             ? "hidden"
             : "flex"

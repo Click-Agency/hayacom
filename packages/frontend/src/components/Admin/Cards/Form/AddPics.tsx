@@ -2,8 +2,9 @@ import { Controller, useFieldArray } from "react-hook-form";
 import { trim } from "../../../../utils/functions/general";
 import { useTranslation } from "react-i18next";
 import ButtonStyled from "../../../shared/ButtonStyled";
-import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
-import noImg from "../../../../assets/imgs/no-image.png";
+import { AiOutlineMinusCircle, AiTwotonePlusCircle } from "react-icons/ai";
+import noImgAr from "../../../../assets/imgs/no-img-ar.png";
+import noImgEn from "../../../../assets/imgs/no-img-en.png";
 import { ChangeEvent, useEffect, useState } from "react";
 
 const AddPics = ({
@@ -19,7 +20,7 @@ const AddPics = ({
   target: string;
   defaultValues?: string[];
 }) => {
-  const { t } = useTranslation(["admin"]);
+  const { t, i18n } = useTranslation(["admin"]);
   const { fields, append, remove } = useFieldArray({
     control,
     name: target,
@@ -69,10 +70,13 @@ const AddPics = ({
           >
             {i === 0 ? t("cards.images.main") : t("cards.images.gallery")}
           </h3>
-          <div className="relative w-full my-auto">
+          <div className="relative w-full my-auto bg-gray-100">
             <img
-              className="w-full max-h-52 object-cover"
-              src={(images[i] as string) || noImg}
+              className="w-full max-h-52 object-cover "
+              src={
+                (images[i] as string) ||
+                (i18n.language === "en" ? noImgEn : noImgAr)
+              }
               defaultValue={defaultValues[i]}
               alt="uploaded-img"
             />
@@ -112,7 +116,7 @@ const AddPics = ({
             {i > 0 && (
               <ButtonStyled
                 size="custom"
-                SvgIcon={<IoIosRemoveCircle size={20} />}
+                SvgIcon={<AiOutlineMinusCircle size={20} />}
                 onClick={() => {
                   remove(i);
                   setImages((prev) => prev.filter((_, index) => index !== i));
@@ -122,7 +126,7 @@ const AddPics = ({
             {i === fields.length - 1 && (
               <ButtonStyled
                 size="custom"
-                SvgIcon={<IoIosAddCircle size={20} />}
+                SvgIcon={<AiTwotonePlusCircle size={20}  />}
                 onClick={() => append("")}
               />
             )}
