@@ -46,7 +46,8 @@
         "The number of supervisors is determined based on the number of guests, with the option to request additional supervisors for an extra fee.",
         "There may be additional fees for the supervisory team depending on the event location, and you will be informed of any fees before confirming the booking.",
         "Prices are based on the number of guests, not the number of invitations sent.",
-        "Terms and conditions apply."
+        "Terms and conditions apply.",
+        "Comparison between packages."
       ]
     }
   },
@@ -117,14 +118,7 @@
         ],
         ["Send from Hayak number", "false", "false", "false", "true"],
         [
-          "Send automated reminders and thank you messages",
-          "false",
-          "false",
-          "false",
-          "true"
-        ],
-        [
-          "Yes, a welcome message upon guest entry",
+          "Send automated reminders and thank you messages, A welcome message upon guest entry",
           "false",
           "false",
           "false",

@@ -37,7 +37,6 @@ const Comparisons = () => {
           ${isInView ? "opacity-100" : "opacity-0"}`)}
       >
         <table
-          dir="ltr"
           className={trim(`
             w-full
             text-responsive-2md
