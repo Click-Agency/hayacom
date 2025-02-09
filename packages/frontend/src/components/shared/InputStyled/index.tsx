@@ -86,6 +86,7 @@ const InputStyled = forwardRef(
           error={error}
           id={id}
           svgIcon={svgIcon}
+          iconLeft={iconLeft}
           tagSize={tagSize}
           transparent={transparent}
           customInputElement={customInputElement}

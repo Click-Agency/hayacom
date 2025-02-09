@@ -35,7 +35,7 @@ const Form = () => {
 
   const onSubmitHandler: SubmitHandler<Login> = async (data) => {
     try {
-      setIsLoading(() => false);
+      setIsLoading(() => true);
 
       const res = await login(data);
 

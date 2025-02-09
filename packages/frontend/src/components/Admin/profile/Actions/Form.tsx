@@ -55,7 +55,7 @@ const reducer = (
 };
 
 const Form = ({ user }: { user: UserDetails }) => {
-  const { t } = useTranslation(["admin", "auth", "common"]);
+  const { t, i18n } = useTranslation(["admin", "auth", "common"]);
   const [isLoading, setIsLoading] = useState(false);
   const [noData, setNoData] = useState(false);
   const dispatch = useDispatch();
@@ -177,6 +177,7 @@ const Form = ({ user }: { user: UserDetails }) => {
           placeholder={t("register.password.placeholder", { ns: "auth" })}
           className="rounded-sm"
           tagSize="sm"
+          iconLeft={i18n.dir() === "rtl"}
           svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
           svgIcon={
             state.passwordType === "password" ? (
@@ -212,6 +213,7 @@ const Form = ({ user }: { user: UserDetails }) => {
           className="rounded-sm"
           tagSize="sm"
           svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+          iconLeft={i18n.dir() === "rtl"}
           svgIcon={
             state.newPasswordType === "password" ? (
               <FaEyeSlash
@@ -248,6 +250,7 @@ const Form = ({ user }: { user: UserDetails }) => {
           className="rounded-sm"
           tagSize="sm"
           svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+          iconLeft={i18n.dir() === "rtl"}
           svgIcon={
             state.confirmPasswordType === "password" ? (
               <FaEyeSlash

@@ -42,7 +42,7 @@ const reducer = (
 };
 
 const Form = () => {
-  const { t } = useTranslation(["auth", "common"]);
+  const { t, i18n } = useTranslation(["auth", "common"]);
   const [state, dispatchReducer] = useReducer(reducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
   const push = useNavigate();
@@ -60,8 +60,10 @@ const Form = () => {
   const onSubmitHandler: SubmitHandler<Register> = async (data) => {
     try {
       setIsLoading(() => true);
+
       data.role = "user";
       delete data.confirmPassword;
+
       await registerAPI(data);
       setIsLoading(() => false);
       reset();
@@ -128,6 +130,7 @@ const Form = () => {
         placeholder={t("register.password.placeholder")}
         className="rounded-sm"
         tagSize="sm"
+        iconLeft={i18n.dir() === "rtl"}
         svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
         svgIcon={
           state.passwordType === "password" ? (
@@ -162,6 +165,7 @@ const Form = () => {
         className="rounded-sm"
         tagSize="sm"
         svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
+        iconLeft={i18n.dir() === "rtl"}
         svgIcon={
           state.confirmPasswordType === "password" ? (
             <FaEyeSlash

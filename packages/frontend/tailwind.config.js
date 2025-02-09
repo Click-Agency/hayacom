@@ -48,7 +48,7 @@ export default {
         "gradient-t-dark":
           "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 100%)",
 
-        "sheet-paper": "url('/public/assets/imgs/sheet-paper.png')",
+        "sheet-paper": "url('/assets/imgs/sheet-paper.png')",
       },
       boxShadow: {
         "custom-glow":
