@@ -47,6 +47,7 @@
 
 .errorTag {
   border-color: var(--roseColor);
+  border: 1px solid var(--roseColor);
 }
 
 .errorTag:focus {
