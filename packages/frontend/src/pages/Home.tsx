@@ -4,6 +4,7 @@ import ContactBanner from "../components/sections/ContactBanner";
 import HomeHero from "../components/sections/HomeHero";
 import Packages from "../components/sections/Packages";
 import PageContainer from "../components/shared/containers/PageContainer";
+import DownloadApp from "../components/sections/DownloadApp";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Comparisons />
       <ContactBanner />
       <Designs />
+      <DownloadApp />
     </PageContainer>
   );
 }

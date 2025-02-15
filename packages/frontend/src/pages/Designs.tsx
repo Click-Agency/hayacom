@@ -1,4 +1,5 @@
 import CardsGallery from "../components/sections/CardsGallery";
+import DownloadApp from "../components/sections/DownloadApp";
 import PageContainer from "../components/shared/containers/PageContainer";
 
 export default function Designs() {
@@ -6,6 +7,7 @@ export default function Designs() {
     <PageContainer paddingTop className="background-bubbles">
       {/* <DesignsHero /> */}
       <CardsGallery />
+      <DownloadApp />
     </PageContainer>
   );
 }
