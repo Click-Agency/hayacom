@@ -6,6 +6,7 @@ import googlePlay from "../../assets/imgs/google-play.png";
 import appStore from "../../assets/imgs/app-store.png";
 import info from "../../../config/info";
 import ButtonImg from "./ButtonImg";
+import { trim } from "../../../utils/functions/general";
 
 const DownloadApp = () => {
   const { t } = useTranslation(["home"]);
@@ -25,7 +26,7 @@ const DownloadApp = () => {
 
       <div
         ref={targetRef}
-        className={` 
+        className={trim(` 
           flex
           flex-col
           md:flex-row 
@@ -36,7 +37,7 @@ const DownloadApp = () => {
           transition-all
           duration-500
           ease-in-out
-          ${isInView ? "opacity-100" : "opacity-0"}`}
+          ${isInView ? "opacity-100" : "opacity-0"}`)}
       >
         <ButtonImg
           src={googlePlay}
