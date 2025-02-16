@@ -50,12 +50,13 @@ const HomeHero = () => {
           title={t("hero.title")}
           className={`
             !text-start
-            text-responsive-md
+            text-responsive-2md
             transition-all
             duration-500
             delay-300
             ease-in-out
-            !text-gray-500
+            font-[400]
+            !text-black
             ${isInView ? "opacity-100" : "opacity-0"}
             ${isInView ? "translate-y-0" : "translate-y-10"}`}
         />

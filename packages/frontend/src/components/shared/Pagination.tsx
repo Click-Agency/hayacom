@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import { PaginateMeta } from "../../types/response";
 import ButtonStyled from "./ButtonStyled";
-import { useTranslation } from "react-i18next";
 import usePagination, { DOTS } from "../../hooks/usePagination";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 const Pagination = ({
   meta,
@@ -16,8 +16,6 @@ const Pagination = ({
   >;
   meta: PaginateMeta;
 }) => {
-  const { t } = useTranslation(["common"]);
-
   const paginationRange = usePagination({
     totalCount: meta.itemCount,
     pageSize: meta.limit,
@@ -42,18 +40,18 @@ const Pagination = ({
   };
 
   return (
-    <ul className="flex justify-center items-center gap-4 mt-4">
+    <ul className="flex justify-center items-center gap-6 mt-4">
       <li>
         <ButtonStyled
           size="custom"
-          title={t("previous")}
+          SvgIcon={<FaChevronLeft />}
           onClick={() => onPrevious()}
           className={`${!meta?.hasPreviousPage ? "!text-gray-500" : ""}`}
           disabled={!meta?.hasPreviousPage}
         />
       </li>
 
-      <li>
+      <li className="flex items-center gap-4">
         {paginationRange.map((pageNumber, i) => {
           if (pageNumber === DOTS) {
             return <span key={i}>&#8230;</span>;
@@ -65,7 +63,7 @@ const Pagination = ({
               key={i}
               title={`${pageNumber}`}
               className={`
-                ${meta.page === pageNumber ? "bg-primary text-white" : ""}
+                ${meta.page === pageNumber ? "bg-[#D9D9D9] text-primary" : "!text-gray-500"}
                 rounded-full
                 py-2
                 px-4
@@ -81,7 +79,7 @@ const Pagination = ({
       <li>
         <ButtonStyled
           size="custom"
-          title={t("next")}
+          SvgIcon={<FaChevronRight />}
           onClick={() => onNext()}
           className={`${!meta?.hasNextPage ? "!text-gray-500" : ""}`}
           disabled={!meta?.hasNextPage}

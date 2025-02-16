@@ -18,7 +18,7 @@ export default {
         ...defaultTheme.screens,
       },
       colors: {
-        primary: "#730F20",
+        primary: "#751813",
         secondary: "#FDE7D9",
         "background-primary": "#F9D3C8",
         "background-secondary": "#FFEEE1",

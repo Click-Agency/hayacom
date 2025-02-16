@@ -2,6 +2,7 @@ import { Dispatch, HTMLAttributes, SetStateAction } from "react";
 import { trim } from "../../utils/functions/general";
 import { useTranslation } from "react-i18next";
 import useScrollInToView from "../../hooks/useScrollInToView";
+import { LuEye } from "react-icons/lu";
 
 const GalleryCard = ({
   images,
@@ -40,9 +41,13 @@ const GalleryCard = ({
         duration-500
         ease-in-out
         w-full
+        md:min-w-[300px]
         max-w-sm
-        h-[98%]
+        h-full
         box-border
+        group
+        md:min-h-[550px]
+        ${setOpenGallery ? "cursor-pointer" : ""}
         ${isInView ? "opacity-100" : "opacity-0"}`)}
       {...attributes}
     >
@@ -56,22 +61,28 @@ const GalleryCard = ({
             rounded-lg
             transition-transform
             h-full
-            ${setOpenGallery ? "cursor-pointer hover:scale-105" : ""}`)}
+            ${setOpenGallery ? "group-hover:scale-105" : ""}`)}
           onClick={() => setOpenGallery && setOpenGallery(() => true)}
         />
       </div>
-      <h2
+      <div
         className={trim(`
+          flex
+          justify-between
+          items-center
           text-primary
           text-responsive-2sm
           transition-[opacity,transform]
           duration-500
           ease-in-out
           delay-500
+          font-semibold
           ${isInView ? "opacity-100" : "opacity-0"}`)}
       >
-        {langAr ? customIdAr : customIdEn}
-      </h2>
+        <h2>{langAr ? customIdAr : customIdEn}</h2>
+
+        {setOpenGallery && <LuEye />}
+      </div>
     </Tag>
   );
 };

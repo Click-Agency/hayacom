@@ -59,7 +59,7 @@ const Table = ({ cards }: { cards?: Card[] }) => {
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-gray-500">
           {i18n.language === "ar"
             ? cards?.map(({ _id, customIdAr, createdAt, images }, i) => (
                 <TableRow
