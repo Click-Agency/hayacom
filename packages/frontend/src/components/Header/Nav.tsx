@@ -279,7 +279,7 @@ const Nav = () => {
         ChangeLanguageBtn={
           <ButtonStyled
             className={trim(`
-              !text-primary 
+              !text-white 
               text-responsive-2xs 
               hover:!text-body-primary`)}
             size="custom"

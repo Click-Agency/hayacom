@@ -9,8 +9,8 @@ import { Session } from "../../types/user";
 
 const tailWindClasses = {
   aside: {
-    width: "w-2/3",
-    bg: "bg-background-primary",
+    width: "w-full",
+    bg: "bg-black/90",
     darkBg: null,
   },
   backDrop: {
@@ -95,7 +95,7 @@ const Drawer = ({
       >
         <ButtonStyled
           className={trim(`
-            !text-primary 
+            !text-white 
             self-start 
             ${lang === "ar" ? "-scale-x-100" : ""}`)}
           size="xs"
@@ -122,7 +122,7 @@ const Drawer = ({
               return;
 
             return (
-              <li key={i}>
+              <li key={i} className="w-full flex flex-col items-center">
                 <ButtonStyled
                   onClick={() => {
                     if (typeof link === "string") {
@@ -132,18 +132,19 @@ const Drawer = ({
                     }
                   }}
                   className={trim(`
-                  !text-primary
+                  !text-white
                   font-medium
+                  m-auto
                   ${
                     activePath === link
-                      ? `underline underline-offset-4
-                       decoration-body-primary decoration-4`
+                      ? `!text-background-primary`
                       : ""
                   }`)}
                   size="md"
                   title={name}
                   animatedUnderline={activePath !== link}
                 />
+                <hr className="w-3/4 h-0.2 bg-white" />
               </li>
             );
           })}
@@ -160,7 +161,7 @@ const Drawer = ({
           min-h-screen
           h-full
           ${backDrop.bg || ""}
-          ${showComponent ? "opacity-70" : "opacity-0"}`)}
+          ${showComponent ? "opacity-100" : "opacity-0"}`)}
         onClick={handleClose}
       ></div>
     </div>
