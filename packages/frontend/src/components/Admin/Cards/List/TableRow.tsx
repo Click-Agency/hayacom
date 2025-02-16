@@ -182,7 +182,7 @@ const TableRow = ({
             }`)}
       >
         <ButtonStyled
-          onClick={() => onDeleteHandler(_id, name)}
+          onClick={() => onDeleteHandler(_id, customId)}
           size="custom"
           className={`
               hover:text-red-500
