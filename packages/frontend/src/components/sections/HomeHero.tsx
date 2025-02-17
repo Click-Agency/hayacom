@@ -55,7 +55,7 @@ const HomeHero = () => {
             duration-500
             delay-300
             ease-in-out
-            font-[400]
+            !font-[400]
             !text-black
             ${isInView ? "opacity-100" : "opacity-0"}
             ${isInView ? "translate-y-0" : "translate-y-10"}`}
