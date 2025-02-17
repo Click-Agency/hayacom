@@ -21,7 +21,7 @@ const Body = ({
         gap-4
         px-4
         rounded-lg
-        shadow-2xl`)}
+      `)}
     >
       <SectionHeader
         tag="h2"

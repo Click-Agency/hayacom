@@ -4,7 +4,7 @@ import PageContainer from "../components/shared/containers/PageContainer";
 
 export default function Designs() {
   return (
-    <PageContainer paddingTop className="background-bubbles">
+    <PageContainer className="background-bubbles">
       {/* <DesignsHero /> */}
       <CardsGallery />
       <DownloadApp />

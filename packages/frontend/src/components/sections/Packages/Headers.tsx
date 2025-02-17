@@ -34,7 +34,6 @@ const Headers = ({
             font-semibold
             rounded-full
             ${i === packgeIndex ? "bg-primary text-secondary" : "!text-gray-500"}`}
-          hover={i !== packgeIndex}
           size="sm"
           key={i}
           title={langAr ? nameAr : nameEn}

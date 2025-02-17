@@ -166,11 +166,11 @@ const DeleteDialog = ({
       <div
         ref={childRef}
         className={trim(`
-          bg-background-secondary
+          bg-white
           text-body-primary
           !rounded-xl
-          border
-          border-primary`)}
+          border-2
+          border-[#A39FA06B]`)}
       >
         <div className="px-7 py-4 flex flex-col gap-5">
           <h1 className="text-responsive-md font-bold">

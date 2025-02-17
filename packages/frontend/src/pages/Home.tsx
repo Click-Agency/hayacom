@@ -8,7 +8,7 @@ import DownloadApp from "../components/sections/DownloadApp";
 
 export default function Home() {
   return (
-    <PageContainer paddingTop className="background-bubbles">
+    <PageContainer className="background-bubbles">
       <HomeHero />
       <Packages />
       <Comparisons />

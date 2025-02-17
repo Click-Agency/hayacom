@@ -40,7 +40,7 @@ const Pagination = ({
   };
 
   return (
-    <ul className="flex justify-center items-center gap-6 mt-4">
+    <ul className="flex justify-center items-center gap-6 mt-8">
       <li>
         <ButtonStyled
           size="custom"

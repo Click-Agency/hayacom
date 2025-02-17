@@ -9,11 +9,10 @@ const Footer = ({
 }) => (
   <div
     className={trim(`
-      bg-background-secondary
+      bg-[#A39FA01A]
       p-4
       md:px-28
-      rounded-b-lg
-      shadow-2xl`)}
+      rounded-b-lg`)}
   >
     <h3
       className={trim(`

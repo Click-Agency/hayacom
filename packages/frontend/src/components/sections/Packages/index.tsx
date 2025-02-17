@@ -76,12 +76,12 @@ const Packages = () => {
               flex
               flex-col
               mt-10
-              rounded-lg
+              rounded-xl
               bg-white
-              shadow-lg
               transition-all
               duration-500
               ease-in-out
+              shadow-2xl
               ${isInView && packages.length ? "opacity-100" : "opacity-0"}`)}
           >
             <div
@@ -97,12 +97,12 @@ const Packages = () => {
                 langAr={langAr}
                 packgeIndex={packgeIndex}
               />
-            </div>
 
-            <Footer
-              title={t("packages.footer.title")}
-              footerList={footerList}
-            />
+              <Footer
+                title={t("packages.footer.title")}
+                footerList={footerList}
+              />
+            </div>
           </div>
         </>
       )}
