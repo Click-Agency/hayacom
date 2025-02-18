@@ -139,6 +139,43 @@ const Nav = () => {
         px-5
         w-full`)}
     >
+      <div className="flex flex-1 items-center gap-3 md:hidden">
+        <ButtonStyled
+          className={`
+            !text-gray-500
+            hover:!text-body-primary
+            ${i18n.dir() === "ltr" ? "-scale-x-100" : ""} md:!hidden 
+            ${!session?._id ? "!md:!inline-flex" : ""}`}
+          size="custom"
+          onClick={() => setOpenDrawer((prev) => !prev)}
+          SvgIcon={<MdMenuOpen size={30} />}
+        />
+
+        <hr className="h-6 w-0.5 bg-gray-500 md:hidden" />
+        <ButtonStyled
+          className={trim(`
+            !text-gray-500
+            md:!hidden
+            text-responsive-2xs
+            active:!text-body-primary
+            animate-appear`)}
+          size="custom"
+          title={t("nav.lang")}
+          onClick={() => {
+            changeLanguage(i18n.language === "en" ? "ar" : "en");
+            setOpenDrawer(() => false);
+          }}
+        />
+        <hr
+          className={`h-6 w-0.5 bg-gray-500 ${session?._id ? "inline-flex md:hidden" : "hidden"}`}
+        />
+
+        <Profile
+          session={session}
+          className={`${session?._id ? "inline-flex md:hidden" : "hidden"}`}
+        />
+      </div>
+
       <Profile
         session={session}
         className={`${session?._id ? "md:inline-flex hidden" : "hidden"}`}
@@ -217,42 +254,32 @@ const Nav = () => {
           .reverse()}
       </ul>
 
-      <div className={`${!session?._id ? "flex-1" : "md:flex-initial flex-1"}`}>
-        <Logo
-          onClick={() => onClickHandler(appRoutes.home)}
-          className="cursor-pointer w-40 md:w-52 max-w-12 md:max-w-[80px] block"
-        />
-      </div>
+      <Logo
+        onClick={() => onClickHandler(appRoutes.home)}
+        className={`cursor-pointer w-40 md:w-52 max-w-16 md:max-w-[80px] block ${!session?._id ? "flex-1" : "flex-1"}`}
+      />
 
-      <div className="flex items-center gap-3 md:gap-7">
+      <div
+        className={`justify-end flex-1 ${!session?._id ? "flex" : "hidden"}`}
+      >
         <ButtonStyled
           className={`
             rounded-full
             hover:!scale-105 
-            active:!scale-95 
-            !hidden 
+            active:!scale-95
             animate-appear
-            ${!session?._id ? "md:!inline-flex" : ""}`}
+            px-3
+            py-1.5
+            md:px-4
+            md:py-2
+            text-responsive-3xs
+            md:text-responsive-xs`}
           ripple
           href="tel:1234567890"
           bg
-          size="sm"
-          title={t("nav.contact")}
-          SvgIcon={<FaPhone color="#FFEEE1" size={15} />}
-        />
-
-        <Profile
-          session={session}
-          className={`${session?._id ? "inline-flex md:hidden" : "hidden"}`}
-        />
-
-        <ButtonStyled
-          className={`
-            ${i18n.dir() === "rtl" ? "-scale-x-100" : ""} md:!hidden 
-            ${!session?._id ? "!md:!inline-flex" : ""}`}
           size="custom"
-          onClick={() => setOpenDrawer((prev) => !prev)}
-          SvgIcon={<MdMenuOpen color="#730F20" size={30} />}
+          title={t("nav.contact")}
+          SvgIcon={<FaPhone color="#FFEEE1" className="md:w-4 md:h-4 w-3 h-3"/>}
         />
       </div>
 
@@ -262,34 +289,34 @@ const Nav = () => {
         lang={i18n.language}
         navArr={navArr}
         session={session}
-        SpecialBtn={
-          <ButtonStyled
-            ripple
-            className={`
-              rounded-full
-              ${session?._id ? "!hidden" : ""}`}
-            href="tel:1234567890"
-            bg
-            size="sm"
-            title={t("nav.contact")}
-            onClick={() => setOpenDrawer(() => false)}
-            SvgIcon={<FaPhone color="#FFEEE1" size={15} />}
-          />
-        }
-        ChangeLanguageBtn={
-          <ButtonStyled
-            className={trim(`
-              !text-white 
-              text-responsive-2xs 
-              hover:!text-body-primary`)}
-            size="custom"
-            title={t("nav.lang")}
-            onClick={() => {
-              changeLanguage(i18n.language === "en" ? "ar" : "en");
-              setOpenDrawer(() => false);
-            }}
-          />
-        }
+        // SpecialBtn={
+        //   <ButtonStyled
+        //     ripple
+        //     className={`
+        //       rounded-full
+        //       ${session?._id ? "!hidden" : ""}`}
+        //     href="tel:1234567890"
+        //     bg
+        //     size="sm"
+        //     title={t("nav.contact")}
+        //     onClick={() => setOpenDrawer(() => false)}
+        //     SvgIcon={<FaPhone color="#FFEEE1" size={15} />}
+        //   />
+        // }
+        // ChangeLanguageBtn={
+        //   <ButtonStyled
+        //     className={trim(`
+        //       !text-white
+        //       text-responsive-2xs
+        //       hover:!text-body-primary`)}
+        //     size="custom"
+        //     title={t("nav.lang")}
+        //     onClick={() => {
+        //       changeLanguage(i18n.language === "en" ? "ar" : "en");
+        //       setOpenDrawer(() => false);
+        //     }}
+        //   />
+        // }
       />
     </nav>
   );

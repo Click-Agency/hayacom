@@ -20,6 +20,8 @@ const HomeHero = () => {
         items-center 
         justify-between 
         gap-4
+        mt-10
+        md:mt-0
         md:min-h-screen
         md:-mt-20`}
     >

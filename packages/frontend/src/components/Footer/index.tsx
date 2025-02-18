@@ -10,6 +10,7 @@ import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa6";
 import Logo from "../shared/Logo";
 import { FaSnapchatGhost } from "react-icons/fa";
 import { appRoutes } from "../../config";
+import info from "../../config/info";
 
 const Footer = () => {
   // const { t } = useTranslation(["footer", "header", "common"]);
@@ -20,7 +21,7 @@ const Footer = () => {
   const socialIcons = [
     {
       Svg: <FaInstagram size={35} />,
-      link: "",
+      link: info.socials.instagram,
     },
     // {
     //   Svg: <FaXTwitter size={35} />,
@@ -32,11 +33,11 @@ const Footer = () => {
     },
     {
       Svg: <FaWhatsapp size={35} />,
-      link: "",
+      link: info.socials.whatsapp,
     },
     {
       Svg: <FaSnapchatGhost size={35} />,
-      link: "",
+      link: info.socials.snapchat,
     },
   ];
 

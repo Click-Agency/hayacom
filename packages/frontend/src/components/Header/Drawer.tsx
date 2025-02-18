@@ -82,9 +82,9 @@ const Drawer = ({
           ${aside.width || ""}
           ${aside.bg || ""}
           ${aside.darkBg || ""}
-          ${lang === "ar" ? "right-full" : "right-0"}
+          ${lang === "en" ? "right-full" : "right-0"}
           ${
-            lang === "ar"
+            lang === "en"
               ? showComponent
                 ? "translate-x-full"
                 : "-translate-x-0"
@@ -97,7 +97,7 @@ const Drawer = ({
           className={trim(`
             !text-white 
             self-start 
-            ${lang === "ar" ? "-scale-x-100" : ""}`)}
+            ${lang === "en" ? "-scale-x-100" : ""}`)}
           size="xs"
           onClick={handleClose}
           SvgIcon={<MdKeyboardArrowRight size={35} />}
