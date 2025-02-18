@@ -7,6 +7,7 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 const Pagination = ({
   meta,
   setQuery,
+  changeDir,
 }: {
   setQuery: Dispatch<
     SetStateAction<{
@@ -15,6 +16,7 @@ const Pagination = ({
     }>
   >;
   meta: PaginateMeta;
+  changeDir?: boolean;
 }) => {
   const paginationRange = usePagination({
     totalCount: meta.itemCount,
@@ -46,7 +48,9 @@ const Pagination = ({
           size="custom"
           SvgIcon={<FaChevronLeft />}
           onClick={() => onPrevious()}
-          className={`${!meta?.hasPreviousPage ? "!text-gray-500" : ""}`}
+          className={`
+            ${!meta?.hasPreviousPage ? "!text-gray-500" : ""}
+            ${changeDir ? "transform rotate-180" : ""}`}
           disabled={!meta?.hasPreviousPage}
         />
       </li>
@@ -81,7 +85,9 @@ const Pagination = ({
           size="custom"
           SvgIcon={<FaChevronRight />}
           onClick={() => onNext()}
-          className={`${!meta?.hasNextPage ? "!text-gray-500" : ""}`}
+          className={`
+            ${!meta?.hasNextPage ? "!text-gray-500" : ""}
+            ${changeDir ? "transform rotate-180" : ""}`}
           disabled={!meta?.hasNextPage}
         />
       </li>

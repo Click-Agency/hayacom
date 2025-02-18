@@ -85,6 +85,7 @@ const Form = () => {
         label={t("register.name.label")}
         placeholder={t("register.name.placeholder")}
         className="rounded-sm"
+        labelClassName="text-primary"
         tagSize="sm"
         {...register("name", {
           required: {
@@ -109,6 +110,7 @@ const Form = () => {
         label={t("register.email.label")}
         placeholder={t("register.email.placeholder")}
         className="rounded-sm"
+        labelClassName="text-primary"
         tagSize="sm"
         {...register("email", {
           required: {
@@ -129,6 +131,7 @@ const Form = () => {
         label={t("register.password.label")}
         placeholder={t("register.password.placeholder")}
         className="rounded-sm"
+        labelClassName="text-primary"
         tagSize="sm"
         iconLeft={i18n.dir() === "rtl"}
         svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
@@ -163,6 +166,7 @@ const Form = () => {
         label={t("register.confirmPassword.label")}
         placeholder={t("register.confirmPassword.placeholder")}
         className="rounded-sm"
+        labelClassName="text-primary"
         tagSize="sm"
         svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
         iconLeft={i18n.dir() === "rtl"}
@@ -234,7 +238,7 @@ const Form = () => {
       />
 
       <div className="flex gap-2 items-center justify-center text-responsive-xs mt-6 flex-wrap">
-        <h6>{t("register.changedMind")}</h6>
+        <h6 className="text-gray-500">{t("register.changedMind")}</h6>
         <ButtonStyled
           animatedUnderline
           size="custom"

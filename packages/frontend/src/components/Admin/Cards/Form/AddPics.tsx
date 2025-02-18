@@ -70,7 +70,7 @@ const AddPics = ({
           >
             {i === 0 ? t("cards.images.main") : t("cards.images.gallery")}
           </h3>
-          <div className="relative w-full my-auto bg-gray-100">
+          <div className="relative w-full my-auto bg-[#D9D9D957]">
             <img
               className="w-full max-h-52 object-cover "
               src={

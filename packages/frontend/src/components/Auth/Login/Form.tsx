@@ -88,6 +88,7 @@ const Form = () => {
         label={t("login.email.label")}
         placeholder={t("login.email.placeholder")}
         className="rounded-sm"
+        labelClassName="text-primary"
         tagSize="sm"
         {...register("email", {
           required: {
@@ -108,6 +109,7 @@ const Form = () => {
         label={t("login.password.label")}
         placeholder={t("login.password.placeholder")}
         className="rounded-sm"
+        labelClassName="text-primary"
         tagSize="sm"
         svgIconClassName="cursor-pointer select-none text-gray-500 hover:text-gray-700"
         iconLeft={i18n.dir() === "rtl"}
@@ -170,7 +172,7 @@ const Form = () => {
       )}
 
       <div className="flex gap-2 items-center justify-center text-responsive-xs mt-6 flex-wrap">
-        <h6>{t("login.notStaff")}</h6>
+        <h6 className="text-gray-500">{t("login.notStaff")}</h6>
         <ButtonStyled
           animatedUnderline
           size="custom"

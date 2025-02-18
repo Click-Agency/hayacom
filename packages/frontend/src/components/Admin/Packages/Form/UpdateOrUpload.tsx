@@ -132,7 +132,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
 
         <div className="flex flex-col md:flex-row gap-4">
           <InputStyled
-            className="bg-gray-200"
+            className="bg-[#D9D9D957]"
             label={t("packages.name.label.en")}
             placeholder={t("packages.name.placeholder")}
             {...register("nameEn", {
@@ -153,7 +153,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
           />
 
           <InputStyled
-            className="bg-gray-200"
+            className="bg-[#D9D9D957]"
             label={t("packages.name.label.ar")}
             placeholder={t("packages.name.placeholder")}
             {...register("nameAr", {
@@ -176,7 +176,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
 
         <div className="flex flex-col md:flex-row gap-4">
           <InputStyled
-            className="bg-gray-200"
+            className="bg-[#D9D9D957]"
             label={t("packages.title.label.en")}
             placeholder={t("packages.title.placeholder")}
             {...register("titleEn", {
@@ -197,7 +197,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
           />
 
           <InputStyled
-            className="bg-gray-200"
+            className="bg-[#D9D9D957]"
             label={t("packages.title.label.ar")}
             placeholder={t("packages.title.placeholder")}
             {...register("titleAr", {

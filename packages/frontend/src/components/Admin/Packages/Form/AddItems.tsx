@@ -52,7 +52,7 @@ const AddItems = ({
               flex
               items-center
               gap-4
-              bg-gray-200
+              bg-[#D9D9D957]
               rounded-lg
               p-2`)}
           >

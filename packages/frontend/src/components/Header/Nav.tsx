@@ -10,13 +10,13 @@ import { useContext } from "react";
 import DrawerContext from "../../context/drawer.context";
 import Logo from "../shared/Logo";
 import useActivation from "../../hooks/useActivation";
-import { FaPhone } from "react-icons/fa";
 import Profile from "./Profile";
 import useSession from "../../hooks/useSession";
 import { TbPackages, TbGitCompare } from "react-icons/tb";
 import { GiCardJoker } from "react-icons/gi";
 import { FaUsers } from "react-icons/fa";
 import { GrGallery } from "react-icons/gr";
+import info from "../../config/info";
 
 const Nav = () => {
   const { t, i18n } = useTranslation("header");
@@ -152,6 +152,7 @@ const Nav = () => {
         />
 
         <hr className="h-6 w-0.5 bg-gray-500 md:hidden" />
+
         <ButtonStyled
           className={trim(`
             !text-gray-500
@@ -166,8 +167,13 @@ const Nav = () => {
             setOpenDrawer(() => false);
           }}
         />
+
         <hr
-          className={`h-6 w-0.5 bg-gray-500 ${session?._id ? "inline-flex md:hidden" : "hidden"}`}
+          className={trim(`
+            h-6
+            w-0.5
+            bg-gray-500
+            ${session?._id ? "inline-flex md:hidden" : "hidden"}`)}
         />
 
         <Profile
@@ -197,7 +203,9 @@ const Nav = () => {
             changeLanguage(i18n.dir() === "ltr" ? "ar" : "en");
           }}
         />
+
         <hr className="h-6 w-0.5 bg-gray-500" />
+
         {navArr
           .map(({ name, link, type }, i) => {
             if (
@@ -256,7 +264,14 @@ const Nav = () => {
 
       <Logo
         onClick={() => onClickHandler(appRoutes.home)}
-        className={`cursor-pointer w-40 md:w-52 max-w-16 md:max-w-[80px] block ${!session?._id ? "flex-1" : "flex-1"}`}
+        className={`
+          cursor-pointer
+          w-40
+          md:w-52
+          max-w-16
+          md:max-w-[80px]
+          block
+          ${!session?._id ? "flex-1" : "flex-1"}`}
       />
 
       <div
@@ -275,11 +290,10 @@ const Nav = () => {
             text-responsive-3xs
             md:text-responsive-xs`}
           ripple
-          href="tel:1234567890"
+          href={`tel:${info.contact.phone}`}
           bg
           size="custom"
           title={t("nav.contact")}
-          SvgIcon={<FaPhone color="#FFEEE1" className="md:w-4 md:h-4 w-3 h-3"/>}
         />
       </div>
 

@@ -79,6 +79,7 @@ const AddVideo = forwardRef(
               border-2
               border-primary
               rounded-lg
+              w-full
               max-w-[300px]
               max-h-[300px]`)}
             controls

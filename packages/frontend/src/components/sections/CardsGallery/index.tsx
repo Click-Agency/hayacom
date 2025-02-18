@@ -102,7 +102,11 @@ const CardsGallery = () => {
       )}
 
       {!noCards && resposeCards?.data && (
-        <Pagination meta={resposeCards?.meta} setQuery={setQurey} />
+        <Pagination
+          meta={resposeCards?.meta}
+          setQuery={setQurey}
+          changeDir={i18n.dir() === "rtl"}
+        />
       )}
 
       {resposeCards?.data.length && (

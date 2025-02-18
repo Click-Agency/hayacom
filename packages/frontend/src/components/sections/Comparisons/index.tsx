@@ -29,8 +29,10 @@ const Comparisons = () => {
           w-full
           bg-[#F1E8E7]
           rounded-3xl
-          px-28
-          py-20
+          px-10
+          py-8
+          md:px-28
+          md:py-20
           transition-all
           duration-500
           ease-in-out

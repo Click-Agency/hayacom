@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import Pagination from "../../../shared/Pagination";
 
 const List = () => {
-  const { t } = useTranslation(["admin"]);
+  const { t, i18n } = useTranslation(["admin"]);
   const [responseData, setResponseData] = useState<{
     data: Package[];
     meta: PaginateMeta;
@@ -53,7 +53,11 @@ const List = () => {
       {isLoading ? <Loader /> : <Table packages={responseData?.data} />}
 
       {!isLoading && responseData?.data && (
-        <Pagination meta={responseData?.meta} setQuery={setQuery} />
+        <Pagination
+          meta={responseData?.meta}
+          setQuery={setQuery}
+          changeDir={i18n.dir() === "rtl"}
+        />
       )}
     </SectionContainer>
   );

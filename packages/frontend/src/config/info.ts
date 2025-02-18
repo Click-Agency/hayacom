@@ -11,6 +11,11 @@ const info = {
       "https://api.whatsapp.com/send/?phone=966920031473&text&type=phone_number&app_absent=0",
     snapchat: "https://www.snapchat.com/add/hayyacomapp",
   },
+
+  contact: {
+    email: "",
+    phone: "966920031473",
+  },
 };
 
 export default info;

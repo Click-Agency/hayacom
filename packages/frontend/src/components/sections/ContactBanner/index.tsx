@@ -4,6 +4,7 @@ import { trim } from "../../../utils/functions/general";
 import useScrollInToView from "../../../hooks/useScrollInToView";
 import handPhone from "../../../assets/imgs/hand-phone.png";
 import ButtonStyled from "../../shared/ButtonStyled";
+import info from "../../../config/info";
 
 // const storesArr = [
 //   {
@@ -113,9 +114,13 @@ const ContactBanner = () => {
               animate-appear
               md:w-[70%]
               lg:w-[50%]
-              w-full`}
+              w-full
+              max-w-[200px]
+              md:max-w-none
+              md:mb-0
+              mb-4`}
             ripple
-            href="tel:1234567890"
+            href={`tel:${info.contact.phone}`}
             bg
             title={t("contactUs", { ns: "common" })}
           />

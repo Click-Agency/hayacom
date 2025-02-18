@@ -105,7 +105,7 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
         <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col gap-4">
             <InputStyled
-              className="bg-gray-200"
+              className="bg-[#D9D9D957]"
               label={t("cards.customId.label.en")}
               placeholder={t("cards.customId.placeholder")}
               {...register("customIdEn", {
@@ -126,7 +126,7 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
             />
 
             <InputStyled
-              className="bg-gray-200"
+              className="bg-[#D9D9D957]"
               label={t("cards.customId.label.ar")}
               placeholder={t("cards.customId.placeholder")}
               {...register("customIdAr", {
