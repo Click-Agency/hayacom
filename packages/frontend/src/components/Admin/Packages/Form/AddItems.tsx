@@ -1,9 +1,13 @@
 import { useEffect } from "react";
-import { Controller, useFieldArray } from "react-hook-form";
+import {
+  Controller,
+  FieldValues,
+  RegisterOptions,
+  useFieldArray,
+} from "react-hook-form";
 import { trim } from "../../../../utils/functions/general";
 import InputStyled from "../../../shared/InputStyled";
 import ButtonStyled from "../../../shared/ButtonStyled";
-import { useTranslation } from "react-i18next";
 import { AiOutlineMinusCircle, AiTwotonePlusCircle } from "react-icons/ai";
 
 const AddItems = ({
@@ -11,21 +15,30 @@ const AddItems = ({
   control,
   errors,
   disabled,
+  placeholder,
   target,
   elemType,
   tagSize,
+  rules,
+  type = "text",
 }: {
   title?: string;
   control: any;
   errors: any;
+  placeholder?: string;
   disabled?: boolean;
   target: string;
   defaultValues?: string[];
+  rules:
+    | Omit<
+        RegisterOptions<FieldValues, `${string}.${number}`>,
+        "disabled" | "setValueAs" | "valueAsNumber" | "valueAsDate"
+      >
+    | undefined;
   elemType?: "input" | "textarea";
   tagSize?: "sm" | "xs" | "md" | "lg";
+  type?: "text" | "number";
 }) => {
-  const { t } = useTranslation(["admin", "common"]);
-
   const { fields, append, remove } = useFieldArray({
     control,
     name: target,
@@ -63,30 +76,16 @@ const AddItems = ({
               name={`${target}.${index}`}
               control={control}
               defaultValue=""
-              rules={{
-                required: {
-                  value: true,
-                  message: t("packages.items.errors.required"),
-                },
-
-                minLength: {
-                  value: 3,
-                  message: t("packages.items.errors.min"),
-                },
-
-                maxLength: {
-                  value: 500,
-                  message: t("packages.items.errors.max"),
-                },
-              }}
+              rules={rules}
               render={({ field }) => (
                 <InputStyled
+                  error={errors?.[target]?.[index]?.message}
                   elemType={elemType}
-                  placeholder={t("packages.items.placeholder")}
+                  placeholder={placeholder}
                   disabled={disabled}
                   tagSize={tagSize}
+                  type={type}
                   transparent
-                  type="text"
                   {...field}
                 />
               )}
@@ -108,16 +107,6 @@ const AddItems = ({
               )}
             </div>
           </div>
-          {errors?.[target]?.[index]?.message && (
-            <p
-              className={trim(`
-                text-rose-500 
-                font-semibold
-                text-center`)}
-            >
-              {errors?.[target]?.[index]?.message}
-            </p>
-          )}
         </div>
       ))}
       {errors?.[target]?.message && (

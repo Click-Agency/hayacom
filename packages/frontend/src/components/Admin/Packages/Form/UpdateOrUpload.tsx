@@ -13,6 +13,7 @@ import { createPackage, updatePackage } from "../../../../api/routes/packages";
 import toast from "react-hot-toast";
 import useSession from "../../../../hooks/useSession";
 import AddVideo from "./AddVideo";
+import AddPrices from "./AddPrices";
 
 const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +38,7 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
       titleAr: packageData?.titleAr,
       itemsEn: packageData?.itemsEn,
       itemsAr: packageData?.itemsAr,
+      prices: packageData?.prices,
       video: packageData?.video,
     });
   }, [packageData, reset]);
@@ -53,6 +55,10 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
       formData.append("titleAr", data.titleAr);
       formData.append("itemsEn", data.itemsEn.join("$/"));
       formData.append("itemsAr", data.itemsAr.join("$/"));
+      formData.append(
+        "prices",
+        data.prices.map((price) => JSON.stringify(price)).join("$/")
+      );
 
       if (data.video instanceof FileList) {
         formData.append("video", data.video[0]);
@@ -224,9 +230,26 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
             elemType="textarea"
             target="itemsEn"
             title={t("packages.items.label.en")}
+            placeholder={t("packages.items.placeholder")}
             control={control}
             errors={errors}
             disabled={isLoading}
+            rules={{
+              required: {
+                value: true,
+                message: t("packages.items.errors.required"),
+              },
+
+              minLength: {
+                value: 3,
+                message: t("packages.items.errors.min"),
+              },
+
+              maxLength: {
+                value: 500,
+                message: t("packages.items.errors.max"),
+              },
+            }}
           />
 
           <AddItems
@@ -234,11 +257,48 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
             elemType="textarea"
             target="itemsAr"
             title={t("packages.items.label.ar")}
+            placeholder={t("packages.items.placeholder")}
             control={control}
             errors={errors}
             disabled={isLoading}
+            rules={{
+              required: {
+                value: true,
+                message: t("packages.items.errors.required"),
+              },
+
+              minLength: {
+                value: 3,
+                message: t("packages.items.errors.min"),
+              },
+
+              maxLength: {
+                value: 500,
+                message: t("packages.items.errors.max"),
+              },
+            }}
           />
         </div>
+
+        <AddPrices
+          tagSize="xs"
+          target="prices"
+          title={t("packages.prices.label")}
+          control={control}
+          errors={errors}
+          disabled={isLoading}
+          rules={{
+            required: {
+              value: true,
+              message: t("packages.prices.errors.required"),
+            },
+
+            min: {
+              value: 0,
+              message: t("packages.prices.errors.min"),
+            },
+          }}
+        />
       </div>
 
       <ButtonStyled

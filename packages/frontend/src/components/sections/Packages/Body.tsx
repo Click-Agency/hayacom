@@ -76,7 +76,7 @@ const Body = ({
           src={packages[packgeIndex].video}
         />
       </div>
-      <Prices />
+      <Prices prices={packages[packgeIndex].prices} />
     </div>
   );
 };

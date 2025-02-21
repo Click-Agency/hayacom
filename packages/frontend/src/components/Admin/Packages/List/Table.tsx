@@ -63,13 +63,14 @@ const Table = ({ packages }: { packages?: Package[] }) => {
         <tbody className="text-gray-500">
           {i18n.language === "ar"
             ? packages?.map(
-                ({ _id, nameAr, titleAr, itemsAr, createdAt }, i) => (
+                ({ _id, nameAr, titleAr, itemsAr, createdAt, prices }, i) => (
                   <TableRow
                     key={i}
                     _id={_id}
                     name={nameAr}
                     title={titleAr}
                     items={itemsAr}
+                    prices={prices}
                     createdAt={createdAt}
                     packages={packages}
                     onDeleteHandler={onDeleteHandler}
@@ -79,7 +80,7 @@ const Table = ({ packages }: { packages?: Package[] }) => {
                 )
               )
             : packages?.map(
-                ({ _id, nameEn, titleEn, itemsEn, createdAt }, i) => (
+                ({ _id, nameEn, titleEn, itemsEn, createdAt, prices }, i) => (
                   <TableRow
                     key={i}
                     _id={_id}
@@ -87,6 +88,7 @@ const Table = ({ packages }: { packages?: Package[] }) => {
                     title={titleEn}
                     items={itemsEn}
                     createdAt={createdAt}
+                    prices={prices}
                     packages={packages}
                     onDeleteHandler={onDeleteHandler}
                     i={i}

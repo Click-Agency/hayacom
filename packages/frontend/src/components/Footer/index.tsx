@@ -58,7 +58,7 @@ const Footer = () => {
         flex-col 
         justify-center 
         items-center 
-        bg-background-tertiary/50
+        bg-gradient-background-light
         border-t
         border-primary
         gap-8

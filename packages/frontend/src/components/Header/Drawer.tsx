@@ -20,7 +20,6 @@ const tailWindClasses = {
 
 const Drawer = ({
   navArr,
-  activePath,
   ChangeLanguageBtn,
   SpecialBtn,
   lang,
@@ -134,15 +133,9 @@ const Drawer = ({
                   className={trim(`
                   !text-white
                   font-medium
-                  m-auto
-                  ${
-                    activePath === link
-                      ? `!text-background-primary`
-                      : ""
-                  }`)}
+                  m-auto`)}
                   size="md"
                   title={name}
-                  animatedUnderline={activePath !== link}
                 />
                 <hr className="w-3/4 h-0.2 bg-white" />
               </li>

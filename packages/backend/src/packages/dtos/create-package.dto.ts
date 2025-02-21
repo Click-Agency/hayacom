@@ -32,4 +32,9 @@ export class CreatePackageDto {
   @IsNotEmpty()
   @IsString()
   itemsAr: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(2)
+  prices: string;
 }

@@ -14,29 +14,7 @@
     "prices": {
       "title": "Prices",
       "guest": "Guest",
-      "currency": "SR",
-
-      "items": [
-        { "guest": 50, "price": 1138 },
-        {
-          "guest": 100,
-          "price": 157
-        },
-        { "guest": 150, "price": 2013 },
-        { "guest": 200, "price": 2205 },
-        {
-          "guest": 250,
-          "price": 3138
-        },
-        { "guest": 300, "price": 3575 },
-        { "guest": 350, "price": 4013 },
-        {
-          "guest": 400,
-          "price": 4250
-        },
-        { "guest": 450, "price": 4889 },
-        { "guest": 500, "price": 5575 }
-      ]
+      "currency": "SR"
     },
 
     "footer": {

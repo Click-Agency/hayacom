@@ -33,7 +33,7 @@
     before:h-[35%]
     md:before:w-[92%]
     md:before:h-[75%]
-    before:bg-[#FEE2CF]/50
+    before:bg-gradient-background
     before:rounded-br-[1000px]
     before:z-[-1]
     after:content-[""]
@@ -42,7 +42,7 @@
     after:right-0
     after:w-[80%]
     after:h-[40%]
-    md:after:w-[90%]
+    md:after:w-[85%]
     md:after:h-full
     after:bg-[#751813]/10
     after:rounded-bl-[1000px]

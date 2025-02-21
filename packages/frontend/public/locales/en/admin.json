@@ -82,6 +82,25 @@
       }
     },
 
+    "prices": {
+      "label": "Add Price List",
+
+      "options": {
+        "price": "Add Price",
+        "guests": "Add Guests"
+      },
+
+      "placeholder": {
+        "price": "Enter price",
+        "guests": "Enter guest"
+      },
+
+      "errors": {
+        "required": "Price and guests is required",
+        "min": "Price and guests must a positive number"
+      }
+    },
+
     "video": {
       "label": "Add Video",
       "btn": "Upload Video",
@@ -93,7 +112,15 @@
 
     "list": {
       "table": {
-        "headers": ["Id", "Name", "Title", "Items", "Created", "Actions"],
+        "headers": [
+          "Id",
+          "Name",
+          "Title",
+          "Items",
+          "Prices",
+          "Created",
+          "Actions"
+        ],
         "actions": {
           "edit": "Edit",
           "delete": "Delete"

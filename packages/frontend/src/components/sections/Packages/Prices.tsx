@@ -4,7 +4,7 @@ import peopleIcon from "../../../assets/svgs/people-icon.svg";
 import SectionHeader from "../../shared/SectionHeader";
 import { trim } from "../../../utils/functions/general";
 import { ReactNode } from "react";
-import { PriceCard } from "../../../types/cards";
+import { Package } from "../../../types/packages";
 
 const PricesBox = ({
   title,
@@ -58,11 +58,11 @@ const PriceRow = ({
   icon,
   dir,
 }: {
-  prices: PriceCard[];
+  prices: Package["prices"];
   title: string;
   icon: string;
   dir?: boolean;
-  target: "guest" | "price";
+  target: "guests" | "price";
 }) => (
   <div
     className={trim(`
@@ -107,12 +107,8 @@ const PriceRow = ({
   </div>
 );
 
-const Prices = () => {
+const Prices = ({ prices }: { prices: Package["prices"] }) => {
   const { t, i18n } = useTranslation(["home"]);
-
-  const prices: PriceCard[] = Object.values(
-    t("packages.prices.items", { returnObjects: true })
-  );
 
   return (
     <div
@@ -143,7 +139,7 @@ const Prices = () => {
         <PriceRow
           prices={prices}
           title={t("packages.prices.guest")}
-          target={"guest"}
+          target={"guests"}
           icon={peopleIcon}
           dir={i18n.dir() === "ltr"}
         />

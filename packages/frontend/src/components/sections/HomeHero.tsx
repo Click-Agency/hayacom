@@ -3,7 +3,7 @@ import SectionContainer from "../shared/containers/SectionContainer";
 import { trim } from "../../utils/functions/general";
 import useScrollInToView from "../../hooks/useScrollInToView";
 import SectionHeader from "../shared/SectionHeader";
-import appPhone from "../../assets/imgs/app-phone.png";
+import appPhone from "../../assets/imgs/mobile.png";
 
 const HomeHero = () => {
   const { t, i18n } = useTranslation(["home"]);
@@ -70,7 +70,7 @@ const HomeHero = () => {
         className={trim(`
           flex-1
           w-full
-          md:max-w-[40%]
+          md:max-w-[28%]
           max-w-[150px]
           block
           drop-shadow-2xl
@@ -78,7 +78,7 @@ const HomeHero = () => {
           transition-all
           duration-500
           ease-in-out
-          ${i18n.dir() === "ltr" ? "-scale-x-100 -rotate-[17deg]" : "rotate-[17deg]"}
+          ${i18n.dir() === "rtl" ? "-scale-x-100 -rotate-2" : "rotate-2"}
           
           ${isInView ? "opacity-100" : "opacity-0"}`)}
       />

@@ -48,6 +48,12 @@ export default {
         "gradient-t-dark":
           "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 100%)",
 
+        "gradient-background":
+          "linear-gradient(90deg, rgba(254, 226, 207, 0.2), rgba(173, 106, 96, 0.2), rgba(117, 24, 19, 0.2))",
+        
+        "gradient-background-light":
+          "linear-gradient(90deg, rgba(254, 226, 207, 0.1), rgba(173, 106, 96, 0.1), rgba(117, 24, 19, 0.1))",
+
         "sheet-paper": "url('/assets/imgs/sheet-paper.png')",
       },
       boxShadow: {

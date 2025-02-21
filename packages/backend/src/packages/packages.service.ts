@@ -66,6 +66,16 @@ export class PackagesService {
 
       const itemsEn = packageData.itemsEn.split('$/');
       const itemsAr = packageData.itemsAr.split('$/');
+      const prices = packageData.prices.split('$/').map((price) => {
+        const parsedPrice = JSON.parse(price) as {
+          guests: string;
+          price: string;
+        };
+        return {
+          guests: Number(parsedPrice.guests),
+          price: Number(parsedPrice.price),
+        };
+      });
 
       const video = await this.s3Bucket.uploadVideo(videoData);
 
@@ -73,6 +83,7 @@ export class PackagesService {
         ...packageData,
         itemsEn,
         itemsAr,
+        prices,
         video,
         userId,
       });
@@ -99,6 +110,16 @@ export class PackagesService {
 
       const itemsEn = packageData.itemsEn.split('$/');
       const itemsAr = packageData.itemsAr.split('$/');
+      const prices = packageData.prices.split('$/').map((price) => {
+        const parsedPrice = JSON.parse(price) as {
+          guests: string;
+          price: string;
+        };
+        return {
+          guests: Number(parsedPrice.guests),
+          price: Number(parsedPrice.price),
+        };
+      });
 
       if (videoData) {
         await this.s3Bucket.deleteVideo(packageDoc.toObject().video);
@@ -107,12 +128,12 @@ export class PackagesService {
 
         await this.packageModel.updateOne(
           { _id },
-          { ...packageData, itemsEn, itemsAr, video },
+          { ...packageData, itemsEn, itemsAr, prices, video },
         );
       } else {
         await this.packageModel.updateOne(
           { _id },
-          { ...packageData, itemsEn, itemsAr },
+          { ...packageData, itemsEn, itemsAr, prices },
         );
       }
       return HttpStatus.ACCEPTED;

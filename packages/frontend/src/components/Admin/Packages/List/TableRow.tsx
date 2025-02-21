@@ -4,6 +4,8 @@ import { formatDate, trim } from "../../../../utils/functions/general";
 import ButtonStyled from "../../../shared/ButtonStyled";
 import { appRoutes } from "../../../../config";
 import { CiEdit } from "react-icons/ci";
+import moneyIcon from "../../../../assets/svgs/money-icon.svg";
+import peopleIcon from "../../../../assets/svgs/people-icon.svg";
 
 const TableRow = ({
   _id,
@@ -12,6 +14,7 @@ const TableRow = ({
   items,
   createdAt,
   packages,
+  prices,
   i = 0,
   dir = "ltr",
   onDeleteHandler,
@@ -22,6 +25,7 @@ const TableRow = ({
   items: string[];
   createdAt: string;
   packages: Package[];
+  prices: Package["prices"];
   onDeleteHandler: any;
   dir?: "ltr" | "rtl";
   i?: number;
@@ -141,6 +145,46 @@ const TableRow = ({
           <li key={i}>{item}</li>
         ))}
       </ol>
+    </td>
+    <td
+      className={trim(`
+          h-1
+          p-0
+          ${i === 0 ? "border-t-transparent border-t-[50px]" : ""}
+          ${i !== packages?.length - 1 ? "border-b-2 border-b-gray-300" : ""}`)}
+    >
+      <div
+        className={trim(`
+            bg-white
+            w-full
+            h-full
+            p-2
+            flex
+            items-center
+            justify-center
+            flex-wrap
+            gap-6
+            min-w-52
+            ${dir === "rtl" ? "border-r border-r-gray-300" : "border-l border-l-gray-300"}
+            ${i === 0 ? "shadow-t" : ""}
+            ${i === packages?.length - 1 ? "shadow-b" : ""}`)}
+      >
+        {prices.map((price, i) => (
+          <div className="flex gap-2 items-center" key={i}>
+            <div className="flex gap-1 items-center">
+              <img src={peopleIcon} alt="people" className="w-5 h-5" />
+              <span key={i}>{price.guests}</span>
+            </div>
+
+            <hr className="h-7 w-1 bg-primary" />
+
+            <div className="flex gap-1 items-center">
+              <img src={moneyIcon} alt="money" className="w-5 h-5" />
+              <span key={i}>{price.price}</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </td>
     <td
       className={trim(`

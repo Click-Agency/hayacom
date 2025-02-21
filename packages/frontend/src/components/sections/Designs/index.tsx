@@ -44,7 +44,7 @@ const Designs = () => {
       id={"designs"}
       ref={targetRef}
       className={`
-        bg-background-tertiary/50
+        bg-gradient-background-light
         rounded-tl-[20%]
         pb-28
         !mb-0`}

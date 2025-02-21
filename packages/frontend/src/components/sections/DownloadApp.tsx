@@ -48,7 +48,7 @@ const DownloadApp = () => {
       dir="ltr"
       id={"downloadApp"}
       className={`
-        bg-background-tertiary/50
+        bg-gradient-background-light
         pb-28
         !mb-0`}
       wraperClassName="gap-4"
@@ -57,7 +57,7 @@ const DownloadApp = () => {
 
       <div
         ref={targetRef}
-        className={` 
+        className={trim(` 
           flex
           flex-col
           md:flex-row 
@@ -68,7 +68,7 @@ const DownloadApp = () => {
           transition-all
           duration-500
           ease-in-out
-          ${isInView ? "opacity-100" : "opacity-0"}`}
+          ${isInView ? "opacity-100" : "opacity-0"}`)}
       >
         <ButtonImg
           src={googlePlay}

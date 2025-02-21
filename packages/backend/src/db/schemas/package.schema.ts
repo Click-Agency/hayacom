@@ -59,6 +59,16 @@ export class Package {
 
   @Prop({ type: Date, default: Date.now, required: true })
   createdAt: Date;
+
+  @Prop({
+    required: true,
+    validate: {
+      validator: (v: { guests: number; price: number }[]) =>
+        v.length > 0 || v.every((i) => i.guests && i.price),
+      message: 'Price must have at least one item.',
+    },
+  })
+  prices: { guests: number; price: number }[];
 }
 
 export const PackageSchema = SchemaFactory.createForClass(Package);

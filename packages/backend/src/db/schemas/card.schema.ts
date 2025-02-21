@@ -25,7 +25,7 @@ export class Card {
     required: true,
     type: [String],
     validate: {
-      validator: (v: string[]) => v.length > 0,
+      validator: (v: string[]) => v.length >= 0,
       message: 'At least one image is required.',
     },
     validateAll: {
