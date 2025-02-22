@@ -50,7 +50,8 @@ const DownloadApp = () => {
       className={`
         bg-gradient-background-light
         pb-28
-        !mb-0`}
+        !mb-0
+        mt-auto`}
       wraperClassName="gap-4"
     >
       <SectionHeader title={t("downloadApp.title")} className="mt-10" />

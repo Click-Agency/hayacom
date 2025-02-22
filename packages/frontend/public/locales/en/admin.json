@@ -42,6 +42,8 @@
 
   "packages": {
     "titleId": "Package",
+
+    "noPackages": "No Packages Found",
     "name": {
       "label": {
         "en": "Name English",
@@ -153,6 +155,8 @@
 
   "cards": {
     "titleId": "Card",
+    "noCards": "No Cards Found",
+
     "customId": {
       "label": {
         "en": "CustomId English",

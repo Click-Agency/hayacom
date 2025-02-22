@@ -60,8 +60,9 @@ const Table = ({ cards }: { cards?: Card[] }) => {
           </tr>
         </thead>
         <tbody className="text-gray-500">
-          {i18n.language === "ar"
-            ? cards?.map(({ _id, customIdAr, createdAt, images }, i) => (
+          {cards ? (
+            i18n.language === "ar" ? (
+              cards.map(({ _id, customIdAr, createdAt, images }, i) => (
                 <TableRow
                   key={i}
                   i={i}
@@ -74,7 +75,8 @@ const Table = ({ cards }: { cards?: Card[] }) => {
                   cards={cards}
                 />
               ))
-            : cards?.map(({ _id, customIdEn, createdAt, images }, i) => (
+            ) : (
+              cards.map(({ _id, customIdEn, createdAt, images }, i) => (
                 <TableRow
                   key={i}
                   i={i}
@@ -86,7 +88,18 @@ const Table = ({ cards }: { cards?: Card[] }) => {
                   dir="ltr"
                   cards={cards}
                 />
-              ))}
+              ))
+            )
+          ) : (
+            <tr>
+              <td
+                colSpan={headers.length}
+                className="pt-16 pb-12 text-primary text-responsive-md"
+              >
+                {t("cards.noCards")}
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

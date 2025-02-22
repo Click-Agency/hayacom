@@ -15,7 +15,7 @@ import Pagination from "../../shared/Pagination";
 
 const CardsGallery = () => {
   const { t, i18n } = useTranslation(["designs"]);
-  const [qurey, setQurey] = useState({ page: 1, limit: 10 });
+  const [qurey, setQurey] = useState({ page: 1, limit: 12 });
   const [resposeCards, setResposeCards] = useState<{
     data: Card[];
     meta: PaginateMeta;

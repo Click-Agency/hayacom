@@ -44,7 +44,7 @@ const Table = ({ packages }: { packages?: Package[] }) => {
           border-spacing-0
           ${isInView ? "opacity-100" : "opacity-0"}`)}
       >
-        <thead className="">
+        <thead>
           <tr className="text-primary bg-[#A39FA04D]">
             {headers.map((header, i) => (
               <th
@@ -61,8 +61,9 @@ const Table = ({ packages }: { packages?: Package[] }) => {
           </tr>
         </thead>
         <tbody className="text-gray-500">
-          {i18n.language === "ar"
-            ? packages?.map(
+          {packages ? (
+            i18n.language === "ar" ? (
+              packages.map(
                 ({ _id, nameAr, titleAr, itemsAr, createdAt, prices }, i) => (
                   <TableRow
                     key={i}
@@ -79,7 +80,8 @@ const Table = ({ packages }: { packages?: Package[] }) => {
                   />
                 )
               )
-            : packages?.map(
+            ) : (
+              packages.map(
                 ({ _id, nameEn, titleEn, itemsEn, createdAt, prices }, i) => (
                   <TableRow
                     key={i}
@@ -95,7 +97,18 @@ const Table = ({ packages }: { packages?: Package[] }) => {
                     dir="ltr"
                   />
                 )
-              )}
+              )
+            )
+          ) : (
+            <tr>
+              <td
+                colSpan={headers.length}
+                className="pt-16 pb-12 text-primary text-responsive-md"
+              >
+                {t("packages.noPackages")}
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
