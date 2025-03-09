@@ -10,11 +10,12 @@ const info = {
     whatsapp:
       "https://api.whatsapp.com/send/?phone=966920031473&text&type=phone_number&app_absent=0",
     snapchat: "https://www.snapchat.com/add/hayyacomapp",
+    tiktok: "https://www.tiktok.com",
   },
 
   contact: {
     email: "",
-    phone: "966920031473",
+    phone: "+966 92 003 1473",
   },
 };
 

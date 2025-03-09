@@ -29,7 +29,7 @@ const Footer = () => {
     // },
     {
       Svg: <FaTiktok size={35} />,
-      link: "",
+      link: info.socials.tiktok,
     },
     {
       Svg: <FaWhatsapp size={35} />,
@@ -89,7 +89,7 @@ const Footer = () => {
       >
         {socialIcons.map(({ link, Svg }, i) => (
           <li key={i}>
-            <Link to={link}>
+            <Link target="_blank" to={link}>
               {addAttributesToReactNode(Svg, {
                 className: trim(`
                   w-full
