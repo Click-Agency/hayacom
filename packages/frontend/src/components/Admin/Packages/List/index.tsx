@@ -9,6 +9,7 @@ import { PaginateMeta } from "../../../../types/response";
 import Loader from "../../../shared/Loader";
 import toast from "react-hot-toast";
 import Pagination from "../../../shared/Pagination";
+import { AxiosError } from "axios";
 
 const List = () => {
   const { t, i18n } = useTranslation(["admin"]);
@@ -39,6 +40,7 @@ const List = () => {
         setIsLoading(() => false);
       } catch (err) {
         setIsLoading(() => false);
+        if (err instanceof AxiosError && err.response?.status === 404) return;
         toast.error(t("packages.list.error"));
       }
     };
