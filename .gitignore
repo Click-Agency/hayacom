@@ -40,6 +40,8 @@ lerna-debug.log*
 *.sln
 *.sw?
 
+hidden.txt
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
