@@ -131,7 +131,6 @@ export class AuthService {
       res.sendStatus(200).end();
     } catch (err) {
       if (err instanceof HttpException) throw err;
-      console.log(err);
       throw new HttpException({ message: 'bad request' }, 400);
     }
   }
