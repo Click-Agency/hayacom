@@ -61,7 +61,7 @@ const CardsGallery = () => {
         title={t("gallery.title")}
       />
 
-      {!resposeCards?.data.length && !noCards ? (
+      {!resposeCards?.data?.length && !noCards ? (
         <Loader className="min-h-[900px]" />
       ) : noCards ? (
         <div>
@@ -109,7 +109,7 @@ const CardsGallery = () => {
         />
       )}
 
-      {resposeCards?.data.length && (
+      {resposeCards?.data?.length && (
         <Lightbox
           plugins={[Captions, Zoom, Thumbnails]}
           open={openGallery}

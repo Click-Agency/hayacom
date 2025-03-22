@@ -7,11 +7,13 @@ import { PackagesModule } from './packages/packages.module';
 import { CardsModule } from './cards/cards.module';
 import { S3BucketModule } from './s3Bucket/s3Bucket.module';
 import { UsersModule } from './users/users.module';
+import EnvPath from './shared/utils/envPath';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: EnvPath.getRootEnv(),
     }),
     DBModule,
     AuthModule,

@@ -52,7 +52,7 @@ const Designs = () => {
     >
       <SectionHeader title={t("designs.title")} className="mt-10" />
 
-      {!cards.length && !noCards ? (
+      {!cards?.length && !noCards ? (
         <Loader />
       ) : noCards ? (
         <h2
