@@ -14,19 +14,17 @@ import {
   Post,
   Query,
   Request,
-  UploadedFile,
   UploadedFiles,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { CardsService } from './cards.service';
 import { ParseObjectIdPipe } from '../shared/pipes/parse-objectId.pipe';
-import { Card } from '../db/schemas/Card.schema';
+import { Card } from '../db/schemas/card.schema';
 import { PaginatedDto } from '../shared/dtos/paginated.dto';
 import { AuthGuard } from '../shared/guard/auth.guard';
 import { CreateCardDto } from './dtos/create-card.dto';
-import { UpdateCardDto } from './dtos/update-card.dto';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('cards')
 export class CardsController {

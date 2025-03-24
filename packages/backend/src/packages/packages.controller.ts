@@ -20,7 +20,7 @@ import {
 } from '@nestjs/common';
 import { PackagesService } from './packages.service';
 import { ParseObjectIdPipe } from '../shared/pipes/parse-objectId.pipe';
-import { Package } from '../db/schemas/Package.schema';
+import { Package } from '../db/schemas/package.schema';
 import { PaginatedDto } from '../shared/dtos/paginated.dto';
 import { AuthGuard } from '../shared/guard/auth.guard';
 import { CreatePackageDto } from './dtos/create-package.dto';

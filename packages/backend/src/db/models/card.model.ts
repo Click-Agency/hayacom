@@ -1,4 +1,4 @@
-import { Card, CardSchema } from '../schemas/Card.schema';
+import { Card, CardSchema } from '../schemas/card.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 export const CardModel = MongooseModule.forFeatureAsync([

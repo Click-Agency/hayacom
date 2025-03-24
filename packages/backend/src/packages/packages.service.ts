@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Package } from '../db/schemas/Package.schema';
+import { Package } from '../db/schemas/package.schema';
 import { Model } from 'mongoose';
 import { PaginateUtils } from '../shared/utils/paginate.utils';
 import { PaginatedDto } from 'src/shared/dtos/paginated.dto';
