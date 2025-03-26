@@ -68,10 +68,9 @@ const UpdateOrUpload = ({ cardData }: { cardData?: Card }) => {
       toast.success(
         cardData ? t("cards.update.success") : t("cards.create.success")
       );
+      if (!cardData) reset();
     } catch (err) {
       toast.error(cardData ? t("cards.update.error") : t("cards.create.error"));
-      console.log(err);
-
       setIsLoading(() => false);
     }
   };

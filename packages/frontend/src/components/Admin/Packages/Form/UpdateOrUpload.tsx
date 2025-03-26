@@ -78,8 +78,8 @@ const UpdateOrUpload = ({ packageData }: { packageData?: Package }) => {
           ? t("packages.update.success")
           : t("packages.create.success")
       );
+      if (!packageData) reset();
     } catch (err) {
-      console.log(err);
       toast.error(
         packageData ? t("packages.update.error") : t("packages.create.error")
       );
