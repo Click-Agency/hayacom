@@ -34,7 +34,11 @@ const AddPics = ({
     if (defaultValues.length) setImages(defaultValues);
   }, [fields.length, append]);
 
-  const handleImageChange = (i: number, e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (
+    i: number,
+    e: ChangeEvent<HTMLInputElement>,
+    onChange: (...event: any[]) => void
+  ) => {
     const reader = new FileReader();
     const file = e.target.files?.[0];
 
@@ -44,12 +48,16 @@ const AddPics = ({
       setImages(newImages);
     };
 
-    const imageFilePattern = /\.(jpe?g|png|gif|bmp)$/i;
-    if (file && imageFilePattern.test(file.name)) {
+    const imageFilePattern = /\.(jpe?g|png|bmp)$/i;
+    const maxFileSize = 1024 * 1024 * 2;
+
+    if (file && imageFilePattern.test(file.name) && file.size <= maxFileSize) {
+      onChange(file);
       reader.readAsDataURL(file);
     } else {
       const newImages = [...images];
       newImages[i] = "";
+      onChange(newImages[i]);
       setImages(newImages);
     }
   };
@@ -89,10 +97,6 @@ const AddPics = ({
                   value: true,
                   message: t("cards.images.errors.required"),
                 },
-                pattern: {
-                  value: /\.(jpe?g|png|gif|bmp)$/i,
-                  message: t("cards.images.errors.invalid"),
-                },
               }}
               render={({ field }) => {
                 const { onChange, value, ...restAttributes } = field;
@@ -101,11 +105,7 @@ const AddPics = ({
                     className="absolute top-0 left-0 opacity-0 w-full h-full cursor-pointer z-[1]"
                     disabled={disabled}
                     type="file"
-                    onChange={(e) => {
-                      e.preventDefault();
-                      onChange(e.target.files?.[0]);
-                      handleImageChange(i, e);
-                    }}
+                    onChange={(e) => handleImageChange(i, e, onChange)}
                     {...restAttributes}
                   />
                 );
@@ -126,7 +126,7 @@ const AddPics = ({
             {i === fields.length - 1 && (
               <ButtonStyled
                 size="custom"
-                SvgIcon={<AiTwotonePlusCircle size={20}  />}
+                SvgIcon={<AiTwotonePlusCircle size={20} />}
                 onClick={() => append("")}
               />
             )}

@@ -206,9 +206,7 @@
       "main": "Main Image",
       "gallery": "Gallery Image",
       "errors": {
-        "required": "Image is required",
-        "invalid": "Please upload an image file only.",
-        "max": "Image size must be less than 2MB"
+        "required": "Image is required and must be image file type only with max size of 2MB"
       }
     },
 
