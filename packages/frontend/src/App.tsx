@@ -9,7 +9,6 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export default function App() {
-  console.log(import.meta.env.VITE_API_BASE_URL);
   return (
     <Providers>
       <Layout>
