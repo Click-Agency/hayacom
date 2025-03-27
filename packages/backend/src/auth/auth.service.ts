@@ -56,8 +56,9 @@ export class AuthService {
         }),
         {
           httpOnly: true,
+          secure: false,
           sameSite: 'lax',
-          path: '/auth/refresh',
+          path: '/',
           expires: userData.rememberMe
             ? new Date(Date.now() + 60 * 60 * 24 * 7 * 1000)
             : undefined,
