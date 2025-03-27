@@ -56,8 +56,8 @@ export class AuthService {
         }),
         {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'none',
+          sameSite: 'lax',
+          path: '/auth/refresh',
           expires: userData.rememberMe
             ? new Date(Date.now() + 60 * 60 * 24 * 7 * 1000)
             : undefined,
