@@ -128,6 +128,7 @@ const Drawer = ({
                       onNavHandler(link);
                     } else {
                       link();
+                      handleClose();
                     }
                   }}
                   className={trim(`

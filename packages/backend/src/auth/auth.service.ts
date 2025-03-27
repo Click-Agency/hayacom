@@ -56,7 +56,7 @@ export class AuthService {
         }),
         {
           httpOnly: true,
-          secure: false,
+          secure: process.env.WEB_BASE_URL_DOMAIN?.includes('https'),
           sameSite: 'lax',
           path: '/',
           expires: userData.rememberMe
