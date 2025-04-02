@@ -290,7 +290,8 @@ const Nav = () => {
             text-responsive-3xs
             md:text-responsive-xs`}
           ripple
-          href={`tel:${info.contact.phone}`}
+          href={info.socials.whatsappSales}
+          target="_blank"
           bg
           size="custom"
           title={t("nav.contact")}

@@ -2,9 +2,9 @@ import { useTranslation } from "react-i18next";
 import SectionContainer from "../../shared/containers/SectionContainer";
 import { trim } from "../../../utils/functions/general";
 import useScrollInToView from "../../../hooks/useScrollInToView";
-import handPhone from "../../../assets/imgs/hand-phone.png";
 import ButtonStyled from "../../shared/ButtonStyled";
 import info from "../../../config/info";
+import Logo from "../../shared/Logo";
 
 // const storesArr = [
 //   {
@@ -26,23 +26,23 @@ const ContactBanner = () => {
 
   return (
     <SectionContainer
-      className="bg-sheet-paper !p-0"
+      className="bg-sheet-paper"
       ref={targetRef}
       id="download-app"
       dir="rtl"
       wraperClassName={`
         md:flex-row 
         items-center 
-        justify-between 
-        gap-4
+        justify-around 
+        gap-10
+        md:gap-4
         transition-all
         duration-500
         ease-in-out
-        !p-0
-        !w-full
+        py-10
         ${isInView ? "opacity-100" : "opacity-0"}`}
     >
-      <img
+      {/* <img
         src={handPhone}
         alt="app"
         className={trim(`
@@ -52,15 +52,14 @@ const ContactBanner = () => {
           max-w-[230px]
           drop-shadow-2xl
           shadow-primary`)}
-      />
+      /> */}
+      <Logo className="max-w-52 md:max-w-72" />
 
       <div
         className={trim(`
-          flex-1
           flex
           flex-col
           gap-8
-          md:ml-[15%]
           justify-center
           items-center
           text-center
@@ -69,7 +68,7 @@ const ContactBanner = () => {
         <h1
           className={trim(`
             text-primary
-            text-responsive-2xl
+            text-responsive-xl
             font-semibold
             text-shadow-lg`)}
         >
@@ -120,7 +119,8 @@ const ContactBanner = () => {
               md:mb-0
               mb-4`}
             ripple
-            href={`tel:${info.contact.phone}`}
+            href={info.socials.whatsapp}
+            target="_blank"
             bg
             title={t("contactUs", { ns: "common" })}
           />
