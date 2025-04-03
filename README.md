@@ -42,7 +42,8 @@ JWT_SECRET_ACCESS_TOKEN_EXPIRES_IN="life_time_for_token_as_5m"
 JWT_SECRET_REFRESH_TOKEN="your_jwt_secert_for_refresh"
 JWT_SECRET_REFRESH_TOKEN_EXPIRES_IN="life_time_for_secert_as_7d"
 
-WEB_BASE_URL="https://your_frontend.uri"
+WEB_BASE_URL_IP="https://your_frontend.uri_ip"
+WEB_BASE_URL_DOMAIN="https://your_frontend.uri_domain"
 
 #frontend
 VITE_API_BASE_URL="https://your_backend.uri"
