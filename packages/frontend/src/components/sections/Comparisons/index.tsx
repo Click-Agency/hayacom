@@ -77,7 +77,7 @@ const Comparisons = () => {
                       ${j !== 0 ? "text-center" : ""}`)}
                   >
                     {cell !== "true" && cell !== "false" ? (
-                      cell
+                      <span dangerouslySetInnerHTML={{ __html: cell }}></span>
                     ) : cell === "true" ? (
                       <RxCheckCircled
                         className="m-auto text-gray-500"

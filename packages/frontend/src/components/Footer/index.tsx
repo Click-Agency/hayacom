@@ -77,13 +77,13 @@ const Footer = () => {
         }
         ${isInView ? "opacity-100" : "opacity-0"}`)}
     >
-      <Logo className="max-w-16" />
+      <Logo className="max-w-[80px]" />
       <ul
         className={trim(`
           flex
           items-center
           justify-center
-          gap-4
+          gap-3
           flex-wrap
           text-primary`)}
       >
@@ -95,8 +95,8 @@ const Footer = () => {
                   w-full
                   border-2
                   p-1
-                  w-8
-                  h-8
+                  w-7
+                  h-7
                   border-primary
                   rounded-full
                   transition-all

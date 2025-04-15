@@ -283,9 +283,9 @@ const Nav = () => {
             hover:!scale-105 
             active:!scale-95
             animate-appear
-            px-3
+            px-4
             py-1.5
-            md:px-4
+            md:px-9
             md:py-2
             text-responsive-3xs
             md:text-responsive-xs`}

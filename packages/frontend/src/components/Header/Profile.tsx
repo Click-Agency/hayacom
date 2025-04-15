@@ -10,7 +10,7 @@ import useScrollSpy from "../../hooks/useScrollSpy";
 import { revokeRefreshToken } from "../../api/routes/auth";
 import { Session } from "../../types/user";
 import { useLocation, useNavigate } from "react-router-dom";
-import hayakomImg from "../../assets/imgs/icon-hayakom.png";
+import hayakomImg from "../../assets/imgs/logo.png";
 import { useTranslation } from "react-i18next";
 import { useCookies } from "react-cookie";
 import Cookies from "../../enum/Cookies";
@@ -116,20 +116,20 @@ const Profile = ({
         animate-appear
         ${className}`)}
     >
-      <img
+      <div
         className={trim(`
+          p-3
+          bg-background-tertiary
           rounded-full
           cursor-pointer
           transition-all
           duration-300
           ease-in-out
           ${showActions ? `ring-2 ring-primary` : ``}`)}
-        src={hayakomImg}
-        alt="pfp"
-        width={45}
-        height={45}
         onClick={() => setShowComponent(setShowActions, { delay: 300 })}
-      />
+      >
+        <img src={hayakomImg} alt="pfp" width={33} height={33} />
+      </div>
       <div className={showActions ? "block" : "hidden"}>
         <ul
           ref={ulRef}

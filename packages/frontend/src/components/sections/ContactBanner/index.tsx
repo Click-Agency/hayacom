@@ -53,13 +53,13 @@ const ContactBanner = () => {
           drop-shadow-2xl
           shadow-primary`)}
       /> */}
-      <Logo className="max-w-52 md:max-w-72" />
+      <Logo className="max-w-32 md:max-w-64" />
 
       <div
         className={trim(`
           flex
           flex-col
-          gap-8
+          gap-9
           justify-center
           items-center
           text-center
@@ -68,7 +68,8 @@ const ContactBanner = () => {
         <h1
           className={trim(`
             text-primary
-            text-responsive-xl
+            text-responsive-lg
+            md:text-responsive-xl
             font-semibold
             text-shadow-lg`)}
         >
@@ -114,7 +115,7 @@ const ContactBanner = () => {
               md:w-[70%]
               lg:w-[50%]
               w-full
-              max-w-[200px]
+              max-w-full
               md:max-w-none
               md:mb-0
               mb-4`}

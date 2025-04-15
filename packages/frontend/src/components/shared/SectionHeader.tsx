@@ -18,8 +18,7 @@ const SectionHeader = ({
         text-primary
         font-semibold
         text-center
-        pb-10
-        text-shadow-lg
+        pb-14
         ${className}`)}
       {...attributes}
     >

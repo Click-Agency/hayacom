@@ -4,12 +4,12 @@ import ButtonStyled from "../../shared/ButtonStyled";
 
 const Headers = ({
   packages,
-  packgeIndex,
+  packageIndex,
   setPackageIndex,
   langAr,
 }: {
   packages: Package[];
-  packgeIndex: number;
+  packageIndex: number;
   setPackageIndex: (index: number) => void;
   langAr: boolean;
 }) => {
@@ -25,7 +25,7 @@ const Headers = ({
         px-6
         md:px-20
         py-2
-        bg-[#A39FA0]/30`)}
+        bg-[#A39FA0]/15`)}
     >
       {packages.map(({ nameEn, nameAr }, i) => (
         <ButtonStyled
@@ -33,8 +33,9 @@ const Headers = ({
             flex-1
             font-semibold
             rounded-full
-            ${i === packgeIndex ? "bg-primary text-secondary" : "!text-gray-500"}`}
-          size="sm"
+            !text-responsive-2md
+            ${i === packageIndex ? "bg-primary text-secondary" : "!text-gray-500"}`}
+          size="xs"
           key={i}
           title={langAr ? nameAr : nameEn}
           onClick={() => setPackageIndex(i)}

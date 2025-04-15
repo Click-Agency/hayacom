@@ -31,10 +31,10 @@
   },
 
   "comparisons": {
-    "title": "Compare packages",
+    "title": "Compare Packages",
 
     "table": {
-      "headers": ["Details", "Discounted", "Normal", "Golden", "Diamond"],
+      "headers": ["Details", "Discounted", "Regular", "Gold", "Diamond"],
 
       "rows": [
         [
@@ -94,9 +94,9 @@
           "true",
           "true"
         ],
-        ["Send from Hayacom number", "false", "false", "false", "true"],
+        ["Send from Hayak number", "false", "false", "false", "true"],
         [
-          "Send automated reminders and thank you messages, A welcome message upon guest entry",
+          "Send automated reminders and thank you messages <br/> Yes, a welcome message",
           "false",
           "false",
           "false",

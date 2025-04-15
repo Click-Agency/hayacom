@@ -43,6 +43,7 @@ const HomeHero = () => {
             duration-500
             delay-700
             ease-in-out
+            pb-5
             ${isInView ? "opacity-100" : "opacity-0"}`}
           tag="h2"
           title={t("hero.subtitle")}
@@ -52,12 +53,12 @@ const HomeHero = () => {
           title={t("hero.title")}
           className={`
             !text-start
-            text-responsive-2md
+            text-responsive-md
             transition-all
             duration-500
             delay-300
             ease-in-out
-            !font-[400]
+            font-thin
             !text-black
             ${isInView ? "opacity-100" : "opacity-0"}
             ${isInView ? "translate-y-0" : "translate-y-10"}`}

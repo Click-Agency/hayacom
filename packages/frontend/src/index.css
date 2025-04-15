@@ -31,8 +31,10 @@
     before:left-0
     before:w-[90%]
     before:h-[35%]
+    before:min-h-[400px]
     md:before:w-[92%]
     md:before:h-[75%]
+    md:before:min-h-[550px]
     before:bg-gradient-background
     before:rounded-br-[1000px]
     before:z-[-1]
@@ -40,12 +42,14 @@
     after:absolute
     after:top-0
     after:right-0
-    after:w-[80%]
+    after:w-[90%]
     after:h-[40%]
+    after:min-h-[550px]
     md:after:w-[85%]
     md:after:h-full
+    md:after:min-h-[750px]
     after:bg-[#751813]/10
-    after:rounded-bl-[1000px]
+    after:rounded-bl-[3000px]
     after:z-[-1];
   }
 

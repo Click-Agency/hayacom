@@ -15,7 +15,7 @@ const Packages = () => {
   const { t, i18n } = useTranslation(["home"]);
   const [packages, setPackages] = useState<Package[]>([]);
   const [noPackages, setNoPackages] = useState(false);
-  const [packgeIndex, setPackageIndex] = useState(0);
+  const [packageIndex, setPackageIndex] = useState(0);
   const { isInView, targetRef } = useScrollInToView();
 
   useEffect(() => {
@@ -66,12 +66,13 @@ const Packages = () => {
         <>
           <Headers
             setPackageIndex={setPackageIndex}
-            packgeIndex={packgeIndex}
+            packageIndex={packageIndex}
             langAr={langAr}
             packages={packages}
           />
 
           <div
+            style={{ boxShadow: " 2px 6px 22px 0px rgba(0, 0, 0, 0.2)" }}
             className={trim(`
               flex
               flex-col
@@ -81,7 +82,6 @@ const Packages = () => {
               transition-all
               duration-500
               ease-in-out
-              shadow-2xl
               ${isInView && packages.length ? "opacity-100" : "opacity-0"}`)}
           >
             <div
@@ -95,7 +95,7 @@ const Packages = () => {
               <Body
                 packages={packages}
                 langAr={langAr}
-                packgeIndex={packgeIndex}
+                packageIndex={packageIndex}
               />
 
               <Footer
