@@ -10,10 +10,12 @@ const Body = ({
   packages,
   langAr,
   packageIndex,
+  loadingText,
 }: {
   packages: Package[];
   langAr: boolean;
   packageIndex: number;
+  loadingText: string;
 }) => {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const previousPackageIndex = useRef<number | null>(null);
@@ -83,27 +85,40 @@ const Body = ({
           className={trim(`
             w-full
             h-full
+            flex
+            justify-center
+            items-center
             max-w-[400px]
             max-h-[400px]
+            min-w-[200px]
+            min-h-[200px]
             rounded-lg
             relative`)}
         >
           {isVideoLoading && (
-            <ClipLoader
-              size={100}
-              color="#751813"
+            <div
               className={trim(`
+                flex
+                justify-center
+                items-center
+                text-center
+                flex-col
+                gap-4
+                text-responsive-md
+                text-primary
+                font-semibold
                 absolute
-                top-1/2
-                left-1/2
-                translate-x-[-50%]
-                translate-y-[-50%]
+                inset-0
+                m-auto
                 z-[1]
                 w-full
                 h-full
                 max-w-[400px]
                 max-h-[400px]`)}
-            />
+            >
+              <ClipLoader size={100} color="#751813" />
+              <span>{loadingText}</span>
+            </div>
           )}
           <video
             autoPlay

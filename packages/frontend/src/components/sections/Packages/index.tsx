@@ -96,6 +96,7 @@ const Packages = () => {
                 packages={packages}
                 langAr={langAr}
                 packageIndex={packageIndex}
+                loadingText={t("loading", { ns: ["common"] })}
               />
 
               <Footer
