@@ -23,9 +23,9 @@ const Comparisons = () => {
     <SectionContainer id="comparisons">
       <SectionHeader title={t("comparisons.title")} />
 
-      <div className="flex items-center justify-center gap-7">
+      <div className="flex items-center justify-center gap-1">
         <FaChevronLeft
-          size={30}
+          size={20}
           className={trim(`
             text-primary
             xl:hidden
@@ -35,24 +35,24 @@ const Comparisons = () => {
         <div
           ref={targetRef}
           className={trim(`
-          !overflow-x-auto
-          w-full
-          bg-[#F1E8E7]
-          rounded-3xl
-          px-10
-          py-8
-          md:px-28
-          md:py-20
-          transition-all
-          duration-500
-          ease-in-out
-          ${isInView ? "opacity-100" : "opacity-0"}`)}
+            !overflow-x-auto
+            w-full
+            bg-[#F1E8E7]
+            rounded-3xl
+            px-10
+            py-8
+            md:px-28
+            md:py-20
+            transition-all
+            duration-500
+            ease-in-out
+            ${isInView ? "opacity-100" : "opacity-0"}`)}
         >
           <table
             className={trim(`
-            w-full
-            text-responsive-2md
-            font-medium`)}
+              w-full
+              text-responsive-2md
+              font-medium`)}
           >
             <thead>
               <tr>
@@ -60,10 +60,10 @@ const Comparisons = () => {
                   <th
                     key={i}
                     className={trim(`
-                    ${i === 0 ? "min-w-96 text-start" : "min-w-40"}
-                    pb-6
-                    text-primary
-                    font-bold`)}
+                      ${i === 0 ? "min-w-96 text-start" : "min-w-40"}
+                      pb-6
+                      text-primary
+                      font-bold`)}
                   >
                     {header}
                   </th>
@@ -76,8 +76,8 @@ const Comparisons = () => {
                 <tr
                   key={i}
                   className={trim(`
-                  border-gray-400
-                  ${i !== tableRows.length - 1 ? "border-b" : ""}`)}
+                    border-gray-400
+                    ${i !== tableRows.length - 1 ? "border-b" : ""}`)}
                 >
                   {row.map((cell, j) => (
                     <td
@@ -108,7 +108,7 @@ const Comparisons = () => {
         </div>
 
         <FaChevronRight
-          size={30}
+          size={20}
           className={trim(`
             text-primary
             xl:hidden
