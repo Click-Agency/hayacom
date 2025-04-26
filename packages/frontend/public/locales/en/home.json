@@ -94,9 +94,9 @@
           "true",
           "true"
         ],
-        ["Send from Hayak number", "false", "false", "false", "true"],
+        ["Send from Hayyacom number", "false", "false", "false", "true"],
         [
-          "Send automated reminders and thank you messages <br/> Yes, a welcome message",
+          "Send reminder messages to confirmed guests, thank-you messages to attendees automatically, as well as a welcome message upon entry.",
           "false",
           "false",
           "false",

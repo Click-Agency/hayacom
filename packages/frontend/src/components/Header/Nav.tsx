@@ -232,7 +232,6 @@ const Nav = () => {
                     }
                   }}
                   className={trim(`
-                    font-medium
                     ${
                       pathname === link
                         ? `

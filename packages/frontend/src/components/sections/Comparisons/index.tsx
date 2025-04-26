@@ -4,9 +4,10 @@ import SectionHeader from "../../shared/SectionHeader";
 import { trim } from "../../../utils/functions/general";
 import useScrollInToView from "../../../hooks/useScrollInToView";
 import { RxCrossCircled, RxCheckCircled } from "react-icons/rx";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 const Comparisons = () => {
-  const { t } = useTranslation(["home"]);
+  const { t, i18n } = useTranslation(["home"]);
 
   const { isInView, targetRef } = useScrollInToView();
 
@@ -22,9 +23,18 @@ const Comparisons = () => {
     <SectionContainer id="comparisons">
       <SectionHeader title={t("comparisons.title")} />
 
-      <div
-        ref={targetRef}
-        className={trim(`
+      <div className="flex items-center justify-center gap-7">
+        <FaChevronLeft
+          size={30}
+          className={trim(`
+            text-primary
+            xl:hidden
+            ${i18n.dir() === "rtl" ? "-scale-x-100" : ""}`)}
+        />
+
+        <div
+          ref={targetRef}
+          className={trim(`
           !overflow-x-auto
           w-full
           bg-[#F1E8E7]
@@ -37,64 +47,73 @@ const Comparisons = () => {
           duration-500
           ease-in-out
           ${isInView ? "opacity-100" : "opacity-0"}`)}
-      >
-        <table
-          className={trim(`
+        >
+          <table
+            className={trim(`
             w-full
             text-responsive-2md
             font-medium`)}
-        >
-          <thead>
-            <tr>
-              {tableHeaders.map((header, i) => (
-                <th
-                  key={i}
-                  className={trim(`
+          >
+            <thead>
+              <tr>
+                {tableHeaders.map((header, i) => (
+                  <th
+                    key={i}
+                    className={trim(`
                     ${i === 0 ? "min-w-96 text-start" : "min-w-40"}
                     pb-6
                     text-primary
                     font-bold`)}
-                >
-                  {header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          <tbody>
-            {tableRows.map((row, i) => (
-              <tr
-                key={i}
-                className={trim(`
-                  border-gray-400
-                  ${i !== tableRows.length - 1 ? "border-b" : ""}`)}
-              >
-                {row.map((cell, j) => (
-                  <td
-                    key={j}
-                    className={trim(`
-                      py-4
-                      ${j !== 0 ? "text-center" : ""}`)}
                   >
-                    {cell !== "true" && cell !== "false" ? (
-                      <span dangerouslySetInnerHTML={{ __html: cell }}></span>
-                    ) : cell === "true" ? (
-                      <RxCheckCircled
-                        className="m-auto text-gray-500"
-                        size={30}
-                      />
-                    ) : (
-                      <RxCrossCircled
-                        className="m-auto text-primary"
-                        size={30}
-                      />
-                    )}
-                  </td>
+                    {header}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {tableRows.map((row, i) => (
+                <tr
+                  key={i}
+                  className={trim(`
+                  border-gray-400
+                  ${i !== tableRows.length - 1 ? "border-b" : ""}`)}
+                >
+                  {row.map((cell, j) => (
+                    <td
+                      key={j}
+                      className={trim(`
+                      py-4
+                      ${j !== 0 ? "text-center" : ""}`)}
+                    >
+                      {cell !== "true" && cell !== "false" ? (
+                        <span dangerouslySetInnerHTML={{ __html: cell }}></span>
+                      ) : cell === "true" ? (
+                        <RxCheckCircled
+                          className="m-auto text-gray-500"
+                          size={30}
+                        />
+                      ) : (
+                        <RxCrossCircled
+                          className="m-auto text-primary"
+                          size={30}
+                        />
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <FaChevronRight
+          size={30}
+          className={trim(`
+            text-primary
+            xl:hidden
+            ${i18n.dir() === "rtl" ? "-scale-x-100" : ""}`)}
+        />
       </div>
     </SectionContainer>
   );

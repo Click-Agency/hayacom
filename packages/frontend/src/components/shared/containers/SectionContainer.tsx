@@ -26,7 +26,7 @@ const SectionContainer = forwardRef(
         w-full
         flex-col
         box-border
-        mb-16
+        mb-24
         ${className}`)}
       {...attributes}
     >

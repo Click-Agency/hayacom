@@ -6,7 +6,7 @@ import SectionHeader from "../shared/SectionHeader";
 import appPhone from "../../assets/imgs/mobile.png";
 
 const HomeHero = () => {
-  const { t } = useTranslation(["home"]);
+  const { t, i18n } = useTranslation(["home"]);
 
   const { isInView, targetRef } = useScrollInToView();
 
@@ -76,9 +76,10 @@ const HomeHero = () => {
           block
           drop-shadow-2xl
           shadow-primary
-          transition-all
+          transition-[opacity]
           duration-500
           ease-in-out
+          ${i18n.dir() === "rtl" ? "-scale-x-100":""}
           ${isInView ? "opacity-100" : "opacity-0"}`)}
       />
     </SectionContainer>

@@ -133,7 +133,6 @@ const Drawer = ({
                   }}
                   className={trim(`
                   !text-white
-                  font-medium
                   m-auto`)}
                   size="md"
                   title={name}
