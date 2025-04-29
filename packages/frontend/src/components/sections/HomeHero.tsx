@@ -71,7 +71,7 @@ const HomeHero = () => {
         className={trim(`
           flex-1
           w-full
-          md:max-w-[28%]
+          md:max-w-[300px]
           max-w-[150px]
           block
           drop-shadow-2xl
