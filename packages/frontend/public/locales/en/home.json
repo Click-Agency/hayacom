@@ -38,7 +38,7 @@
 
       "rows": [
         [
-          "Supervisory team (number of team members based on the number of guests and package price)",
+          "Supervisory team (number of team members based on the number of guests and package price).",
           "true",
           "true",
           "true",
@@ -52,49 +52,49 @@
           "true"
         ],
         [
-          "One invitation card integrated with an entry barcode",
+          "One invitation card integrated with an entry barcode.",
           "true",
           "true",
           "false",
           "false"
         ],
         [
-          "Invitation card - Entry - Thank you - Snapchat lens",
+          "Invitation card - Entry - Thank you - Snapchat lens.",
           "false",
           "false",
           "true",
           "true"
         ],
         [
-          "Design according to the event theme",
+          "Design according to the event theme.",
           "false",
           "true",
           "true",
           "true"
         ],
         [
-          "Apology replacement (percentage varies by package)",
+          "Apology replacement (percentage varies by package).",
           "false",
           "true",
           "true",
           "true"
         ],
         [
-          "Write the guest's name and the number of invitees",
+          "Write the guest's name and the number of invitees.",
           "false",
           "true",
           "true",
           "true"
         ],
-        ["Acceptance and apology feature", "false", "false", "true", "true"],
+        ["Acceptance and apology feature.", "false", "false", "true", "true"],
         [
-          "Select the number of attendees (e.g., if 5 invitees are specified, the guest can choose the number of attendees out of 5 people)",
+          "Select the number of attendees (e.g., if 5 invitees are specified, the guest can choose the number of attendees out of 5 people).",
           "false",
           "false",
           "true",
           "true"
         ],
-        ["Send from Hayyacom number", "false", "false", "false", "true"],
+        ["Send from Hayyacom number.", "false", "false", "false", "true"],
         [
           "Send reminder messages to confirmed guests, thank-you messages to attendees automatically, as well as a welcome message upon entry.",
           "false",
