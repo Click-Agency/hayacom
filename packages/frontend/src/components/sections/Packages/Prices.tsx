@@ -5,6 +5,7 @@ import SectionHeader from "../../shared/SectionHeader";
 import { trim } from "../../../utils/functions/general";
 import { ReactNode } from "react";
 import { Package } from "../../../types/packages";
+import riyalIcon from "../../../assets/svgs/saudi_riyal-icon.svg";
 
 const PricesBox = ({
   title,
@@ -14,7 +15,7 @@ const PricesBox = ({
   tag: Tag = "div",
   children,
 }: {
-  title?: string;
+  title?: string | ReactNode;
   number?: number;
   icon?: string;
   tag?: "div" | "li";
@@ -43,7 +44,11 @@ const PricesBox = ({
     {(title || number) && (
       <>
         <h5 className="text-primary text-responsive-2md font-bold">{number}</h5>
-        <h6 className="text-responsive-3xs">{title}</h6>
+        {typeof title === "function" ? (
+          title
+        ) : (
+          <h6 className="text-responsive-3xs">{title}</h6>
+        )}
       </>
     )}
 
@@ -91,7 +96,13 @@ const PriceRow = ({
         <PricesBox
           tag="li"
           key={i}
-          title={title}
+          title={
+            target === "guests" ? (
+              title
+            ) : (
+              <img src={riyalIcon} alt="riyal" className="w-3.5 h-3.5" />
+            )
+          }
           className={`${
             i < prices.length - 1
               ? `
