@@ -8,11 +8,13 @@ import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
 import AuthQuery from "../enum/Auth";
 import SectionContainer from "../components/shared/containers/SectionContainer";
+import { useTranslation } from "react-i18next";
 
 export default function Auth() {
   const push = useNavigate();
   const [query] = useSearchParams();
   const session = useSession();
+  const { i18n } = useTranslation();
 
   const ref = query.get("ref");
 
@@ -29,7 +31,13 @@ export default function Auth() {
     return <NotFound />;
 
   return (
-    <PageContainer className={`background-bubbles`}>
+    <PageContainer
+      className={
+        i18n.dir() === "ltr"
+          ? "background-bubbles"
+          : "background-bubbles-reverse"
+      }
+    >
       <SectionContainer
         className="!m-0 !p-0"
         wraperClassName="items-center !m-0 md:!w-1/2 !p-0 md:bg-white"
