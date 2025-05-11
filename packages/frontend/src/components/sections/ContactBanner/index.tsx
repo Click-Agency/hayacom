@@ -2,9 +2,9 @@ import { useTranslation } from "react-i18next";
 import SectionContainer from "../../shared/containers/SectionContainer";
 import { trim } from "../../../utils/functions/general";
 import useScrollInToView from "../../../hooks/useScrollInToView";
+import handPhone from "../../../assets/imgs/hand-phone.png";
 import ButtonStyled from "../../shared/ButtonStyled";
 import info from "../../../config/info";
-import Logo from "../../shared/Logo";
 
 // const storesArr = [
 //   {
@@ -26,52 +26,51 @@ const ContactBanner = () => {
 
   return (
     <SectionContainer
-      className="bg-sheet-paper"
+      className="bg-sheet-paper !p-0"
       ref={targetRef}
       id="download-app"
       dir="rtl"
       wraperClassName={`
         md:flex-row 
         items-center 
-        justify-around 
-        gap-10
-        md:gap-4
+        justify-between 
+        gap-4
         transition-all
         duration-500
         ease-in-out
-        py-10
+        !p-0
+        !m-0
+        !w-full
         ${isInView ? "opacity-100" : "opacity-0"}`}
     >
-      {/* <img
+      <img
         src={handPhone}
         alt="app"
-        className={trim(`
-          flex-1
+        className={trim(`         
           w-full
           md:max-w-[35%]
           max-w-[230px]
           drop-shadow-2xl
           shadow-primary`)}
-      /> */}
-      <Logo className="max-w-32 md:max-w-64" />
+      />
 
       <div
         className={trim(`
           flex
           flex-col
-          gap-9
+          gap-12
+          w-full
+          md:ml-[10%]
           justify-center
           items-center
           text-center
-          md:max-w-[40%]`)}
+          md:max-w-[45%]`)}
       >
         <h1
           className={trim(`
             text-primary
-            text-responsive-lg
-            md:text-responsive-xl
-            font-semibold
-            text-shadow-lg`)}
+            text-responsive-2xl
+            font-semibold`)}
         >
           {t("contactBanner.title")}
         </h1>
@@ -115,13 +114,12 @@ const ContactBanner = () => {
               md:w-[70%]
               lg:w-[50%]
               w-full
-              max-w-full
+              max-w-[200px]
               md:max-w-none
               md:mb-0
               mb-4`}
             ripple
-            href={info.socials.whatsapp}
-            target="_blank"
+            href={`tel:${info.contact.phone}`}
             bg
             title={t("contactUs", { ns: "common" })}
           />
