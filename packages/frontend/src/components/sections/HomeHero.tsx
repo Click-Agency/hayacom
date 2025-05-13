@@ -3,7 +3,8 @@ import SectionContainer from "../shared/containers/SectionContainer";
 import { trim } from "../../utils/functions/general";
 import useScrollInToView from "../../hooks/useScrollInToView";
 import SectionHeader from "../shared/SectionHeader";
-import appPhone from "../../assets/imgs/mobile.png";
+import mobile from "../../assets/imgs/mobile.png";
+import mobileReverse from "../../assets/imgs/mobile-reverse.png";
 
 const HomeHero = () => {
   const { t, i18n } = useTranslation(["home"]);
@@ -66,9 +67,10 @@ const HomeHero = () => {
       </div>
 
       <img
-        src={appPhone}
+        src={mobileReverse}
         alt="app"
         className={trim(`
+          ${i18n.dir() === "ltr" ? "hidden" : ""}
           flex-1
           w-full
           md:max-w-[300px]
@@ -79,7 +81,23 @@ const HomeHero = () => {
           transition-[opacity]
           duration-500
           ease-in-out
-          ${i18n.dir() === "rtl" ? "-scale-x-100":""}
+          ${isInView ? "opacity-100" : "opacity-0"}`)}
+      />
+      <img
+        src={mobile}
+        alt="app"
+        className={trim(`
+          ${i18n.dir() === "rtl" ? "hidden" : ""}
+          flex-1
+          w-full
+          md:max-w-[300px]
+          max-w-[150px]
+          block
+          drop-shadow-2xl
+          shadow-primary
+          transition-[opacity]
+          duration-500
+          ease-in-out
           ${isInView ? "opacity-100" : "opacity-0"}`)}
       />
     </SectionContainer>

@@ -41,6 +41,8 @@ const ContactBanner = () => {
         !p-0
         !m-0
         !w-full
+        !pb-6
+        md:!pb-0
         ${isInView ? "opacity-100" : "opacity-0"}`}
     >
       <img
@@ -58,7 +60,8 @@ const ContactBanner = () => {
         className={trim(`
           flex
           flex-col
-          gap-12
+          md:gap-12
+          gap-6
           w-full
           md:ml-[10%]
           justify-center
@@ -78,7 +81,7 @@ const ContactBanner = () => {
         <div
           className={trim(`
             flex 
-            gap-2 
+            gap-2
             items-center
             justify-center
             w-full
@@ -119,7 +122,8 @@ const ContactBanner = () => {
               md:mb-0
               mb-4`}
             ripple
-            href={`tel:${info.contact.phone}`}
+            href={info.socials.whatsapp}
+            target="_blank"
             bg
             title={t("contactUs", { ns: "common" })}
           />
